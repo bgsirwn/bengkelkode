@@ -28,6 +28,32 @@ class UserTable extends KoneksiDatabase{
 		return $result;
 	}
 
+
+	function prepareData($email,$password,$username,$name,$photo){
+		$this->setEmail($email);
+		$this->setPassword($password);
+		$this->setUsername($username);
+		$this->setName($name);
+		$this->setPhoto($photo);
+	}
+
+	function saveRow(){
+		$koneksi = new PDO('mysql:host='.$this->host.';dbname='.$this->database,$this->usr,$this->pass);
+		$query = $koneksi->prepare("INSERT INTO user (id,email,password,username,name,photo,join_date) VALUES (null,:email,:password,:username,:name,:photo,:join_date)");
+		$query->bindValue(':email',$this->getEmail());
+		$query->bindValue(':password',$this->getPassword());
+		$query->bindValue(':username',$this->getUsername());
+		$query->bindValue(':name',$this->getName());
+		$query->bindValue(':photo',$this->getPhoto());
+		$query->bindValue(':join_date',Sistem::getWaktu());
+		$query->execute();
+		return $koneksi->lastInsertId();
+	}
+
+	function updateRowById(){
+
+	}
+	
 	function setEmail($email){
 		$this->email = $email;
 	}
@@ -66,31 +92,6 @@ class UserTable extends KoneksiDatabase{
 
 	function getPhoto(){
 		return "media/photos/".$this->photo;
-	}
-
-	function prepareData($email,$password,$username,$name,$photo){
-		$this->setEmail($email);
-		$this->setPassword($password);
-		$this->setUsername($username);
-		$this->setName($name);
-		$this->setPhoto($photo);
-	}
-
-	function saveRow(){
-		$koneksi = new PDO('mysql:host='.$this->host.';dbname='.$this->database,$this->usr,$this->pass);
-		$query = $koneksi->prepare("INSERT INTO user (id,email,password,username,name,photo,join_date) VALUES (null,:email,:password,:username,:name,:photo,:join_date)");
-		$query->bindValue(':email',$this->getEmail());
-		$query->bindValue(':password',$this->getPassword());
-		$query->bindValue(':username',$this->getUsername());
-		$query->bindValue(':name',$this->getName());
-		$query->bindValue(':photo',$this->getPhoto());
-		$query->bindValue(':join_date',Sistem::getWaktu());
-		$query->execute();
-		return $koneksi->lastInsertId();
-	}
-
-	function updateRowById(){
-
 	}
 }
 ?>

@@ -1,7 +1,7 @@
 function login(username, password){
 	var dataYgDiKirim;
 	if(username===undefined||password===undefined)
-		dataYgDiKirim = $('#login_form').serialize();
+		dataYgDiKirim = $('#login-form').serialize();
 	else
 		dataYgDiKirim = 'username='+username+'&password='+password;
 	$.ajax({

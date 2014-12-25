@@ -1,27 +1,19 @@
-<?if(!$sistemUtama->isAjax()){?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>#SahabatKantong | Home</title>
-	<script src="tampilan/js/jquery-1.11.1.min.js"></script>
-	<script src="tampilan/js/home.js"></script>
-	<link rel="stylesheet" type="text/css" href="tampilan/style/home.css">
+	<title>Bengkel Coding</title>
 </head>
 <body>
 	<div id="kontainer">
-		<? require 'tampilan/page/header.php';?>
-		<div id="konten_outer">
-			<? require 'tampilan/page/menu.php';?>
+		<div id="header">
+			<h1>Bengkel Coding</h1>
+		</div>
+		<div id="konten-outer">
 			<div id="konten">
-				<?}?>
-				<?if($sistemUtama->isAjax()||!$sistemUtama->isAjax()){?>
-				Ini halaman utama.
-				<?}?>
-				<?if(!$sistemUtama->isAjax()){?>
+				<?php include 'tampilan/page/menu.php'; ?>
 			</div>
 		</div>
 		<div id="footer"></div>
 	</div>
 </body>
 </html>
-<?}?>

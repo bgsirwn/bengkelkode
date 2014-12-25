@@ -5,7 +5,7 @@ class KoneksiDatabase{
 	public $host = 'localhost';
 	public $usr = 'root';
 	public $pass = 'root';
-	public $database = 'sahabatkantong';
+	public $database = 'bengkelcoding';
 }
 
 //sistem

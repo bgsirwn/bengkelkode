@@ -12,5 +12,11 @@ require 'sistem/class_lib.php';
 // else{
 // 	echo "We're very sorry. The page you requested doesn't exist! Back to <a href='?page=home'>home</a>.";
 // }
-echo $_GET['url'];
+$url = 'home';
+
+if(isset($_GET['url'])){
+	$url = $_GET['url'];
+}
+
+
 ?>

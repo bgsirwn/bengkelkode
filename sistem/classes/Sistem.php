@@ -4,6 +4,7 @@ class Sistem extends KoneksiDatabase
 {
 	var $isUnderMaintenance = 0;
 	var $lokasi;
+	var $urls;
 
 	function getUserLoggedIn(){
 		if (isset($_SESSION['user_id'])) {
@@ -91,6 +92,10 @@ class Sistem extends KoneksiDatabase
 
 	function isAjax(){
 		return $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
+	}
+
+	function addRouting(){
+		
 	}
 }
 ?>

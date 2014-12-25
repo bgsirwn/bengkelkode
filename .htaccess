@@ -1,0 +1,7 @@
+php_flag display_startup_errors On
+php_flag display_errors On
+
+RewriteEngine On
+RewriteRule ^([A-Za-z0-9_/?%]+)/$ http://bengkelkode.dev/$1 [NC,R]
+RewriteRule ^([A-Za-z0-9_/?%]+)$ index.php?url=$1
+ErrorDocument 404 http://ckptw.dev/404.php

@@ -77,8 +77,9 @@ class Sistem extends KoneksiDatabase
 		}
 	}
 
-	function signup($email,$password,$username,$name,$photo){
+	function signup($email,$password,$username,$name){
 		$user = new UserTable();
+		$photo = "null";
 		$user->prepareData($email,$password,$username,$name,$photo);
 		$user->saveRow();
 		echo "true";
@@ -112,7 +113,7 @@ class Sistem extends KoneksiDatabase
 			}
 		}
 		if(!$found){
-			call_user_func(array('TesController','err'));
+			call_user_func(array('GlobalController','err'));
 		}
 	}
 }

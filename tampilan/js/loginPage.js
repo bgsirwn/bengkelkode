@@ -13,7 +13,7 @@ function login(username, password){
 				window.location = 'home';
 			}
 			else{
-				alert("Password salah!");
+				alert("Password salah!\n"+password+"\n"+username);
 			}
 		}
 	});
@@ -21,15 +21,15 @@ function login(username, password){
 	return false;
 }
 
-function sign_up(){
+function signup(){
 	$.ajax({
 		type: 'POST',
 		url: 'signup/auth',
-		data: $('#sign_up_form').serialize(),
+		data: $('#signup-form').serialize(),
 		success: function(data){
 			if (data=='true') {
-				var username = $('#sign_up_form #username').val();
-				var password = $('#sign_up_form #password').val();
+				var username = $('#signup-form #username').val();
+				var password = $('#signup-form #password').val();
 				login(username,password);
 			}
 			else{

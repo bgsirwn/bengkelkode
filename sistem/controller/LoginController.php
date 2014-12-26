@@ -5,7 +5,7 @@ class LoginController{
 		echo "hello";
 	}
 
-	function showLogin(){
+	function show(){
 		Tampilan::show('login');
 	}
 

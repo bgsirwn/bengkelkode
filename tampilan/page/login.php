@@ -6,7 +6,7 @@ if (Sistem::periksaSesi()) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Bengkel Koding</title>
+	<title>Bengkel Koding::Login</title>
 	<script src="tampilan/js/jquery-1.11.1.min.js"></script>
 	<script src="tampilan/js/loginPage.js"></script>
 	<link rel="stylesheet" type="text/css" href="tampilan/style/login.css">

@@ -23,6 +23,10 @@ if(isset($_GET['url'])){
 
 $routers = array(
 	array(
+		'id' => 'home',
+		'call' => 'TesController@home'
+	),
+	array(
 		'id' => 'hello',
 		'call' => 'LoginController@hello'
 	),

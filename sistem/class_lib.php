@@ -10,6 +10,9 @@ class KoneksiDatabase{
 
 //sistem
 require 'classes/Sistem.php';
+require 'classes/Tampilan.php';
+require 'classes/LoginController.php';
+require 'classes/TesController.php';
 
 //database
 require 'databases/UserTable.php';

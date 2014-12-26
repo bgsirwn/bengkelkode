@@ -6,6 +6,10 @@ class Sistem extends KoneksiDatabase
 	var $lokasi;
 	var $urls;
 
+	function __construct(){
+		$this->ulrs = array('id','aa');
+	}
+
 	function getUserLoggedIn(){
 		if (isset($_SESSION['user_id'])) {
 			return $_SESSION['user_id'];
@@ -94,8 +98,17 @@ class Sistem extends KoneksiDatabase
 		return $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 	}
 
-	function addRouting(){
-		
+	function addRouting($urls){
+		return $this->urls[$this->urls.length-1];	
+	}
+
+	function routing($routers, $url){
+		for ($i=0; $i < count($routers); $i++) { 
+			if ($routers[$i]['id']==$url) {
+				$data = explode("@", $routers[$i]['call']);
+				call_user_func(array($data[0],$data[1]));
+			}
+		}
 	}
 }
 ?>

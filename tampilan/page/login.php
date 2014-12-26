@@ -1,3 +1,8 @@
+<?php
+if (Sistem::periksaSesi()) {
+	header("Location: home");	
+};
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +17,8 @@
 		<div id="konten-outer">
 			<div id="login-section">
 				<form id="login-form" onsubmit="return login()">
-					<input name="username" type="text" placeholder="username or email">
-					<input name="password" type="password" placeholder="password">
+					<input name="username" type="text" placeholder="username or email" required>
+					<input name="password" type="password" placeholder="password" required>
 					<input type="submit" value="login">
 				</form>
 			</div>

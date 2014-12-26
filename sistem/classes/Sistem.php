@@ -98,8 +98,8 @@ class Sistem extends KoneksiDatabase
 		return $isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH']) && !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 	}
 
-	function addRouting($urls){
-		return $this->urls[$this->urls.length-1];	
+	function addRouting(&$routers, $url, $call){
+		$routers[(count($routers))] = array('id' => $url, 'call' => $call);
 	}
 
 	function routing($routers, $url){

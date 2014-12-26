@@ -13,10 +13,10 @@ require 'classes/Sistem.php';
 require 'classes/Tampilan.php';
 require 'classes/LoginController.php';
 require 'classes/TesController.php';
+require 'router.php';
 
 //database
 require 'databases/UserTable.php';
 require 'databases/PengeluaranTable.php';
 require 'databases/PemasukanTable.php';
-
 ?>

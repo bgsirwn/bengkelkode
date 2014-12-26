@@ -21,28 +21,5 @@ if(isset($_GET['url'])){
 	$url = $_GET['url'];
 }
 
-$routers = array(
-	array(
-		'id' => 'home',
-		'call' => 'TesController@home'
-	),
-	array(
-		'id' => 'hello',
-		'call' => 'LoginController@hello'
-	),
-	array(
-		'id' => 'aku',
-		'call' => 'TesController@showAku'
-	),
-	array(
-		'id' => 'aku/contact',
-		'call' => 'TesController@contactKu'
-	),
-	array(
-		'id' => 'login',
-		'call' => 'LoginController@showLogin'
-	)
-);
-
 $sistemUtama->routing($routers, $url);
 ?>

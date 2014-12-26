@@ -1,3 +1,7 @@
+<?php
+$sistemUtama = new Sistem();
+$sistemUtama->mulai('home');
+?>
 <!DOCTYPE html>
 <html>
 <head>

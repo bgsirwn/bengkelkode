@@ -12,6 +12,6 @@
 			<li>Choose Programming Language</li>
 		</ul>
 		<li>Setting</li>
-		<li><a href="?page=logout">Logout</a></li>
+		<li><a href="logout">Logout</a></li>
 	</ul>
 </div>

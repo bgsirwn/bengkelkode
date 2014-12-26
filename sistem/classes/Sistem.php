@@ -47,12 +47,12 @@ class Sistem extends KoneksiDatabase
 		if (!$this->isUnderMaintenance) {
 			if ($this->periksaSesi()) {
 				if ($this->getLokasi()=="login"||$this->getLokasi()=="maintenance_report") {
-					header("Location: ?page=home");
+					header("Location: home");
 				}
 			}
 			else{
 				if($this->getLokasi()!="login"){
-					header("Location: /");
+					header("Location: login");
 				}
 			}
 		}
@@ -91,7 +91,7 @@ class Sistem extends KoneksiDatabase
 		elseif (isset($_COOKIE['user_id'])) {
 			setcookie('user_id','',time()-3600);
 		}
-		header("Location: ?page=login");
+		header("Location: login");
 	}
 
 	function isAjax(){
@@ -103,11 +103,16 @@ class Sistem extends KoneksiDatabase
 	}
 
 	function routing($routers, $url){
+		$found = false;
 		for ($i=0; $i < count($routers); $i++) { 
 			if ($routers[$i]['id']==$url) {
 				$data = explode("@", $routers[$i]['call']);
 				call_user_func(array($data[0],$data[1]));
+				$found = true;
 			}
+		}
+		if(!$found){
+			call_user_func(array('TesController','err'));
 		}
 	}
 }

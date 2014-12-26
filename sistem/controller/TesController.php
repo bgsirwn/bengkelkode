@@ -7,7 +7,13 @@ class TesController{
 		Tampilan::show('contact');
 	}
 	function home(){
-		echo "Selamat datang di bengkel kode. Coba <a href='/login'>login</a> deh";
+		Tampilan::show('home');
+	}
+	function err(){
+		echo "Ups, the page you are looking for doesn't exist.";
+	}
+	function logout(){
+		Sistem::logout();
 	}
 }
 ?>

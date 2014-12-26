@@ -6,11 +6,11 @@ function login(username, password){
 		dataYgDiKirim = 'username='+username+'&password='+password;
 	$.ajax({
 		type: 'POST',
-		url: 'sistem/ajax/login.php',
+		url: 'login/auth',
 		data: dataYgDiKirim,
 		success: function(data){
 			if(data=='true'){
-				window.location = '?page=home';
+				window.location = 'home';
 			}
 			else{
 				alert("Password salah!");
@@ -24,7 +24,7 @@ function login(username, password){
 function sign_up(){
 	$.ajax({
 		type: 'POST',
-		url: 'sistem/ajax/sign_up.php',
+		url: 'signup/auth',
 		data: $('#sign_up_form').serialize(),
 		success: function(data){
 			if (data=='true') {

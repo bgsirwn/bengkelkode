@@ -9,4 +9,5 @@ Sistem::addRouting($routers,'signup','SignupController@show');
 Sistem::addRouting($routers,'signup/auth','SignupController@signMeUp');
 Sistem::addRouting($routers,'login/auth', 'LoginController@auth');
 Sistem::addRouting($routers,'logout', 'GlobalController@logout');
+Sistem::addRouting($routers,'post', 'PostController@show');
 ?>

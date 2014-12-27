@@ -16,6 +16,7 @@ require 'classes/Tampilan.php';
 require 'controller/LoginController.php';
 require 'controller/GlobalController.php';
 require 'controller/SignupController.php';
+require 'controller/PostController.php';
 
 //database
 require 'databases/UserTable.php';

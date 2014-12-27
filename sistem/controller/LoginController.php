@@ -2,7 +2,9 @@
 class LoginController{
 
 	function hello(){
-		echo "hello";
+		$va = htmlentities("<p>Namaku <span style='color:red'>Huda</span></p>");
+		echo $va."<br>";
+		echo htmlspecialchars_decode($va);
 	}
 
 	function show(){

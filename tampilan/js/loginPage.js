@@ -13,7 +13,7 @@ function login(username, password){
 				window.location = 'home';
 			}
 			else{
-				alert("Password salah!\n"+password+"\n"+username);
+				alert("Data yang anda masukkan salah!");
 			}
 		}
 	});

@@ -107,8 +107,13 @@ class Sistem extends KoneksiDatabase
 		$found = false;
 		for ($i=0; $i < count($routers); $i++) { 
 			if ($routers[$i]['id']==$url) {
-				$data = explode("@", $routers[$i]['call']);
-				call_user_func(array($data[0],$data[1]));
+				if (is_string($routers[$i]['call'])) {
+					$data = explode("@", $routers[$i]['call']);
+					call_user_func(array($data[0],$data[1]));
+				}
+				else{
+					$routers[$i]['call']();
+				}
 				$found = true;
 			}
 		}

@@ -17,11 +17,11 @@ require 'controller/LoginController.php';
 require 'controller/GlobalController.php';
 require 'controller/SignupController.php';
 require 'controller/PostController.php';
+require 'controller/DiscoverController.php';
 
 //database
 require 'databases/UserTable.php';
-require 'databases/PengeluaranTable.php';
-require 'databases/PemasukanTable.php';
+require 'databases/ThreadTable.php';
 
 //router
 require 'router.php';

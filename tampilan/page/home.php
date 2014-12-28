@@ -6,7 +6,7 @@
 <body>
 	<div id="kontainer">
 		<div id="header">
-			<h1>Bengkel Coding</h1>
+			<?php require 'header.php';?>
 		</div>
 		<div id="konten-outer">
 			<div id="konten">

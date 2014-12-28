@@ -1,16 +1,8 @@
 <div id="menu">
 	<ul>
-		<li>+</li>
-		<ul>
-			<li>Discussion</li>
-			<li>Question</li>
-		</ul>
-		<li>Discover</li>
-		<ul>
-			<li>Question</li>
-			<li>Hot topic</li>
-			<li>Choose Programming Language</li>
-		</ul>
+		<li><a href="post">New Post</a></li>
+		<li><a href="discover">Discover</a></li>
+		<li>Profile</li>
 		<li>Setting</li>
 		<li><a href="logout">Logout</a></li>
 	</ul>

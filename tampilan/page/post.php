@@ -12,13 +12,22 @@ if (!Sistem::periksaSesi()) {
 </head>
 <body>
 	<div id="kontainer">
-		<div id="header"></div>
+		<div id="header">
+			<?php require 'header.php';?>
+		</div>
 		<div id="konten-outer">
 			<?php
+			include 'tampilan/page/menu.php'; 
 			if(isset($_POST['test'])){
-				echo htmlentities($_POST['test']);
+				$s = htmlentities($_POST['test']);
+				echo $s;
+				echo "<br>".htmlspecialchars_decode($s);
+				$thread = new ThreadTable();
+				$thread->prepareData(Sistem::getUserLoggedIn(),$_POST['title'],$s,"php");
+				$thread->save();
 			}else{?>
 			<form method="POST">
+				<input id="title" name="title" type="text" placeholder="Title" required>
 				<textarea id="test" name="test"></textarea>
 				<input type="submit">
 				<script>

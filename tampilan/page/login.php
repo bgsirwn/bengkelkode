@@ -13,7 +13,9 @@ if (Sistem::periksaSesi()) {
 </head>
 <body>
 	<div id="kontainer">
-		<div id="header"></div>
+		<div id="header">
+			<?php require 'header.php';?>
+		</div>
 		<div id="konten-outer">
 			<div id="login-section">
 				<form id="login-form" onsubmit="return login()">

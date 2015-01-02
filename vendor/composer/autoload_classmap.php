@@ -8,6 +8,8 @@ $baseDir = dirname($vendorDir);
 return array(
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'BengkelKodingController' => $baseDir . '/app/controllers/BengkelKodingController.php',
+    'Comment' => $baseDir . '/app/models/Comment.php',
+    'CreateAnswersTable' => $baseDir . '/app/database/migrations/2015_01_01_103840_create_answers_table.php',
     'CreatePasswordRemindersTable' => $baseDir . '/app/database/migrations/2014_12_30_235054_create_password_reminders_table.php',
     'CreateTableUsers' => $baseDir . '/app/database/migrations/2014_12_29_043152_create_table_users.php',
     'CreateThreadsTable' => $baseDir . '/app/database/migrations/2014_12_30_012353_create_threads_table.php',

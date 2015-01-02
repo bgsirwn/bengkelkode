@@ -9,7 +9,7 @@ class ThreadController extends BaseController{
 		$thread->thread = htmlentities($data['thread']);
 		$thread->tag = 'null';
 		$thread->save();
-		return Redirect::route('discover');
+		return Redirect::route('thread.detail', array(Auth::user()->username, $thread->id));
 	}
 
 	function discover(){
@@ -23,8 +23,9 @@ class ThreadController extends BaseController{
 			$user_id = $key->id;
 		}
 
-		$data = Thread::where('user_id','=',$user_id)->where('id','=',$id)->orderBy('created_at', 'desc')->get();
-		return View::make('discover',array('output'=>$data));
+		$data = Thread::where('id','=',$id)->orderBy('created_at', 'desc')->get();
+		$answer = Answer::where('thread_id','=',$id)->get();
+		return View::make('discover',array('output'=>$data, 'answer'=>$answer));
 	}
 
 	function threadByUsername($username=null){
@@ -34,6 +35,16 @@ class ThreadController extends BaseController{
 		}
 		$data = Thread::where('user_id','=',$id)->orderBy('created_at', 'desc')->get();
 		return View::make('discover',array('output'=>$data));
+	}
+
+	function postAnswer($username, $id){
+		$data = Input::all();
+		$comment = new Answer;
+		$comment->user_id = Auth::id();
+		$comment->thread_id = $id;
+		$comment->answer= htmlentities(Input::get('answer'));
+		$comment->save();
+		return Redirect::route('thread.detail', array($username, $id));
 	}
 
 }

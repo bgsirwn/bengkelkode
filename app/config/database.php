@@ -55,9 +55,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'belajar',
-			'username'  => 'root',
-			'password'  => 'root',
+			'database'  => 'bengkelkoding',
+			'username'  => 'rosssot',
+			'password'  => 'rssoot',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

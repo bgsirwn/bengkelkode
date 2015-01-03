@@ -36,7 +36,9 @@ Route::post('signup', array(
 	'uses'=>'BengkelKodingController@signMeUp'
 ));
 
-Route::get('tes', 'RemindersController@getRemind');
+Route::get('tes', function(){
+	return View::make('tes');
+});
 
 Route::get('dashboard', array(
 	'as'=>'dashboard', 

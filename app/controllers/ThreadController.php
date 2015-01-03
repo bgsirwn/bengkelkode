@@ -44,6 +44,8 @@ class ThreadController extends BaseController{
 		$comment->thread_id = $id;
 		$comment->answer= htmlentities(Input::get('answer'));
 		$comment->save();
+		$answer = new Notification;
+		$answer->store($id, 1);
 		return Redirect::route('thread.detail', array($username, $id));
 	}
 

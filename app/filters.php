@@ -13,7 +13,10 @@
 
 App::before(function($request)
 {
-	//
+	if (Auth::check()) {
+		$notif = new NotificationController;
+		$notif->getNotifications();
+	}
 });
 
 

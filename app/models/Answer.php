@@ -4,12 +4,12 @@ class Answer extends Eloquent{
 		$data = $this->where('thread_id','=', $thread_id)->distinct()->lists('user_id');
 		$found = false;
 		for($i=0;$i<count($data);$i++){
-			if ($data[$i]==Thread::find($thread_id)->id) {
+			if ($data[$i]==Thread::find($thread_id)->user_id) {
 				$found = true;
 			}
 		}
 		if(!$found){
-			$data[count($data)] = Thread::find($thread_id)->id;
+			$data[count($data)] = Thread::find($thread_id)->user_id;
 		}
 		return $data;
 	}

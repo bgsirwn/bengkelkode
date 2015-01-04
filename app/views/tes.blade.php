@@ -3,9 +3,11 @@
 	{{"Bengkel Koding"}}
 @stop
 @section('content')
-	<pre>
-	<?php 
-	$answer = new Answer;
-	var_dump($answer->getUserInvolvedOnThread(1)); 
+	<br><br>
+	<?php
+	$notif = Session::get('notifications');
+	foreach ($notif as $key) {
+		echo $key->id."<br>";
+	}
 	?>
 @stop

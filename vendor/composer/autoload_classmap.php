@@ -16,6 +16,8 @@ return array(
     'CreateThreadsTable' => $baseDir . '/app/database/migrations/2014_12_30_012353_create_threads_table.php',
     'DatabaseSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
+    'Notification' => $baseDir . '/app/models/Notification.php',
+    'NotificationController' => $baseDir . '/app/controllers/NotificationController.php',
     'RemindersController' => $baseDir . '/app/controllers/RemindersController.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/app/tests/TestCase.php',

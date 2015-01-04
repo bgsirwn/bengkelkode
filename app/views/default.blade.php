@@ -62,7 +62,6 @@
         		
         		<ul class="element-menu place-right" style="margin-right: 140px">
 					@if(Auth::check())
-<<<<<<< HEAD
 						<li class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown">Notifications <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
@@ -79,25 +78,10 @@
 								<li><a href="{{route('logout')}}">Logout</a></li>
 							</ul>
 						</li>
-					@else
-						<li><a href="{{route('signup')}}">sign up</a></li>
-=======
-        			<li>
-        			
-                <a class="dropdown-toggle" href="#">{{Auth::user()->name}}</a>
-                <ul class="dropdown-menu dark" data-role="dropdown">
-                    <li><a href={{route('profile', array(Auth::user()->username))}}">Profile</a></li>
-                    <li><a href="responsive.html">Setting</a></li>
-                    <li class="divider"></li>
-                    <li><a href="{{route('logout')}}">Logout</a></li>
-                </ul>
-
-            </li>
-            </ul>
+					
 
             	@else
             	<li><a href="{{route('signup')}}">sign up</a></li>
->>>>>>> e3fff14a05abc1f3aecbee969b793ce9c7aec408
 						<li><a href="{{route('login')}}">login</a></li>
 					</ul>
 				@endif

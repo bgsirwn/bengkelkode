@@ -13,6 +13,8 @@
 
 App::before(function($request)
 {
+	//jika user masuk ke aplikasi, maka akan memanggil function
+	//notifikasi dari kelas NotificationController
 	if (Auth::check()) {
 		$notif = new NotificationController;
 		$notif->getNotifications();

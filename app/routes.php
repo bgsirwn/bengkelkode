@@ -78,7 +78,22 @@ Route::get('setting', array(
 	}
 ));
 
-Route::get('{username}', array('as'=>'profile', 'uses'=>'UserController@index'));
-Route::get('{username}/thread', array('as'=>'thread.username', 'uses'=>'ThreadController@threadByUsername'));
-Route::get('{username}/thread/{id}', array('as'=>'thread.detail','uses'=>'ThreadController@threadDetail'))->where('id', '[0-9]+');
-Route::post('{username}/thread/{id}', array('as'=>'post.answer','uses'=>'ThreadController@postAnswer'));
+Route::get('{username}', array(
+	'as'=>'profile', 
+	'uses'=>'UserController@index'
+));
+
+Route::get('{username}/thread', array(
+	'as'=>'thread.username', 
+	'uses'=>'ThreadController@threadByUsername'
+));
+
+Route::get('{username}/thread/{id}', array(
+	'as'=>'thread.detail',
+	'uses'=>'ThreadController@threadDetail'))->where('id', '[0-9]+'
+);
+
+Route::post('{username}/thread/{id}', array(
+	'as'=>'post.answer',
+	'uses'=>'ThreadController@postAnswer'
+));

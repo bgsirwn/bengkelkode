@@ -20,4 +20,5 @@ class Notification extends Eloquent{
 			}
 		}
 	}
+	
 }

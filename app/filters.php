@@ -15,6 +15,7 @@ App::before(function($request)
 {
 	//jika user masuk ke aplikasi, maka akan memanggil function
 	//notifikasi dari kelas NotificationController
+	//Dan function itu akan men-share notifikasi ke semua view yang aktif
 	if (Auth::check()) {
 		$notif = new NotificationController;
 		$notif->getNotifications();

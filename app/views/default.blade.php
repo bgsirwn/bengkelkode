@@ -69,9 +69,23 @@
         </div>
     </div>
     </div>
-	<div id="header" class="page-header">
-		<h1><a href="/">Bengkel Koding</a></h1>
-	</div>
+
+    <div class="container">
+    	<div class="grid">
+    		<div class="row">
+    			<div class="span6">
+    				<div class="header">
+	    				
+	    					<img src="dist/images/logo.png" style="float:left; margin-right:20px" class="span1">
+	    				
+	    				<h2 style="padding-top:10px"><a href="#">BengkelKoding.com</a></h2>
+	    			</div>
+
+    			</div>
+    		</div>
+    	</div>
+    </div>
+	
 	<div id="content">
 		@yield('content')
 	</div>

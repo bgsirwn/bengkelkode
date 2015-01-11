@@ -1,17 +1,6 @@
-@extends('default')
-@section('title')
-	{{"Bengkel Koding"}}
-@stop
-@section('content')
-<div class="container">
-	<div class="grid">
-		<div class="row">
-			<div class="span12">
-				
-					
-				</div>
-				<center><h2 style="margin-bottom:50px">Help Beginner or Profesional Programmer</h2></center>
-				<center><svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="275.97327" height="263.44876" id="svg3904" version="1.1" inkscape:version="0.48.2 r9819" sodipodi:docname="New document 5">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="275.97327" height="263.44876" id="svg3904" version="1.1" inkscape:version="0.48.2 r9819" sodipodi:docname="New document 5">
   <defs id="defs3906">
     <filter color-interpolation-filters="sRGB" inkscape:collect="always" id="filter3839" x="-0.1044344" width="1.2088687" y="-0.3554292" height="1.7108583">
       <feGaussianBlur inkscape:collect="always" stdDeviation="17.15866" id="feGaussianBlur3841"/>
@@ -48,40 +37,4 @@
       </g>
     </g>
   </g>
-</svg></center>
-				<center><p>Hei!! Selamat datang di Bengkel Koding! Kamu bisa <a href="login">login</a> atau <a href="signup">sign up.</a></p>
-				<p>Have fun ya! ^^</p></center>
-			</div>
-		</div>
-	</div>
-</div>
-
-@stop
-@section('outer')
-<div id="content">
-<div class="grad">
-<div class="container">
-Apa yang bisa dilakukan disini?
-	<div class="grid">
-	<div class="row">
-
-	<div class="span4">
-		<h3>Bertanya</h3>
-		<p>Anda bisa bertanya apa pun seputar pemrograman, di forum ini terdapat banyak sekali master-master di bidangnya. Jangan malu-malu!</p>
-	</div>
-	<div class="span6">
-		<h3>Menjawab</h3>
-		<p>Ayo! Berbagilah solusi di sini, jadilah bermanfaat. Karena sebaik-baik manusia adalah yang bermanfaat bagi sesama. Bantu teman-teman menyelesaikan masalahnya.</p>
-	</div>
-	<div class="span4">
-		<h3>Self Branding</h3>
-		<p>Tingkatkan level anda dengan menjawab pertanyaan dengan baik, semakin banyak problem solving, semakin tinggi level anda! Anda bisa mempromosikan diri sebagai freelancer yang kompetitif!</p>
-	</div>
-	</div>
-</div>
-</div>
-</div>
-</div>
-
-
-@stop
+</svg>

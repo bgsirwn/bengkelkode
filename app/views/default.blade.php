@@ -9,6 +9,7 @@
 	{{HTML::style('dist/css/metro-bootstrap-responsive.css')}}
 	{{HTML::style('dist/css/iconFont.css')}}
 	{{HTML::style('dist/css/docs.css')}}
+	{{HTML::style('dist/css/custom.css')}}
 	{{HTML::style('dist/js/prettify/prettify.css')}}
 
 	<!--Load JavaScript Libraries-->

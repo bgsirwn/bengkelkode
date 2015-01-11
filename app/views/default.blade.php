@@ -77,7 +77,7 @@
     			<div class="span6">
     				<div class="header">
 	    				
-	    					<img src="dist/images/logo.png" style="float:left; margin-right:20px" class="span1">
+	    					<img src="{{URL::asset('dist/images/logo.png')}}" style="float:left; margin-right:20px" class="span1">
 	    				
 	    				<h2 style="padding-top:10px"><a href="#">BengkelKoding.com</a></h2>
 	    			</div>

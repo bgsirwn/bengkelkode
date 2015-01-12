@@ -26,7 +26,14 @@
 			<button class="success"><strong>{{"@".$output->username}}</strong></button>
 			<button class="info"><strong>10k fllwrs</strong></button>
 			<button class="primary"><strong>level 18</strong></button>
-			<p><a href="{{route('thread.username', array($output->username))}}" role="button" class="button primary large" style="margin-top:40px">Thread</a>
+			<br><a href="{{route('thread.username', array($output->username))}}" role="button" class="button primary large" style="margin-top:40px">Thread</a>
+			@if($followed)
+				<a href="{{route('unfollow', array('username'=>$output->username))}}" role="button" class="button primary large" style="margin-top:40px">Unfollow</a>
+			@else
+				@if(Auth::user()->username!=$output->username)
+				<a href="{{route('follow', array('username'=>$output->username))}}" role="button" class="button primary large" style="margin-top:40px">Follow</a>
+				@endif
+			@endif
 			</div>
 		</div>
 

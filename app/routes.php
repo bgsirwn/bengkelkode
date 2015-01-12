@@ -78,6 +78,16 @@ Route::get('setting', array(
 	}
 ));
 
+Route::get('follow', array(
+	'as' => 'follow',
+	'uses' => 'UserController@follow'
+));
+
+Route::get('unfollow', array(
+	'as' => 'unfollow',
+	'uses' => 'UserController@unfollow'
+));
+
 Route::get('{username}', array(
 	'as'=>'profile', 
 	'uses'=>'UserController@index'

@@ -34,18 +34,27 @@ class BengkelKodingController extends BaseController{
 	}
 
 	function signMeUp(){
-		$post = Input::all();
+		// $post = Input::all();
 		//DB::insert("insert into users (id, name, username, email, password) values (?, ?, ?, ?, ?)", array(null, $post['name'], $post['username'], $post['email'], Hash::make($post['password'])));
-		
-		$id = DB::table('users')->insertGetId(
-			array(
-				'name' => $post['name'],
-				'username' => $post['username'],
-				'email' => $post['email'],
-				'password' => Hash::make($post['password'])
-		));
+		$data = Input::all();
+		$user = new User;
+		$user->username = $data['username'];
+		$user->email = $data['email'];
+		$user->password = Hash::make($data['password']);
+		$user->name = $data['name'];
+		$user->followers = "[]";
+		$user->following = "[]";
+		$user->save();
+		// return Redirect::route('dashboard');
+		// $id = DB::table('users')->insertGetId(
+		// 	array(
+		// 		'name' => $post['name'],
+		// 		'username' => $post['username'],
+		// 		'email' => $post['email'],
+		// 		'password' => Hash::make($post['password'])
+		// ));
 
-		Auth::loginUsingId($id);
+		Auth::loginUsingId($user->id);
 		// return Redirect::to('login')->with("msg","Data sudah masuk, silakan login!");
 		return Redirect::route('dashboard');
 	}

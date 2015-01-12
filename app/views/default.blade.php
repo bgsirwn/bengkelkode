@@ -45,17 +45,17 @@
        		<div class="no-tablet-portrait no-phone">
         		<ul class="element-menu place-right" style="margin-right: 140px">
 				@if(Auth::check())
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown">Notifications <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
+					<li>
+						<a class="dropdown-toggle" data-toggle="dropdown">Notifications</a>
+						<ul class="dropdown-menu dark" data-role="dropdown">
 						@foreach(Session::get('notifications') as $notif)
 							<li><a href="{{$notif->link}}">{{$notif->message}}</a></li>
 						@endforeach
 						</ul>
 					</li>
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}} <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
+					<li>
+						<a class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}}</a>
+						<ul class="dropdown-menu" data-role="dropdown">
 							<li><a href="{{route('profile', array(Auth::user()->username))}}">Profile</a></li>
 							<li><a href="{{route('setting')}}">Setting</a></li>
 							<li><a href="{{route('logout')}}">Logout</a></li>
@@ -91,6 +91,6 @@
 		@yield('content')
 	</div>
 	@yield('outer')
-	{{HTML::script('dist/js/bootstrap.min.js')}}
+	
 </body>
 </html>

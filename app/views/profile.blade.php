@@ -24,7 +24,7 @@
 			<div class="span12" style="text-align:center">
 			<h2>{{$output->name}}</h2>
 			<button class="success"><strong>{{"@".$output->username}}</strong></button>
-			<button class="info"><strong>10k fllwrs</strong></button>
+			<button class="info"><strong>{{count($followers)}} followers</strong></button>
 			<button class="primary"><strong>level 18</strong></button>
 			<br><a href="{{route('thread.username', array($output->username))}}" role="button" class="button primary large" style="margin-top:40px">Thread</a>
 			@if($followed)

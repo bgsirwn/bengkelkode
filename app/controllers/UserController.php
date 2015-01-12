@@ -5,7 +5,8 @@ class UserController extends BaseController{
 		if($user->count()>0){
 			foreach ($user as $data) {
 				$followed = UserController::isFollowed($username);
-				return View::make('profile', array('output'=>$data, 'followed'=>$followed));
+				$followers = json_decode($data->followers);
+				return View::make('profile', array('output'=>$data, 'followed'=>$followed, 'followers'=>$followers));
 			}
 		}
 		else{

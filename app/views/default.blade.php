@@ -46,7 +46,7 @@
         		<ul class="element-menu place-right" style="margin-right: 140px">
 				@if(Auth::check())
 					<li>
-						<a class="dropdown-toggle" data-toggle="dropdown">Notifications</a>
+						<a class="dropdown-toggle" href="#">Notifications</a>
 						<ul class="dropdown-menu dark" data-role="dropdown">
 						@foreach(Session::get('notifications') as $notif)
 							<li><a href="{{$notif->link}}">{{$notif->message}}</a></li>
@@ -54,7 +54,7 @@
 						</ul>
 					</li>
 					<li>
-						<a class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->name}}</a>
+						<a class="dropdown-toggle" href="#">{{Auth::user()->name}}</a>
 						<ul class="dropdown-menu" data-role="dropdown">
 							<li><a href="{{route('profile', array(Auth::user()->username))}}">Profile</a></li>
 							<li><a href="{{route('setting')}}">Setting</a></li>

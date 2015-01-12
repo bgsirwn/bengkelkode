@@ -3,19 +3,61 @@
 	{{"Bengkel Koding::discover"}}
 @stop
 @section('outer')
+<div class="container">
+<div class="grid">
 	<div class="row">
-		<div class="col-md-4 col-md-offset-4 jumbotron" style="text-align:center">
-			<h2>{{$output->name}}</h2>
-			<strong>{{"@".$output->username}}</strong>
-			<div class="row">
-				<div class="col-md-4 col-md-offset-2" style="text-align:right;">
-					<strong>10k fllwrs</strong>
-				</div>
-				<div class="col-md-4" style="text-align:left;">
-					<strong>level 18</strong>
-				</div>
-			</div>
-			<a href="{{route('thread.username', array($output->username))}}" class="btn btn-primary btn-lg" role="button">Thread</a>
+		<div class="span5">
+			
+		</div>
+		<div class="span4">
+			<img src="{{URL::Asset('dist/images/pp_blank.jpeg')}}" class="cycle span2" / style="valign:top">
+			
+				
+		</div>
+		<div class="span5"></div>
+			
 		</div>
 	</div>
+
+	<div class="grid">
+		<div class="row">
+			<div class="span12" style="text-align:center">
+			<h2>{{$output->name}}</h2>
+			<button class="success"><strong>{{"@".$output->username}}</strong></button>
+			<button class="info"><strong>10k fllwrs</strong></button>
+			<button class="primary"><strong>level 18</strong></button>
+			<p><a href="{{route('thread.username', array($output->username))}}" role="button" class="button primary large" style="margin-top:40px">Thread</a>
+			</div>
+		</div>
+
+		
+	
+		
+	</div>
+
+</div>
+
+	<div class="content" style="background-color: #7E7EFF; height:200px">
+		<div class="container">
+			<div class="grid">
+				<div class="row">
+					<div class="span12">
+						<h2><Strong style="color:white">Skill</Strong></h2>
+						<p class="divider">
+						
+						HTML dan CSS
+						<div class="progress-bar large" data-role="progress-bar" data-value="20"></div>
+						PHP
+						<div class="progress-bar large" data-role="progress-bar" data-value="40"></div>
+
+							
+
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
 @stop

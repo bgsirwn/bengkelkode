@@ -66,16 +66,40 @@ Apa yang bisa dilakukan disini?
 	<div class="row">
 
 	<div class="span4">
-		<h3>Bertanya</h3>
-		<p>Anda bisa bertanya apa pun seputar pemrograman, di forum ini terdapat banyak sekali master-master di bidangnya. Jangan malu-malu!</p>
+		<div class="panel" data-role="panel">
+			<div class="panel-header">
+			Bertanya
+			</div>
+			<div class="panel-content">
+			<p>Anda bisa bertanya apa pun seputar pemrograman, di forum ini terdapat banyak sekali master-master di bidangnya. Jangan malu-malu!</p>	
+			</div>
+		</div>
+		
+		
 	</div>
 	<div class="span6">
-		<h3>Menjawab</h3>
-		<p>Ayo! Berbagilah solusi di sini, jadilah bermanfaat. Karena sebaik-baik manusia adalah yang bermanfaat bagi sesama. Bantu teman-teman menyelesaikan masalahnya.</p>
+	<div class="panel" data-role="panel">
+			<div class="panel-header">
+			Menjawab
+			</div>
+			<div class="panel-content">
+			<p>Ayo! Berbagilah solusi di sini, jadilah bermanfaat. Karena sebaik-baik manusia adalah yang bermanfaat bagi sesama. Bantu teman-teman menyelesaikan masalahnya.</p>	
+			</div>
+		</div>
+		
+		
 	</div>
 	<div class="span4">
-		<h3>Self Branding</h3>
-		<p>Tingkatkan level anda dengan menjawab pertanyaan dengan baik, semakin banyak problem solving, semakin tinggi level anda! Anda bisa mempromosikan diri sebagai freelancer yang kompetitif!</p>
+		<div class="panel" data-role="panel">
+			<div class="panel-header">
+				Self Branding
+			</div>
+			<div class="panel-content">
+				<p>Tingkatkan level anda dengan menjawab pertanyaan dengan baik, semakin banyak problem solving, semakin tinggi level anda! Anda bisa mempromosikan diri sebagai freelancer yang kompetitif!</p>
+			</div>
+		</div>
+		
+		
 	</div>
 	</div>
 </div>

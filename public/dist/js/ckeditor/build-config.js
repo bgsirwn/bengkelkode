@@ -85,6 +85,7 @@ var CKBUILDER_CONFIG = {
 		'undo' : 1,
 		'wsc' : 1,
 		'wysiwygarea' : 1
+		'syntaxhighlight' : 1
 	},
 	languages : {
 		'af' : 1,

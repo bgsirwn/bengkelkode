@@ -17,6 +17,16 @@ class ThreadController extends BaseController{
 		return View::make('discover',array('output'=>$data));
 	}
 
+	function dashboard(){
+		$following = json_decode(User::find(Auth::id())->following);
+		$thread = Thread::orderBy('created_at', 'desc')->where('user_id','=',Auth::id());
+		foreach ($following as $key) {
+			$thread = $thread->orWhere('user_id','=',$key->id);
+		}
+		$thread = $thread->get();
+		return View::make('dashboard', array('output'=>$thread));
+	}
+
 	function threadDetail($username=null, $id=null){
 		$user = User::where('username','=',$username)->get();
 		foreach ($user as $key) {

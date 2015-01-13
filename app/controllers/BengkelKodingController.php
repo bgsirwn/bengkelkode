@@ -21,10 +21,6 @@ class BengkelKodingController extends BaseController{
 		}
 	}
 
-	function dashboard(){
-		return View::make('dashboard');
-	}
-
 	function signup(){
 		return View::make('signup');
 	}

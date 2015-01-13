@@ -43,7 +43,7 @@ Route::get('tes', function(){
 Route::group(array('before'=>'auth'), function(){
 	Route::get('dashboard', array(
 		'as'=>'dashboard',  
-		'uses'=>'BengkelKodingController@dashboard'
+		'uses'=>'ThreadController@dashboard'
 	));
 
 	Route::get('follow', array(

@@ -28,6 +28,15 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
    	 <![endif]-->
 
+   	 <!--syntaxhighligt-->
+   	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shCore.js')}}
+   	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shLegacy.js')}}
+   	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushJava.js')}}
+   	 {{HTML::style('dist/js/ckeditor/plugins/syntaxhighlight/styles/shCoreDefault.css')}}
+   	 
+	 <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+
 
 	<title>@yield('title')</title>
     

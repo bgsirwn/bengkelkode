@@ -5,7 +5,8 @@
 @section('content')
 	<div id="content-inner" style="margin-top:20px">
 		@yield('content-inner')
-		@section('dashboar-only')
+		@section('dashboard-only')
+
 			@foreach($output as $key)
 
 			@endforeach()

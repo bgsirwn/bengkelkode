@@ -5,13 +5,37 @@
 @section('content-inner')
 	{{HTML::script('dist/js/ckeditor/ckeditor.js')}}
 	@foreach($output as $key)
-	<div class="row">
-		<div class="col-sm-2">
-			<a href="{{route('profile', array(User::find($key->user_id)->username))}}">{{User::find($key->user_id)->name}}</a>
+	<div class="container">
+		<div class="grid">
+		<div class="row">
+			<table class="table bordered">
+
+				<thead>
+					<tr class="warning">
+						<th class="text-left">
+							<strong><a href="{{route('thread.detail',array(User::find($key->user_id)->username,$key->id))}}" style="color:white" >{{$key->title}}</a></strong>
+						</th>
+						
+					</tr>	
+				</thead>
+
+				<tbody>
+
+					<td>
+							<a href="{{route('profile', array(User::find($key->user_id)->username))}}">{{User::find($key->user_id)->name}}</a>
+						</td>
+
+					<tr>
+						<td>
+							<p>{{htmlspecialchars_decode($key->thread)}}</p>
+						</td>
+					</tr>
+					
+				</tbody>
+			</table>
 		</div>
-		<div class="col-sm-10">
-			<h3><a href="{{route('thread.detail',array(User::find($key->user_id)->username,$key->id))}}">{{$key->title}}</a></h3>
-			<p>{{htmlspecialchars_decode($key->thread)}}</p>
+
+			
 
 			@if(Route::currentRouteName()=='thread.detail')
 			<hr>
@@ -20,10 +44,10 @@
 				<div class="row">
 				<?php
 				foreach($answer as $as){ ?>
-					<div class="col-md-2">
+					<div class="span2">
 						<a href="{{route('profile', array(User::find($as->user_id)->username))}}">{{User::find($as->user_id)->name}}</a>
 					</div>
-					<div class="col-md-10">
+					<div class="span10">
 						{{htmlspecialchars_decode($as->answer)}}
 					</div>
 				<?php }?>
@@ -47,5 +71,8 @@
 			@endif
 		</div>
 	</div>
+		</div>
+	</div>
+	
 	@endforeach
 @stop

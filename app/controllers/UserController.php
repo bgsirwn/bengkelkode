@@ -6,7 +6,13 @@ class UserController extends BaseController{
 			foreach ($user as $data) {
 				$followed = UserController::isFollowed($username);
 				$followers = json_decode($data->followers);
-				return View::make('profile', array('output'=>$data, 'followed'=>$followed, 'followers'=>$followers));
+				$showButton = true;
+				if(Auth::check()){
+					if (Auth::user()->username==$username) {
+						$showButton = false;
+					}
+				}
+				return View::make('profile', array('output'=>$data, 'followed'=>$followed, 'followers'=>$followers, 'showButton'=>$showButton));
 			}
 		}
 		else{
@@ -86,8 +92,10 @@ class UserController extends BaseController{
 				}
 			}
 		}
-		if ($username==Auth::user()->username) {
-			$followed = false;
+		if (Auth::check()) {
+			if ($username==Auth::user()->username) {
+				$followed = false;
+			}
 		}
 		return $followed;
 	}

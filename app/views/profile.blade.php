@@ -30,7 +30,7 @@
 			@if($followed)
 				<a href="{{route('unfollow', array('username'=>$output->username))}}" role="button" class="button primary large" style="margin-top:40px">Unfollow</a>
 			@else
-				@if(Auth::user()->username!=$output->username)
+				@if($showButton)
 				<a href="{{route('follow', array('username'=>$output->username))}}" role="button" class="button primary large" style="margin-top:40px">Follow</a>
 				@endif
 			@endif

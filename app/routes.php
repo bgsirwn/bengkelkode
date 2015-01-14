@@ -40,20 +40,31 @@ Route::get('tes', function(){
 	return View::make('tes');
 });
 
-Route::get('dashboard', array(
-	'as'=>'dashboard', 
-	'before'=>'auth', 
-	'uses'=>'BengkelKodingController@dashboard'
-));
+Route::group(array('before'=>'auth'), function(){
+	Route::get('dashboard', array(
+		'as'=>'dashboard',  
+		'uses'=>'ThreadController@dashboard'
+	));
 
-Route::get('logout', array(
-	'as'=>'logout', 
-	'before'=>'auth', 
-	'uses'=>function(){
-		Auth::logout();
-		return Redirect::route('home');
-	}
-));
+	Route::get('follow', array(
+		'as' => 'follow',
+		'uses' => 'UserController@follow'
+	));
+
+	Route::get('unfollow', array(
+		'as' => 'unfollow',
+		'uses' => 'UserController@unfollow'
+	));
+
+	Route::get('logout', array(
+		'as'=>'logout',
+		'uses'=>function(){
+			Auth::logout();
+			return Redirect::route('home');
+		}
+	));
+});
+
 
 Route::get('create', array('as'=>'create', 'before'=>'auth', function(){
 	return View::make('create');
@@ -76,16 +87,6 @@ Route::get('setting', array(
 	'uses'=>function(){
 		return 'setting';
 	}
-));
-
-Route::get('follow', array(
-	'as' => 'follow',
-	'uses' => 'UserController@follow'
-));
-
-Route::get('unfollow', array(
-	'as' => 'unfollow',
-	'uses' => 'UserController@unfollow'
 ));
 
 Route::get('{username}', array(

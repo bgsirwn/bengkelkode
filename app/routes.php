@@ -63,6 +63,11 @@ Route::group(array('before'=>'auth'), function(){
 			return Redirect::route('home');
 		}
 	));
+
+	Route::get('get/notification', array(
+		'as' => 'notif.read',
+		'uses' => 'NotificationController@readNotif'
+	));
 });
 
 

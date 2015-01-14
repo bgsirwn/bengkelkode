@@ -2,9 +2,7 @@
 class NotificationController extends Controller{
 	function getNotifications(){
 		$notif = Notification::where('user_id','=',Auth::id())->orderBy('created_at', 'desc')->get();
-		$data = '[';
-		$i = 0;
-		$end = count($notif)-1;
+		$unseen_notif = Notification::where('user_id','=',Auth::id())->where('seen','=',0)->orderBy('created_at', 'desc')->get();
 		foreach ($notif as $key) {
 			switch ($key->type) {
 				case 1:
@@ -15,20 +13,36 @@ class NotificationController extends Controller{
 					else{
 						$message.=User::find(Thread::find($key->effected)->user_id)->name;
 					}
-					$link = route('thread.detail',array(User::find(Thread::find($key->effected)->user_id)->username,$key->effected));
+					$link = route('notif.read',array('id'=>$key->id));
 					break;
 				
 				default:
-					$message = "null";
+					# code...
 					break;
 			}
-			$data .= '{"id":"'.$key->id.'","user_id":"'.$key->user_id.'","user_sender":"'.$key->user_sender.'","type":"'.$key->type.'","effected":"'.$key->effected.'","seen":"'.$key->seen.'","clicked":"'.$key->clicked.'","created_at":"'.$key->created_at.'","updated_at":"'.$key->updated_at.'",';
-			$data .= '"message":"'.$message.'","link":"'.$link.'"}';
-			if($i<$end)
-				$data .= ",";
-			$i++;
+			$key['message'] = $message;
+			$key['link'] = $link;
 		}
-		$data .= ']';
-		Session::put('notifications',json_decode($data));
+		Session::put('notifications',$notif);
+		Session::put('unseen_notif',count($unseen_notif));
+	}
+
+	function readNotif(){
+		// route('notif.read',array(User::find(Thread::find($key->effected)->user_id)->username,$key->effected));
+		$notif = Notification::find(Input::get('id'));
+		$notif->clicked = 1;
+		$notif->seen = 1;
+		$notif->save();
+		switch ($notif->type) {
+			case 1:
+				$link = route('thread.detail', array(User::find(Thread::find($notif->effected)->user_id)->username, $notif->effected));
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+
+		return Redirect::to($link);
 	}
 }

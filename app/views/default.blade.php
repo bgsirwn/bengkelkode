@@ -55,7 +55,7 @@
         		<ul class="element-menu place-right" style="margin-right: 140px">
 				@if(Auth::check())
 					<li>
-						<a class="dropdown-toggle" href="#">Notifications</a>
+						<a class="dropdown-toggle" href="#">Notifications <span style="color:red;display:inline-block;border-radius:50%">{{Session::get('unseen_notif')}}</span></a>
 						<ul class="dropdown-menu dark" data-role="dropdown">
 						@foreach(Session::get('notifications') as $notif)
 							<li><a href="{{$notif->link}}">{{$notif->message}}</a></li>

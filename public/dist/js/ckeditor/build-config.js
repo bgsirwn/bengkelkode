@@ -84,8 +84,10 @@ var CKBUILDER_CONFIG = {
 		'toolbar' : 1,
 		'undo' : 1,
 		'wsc' : 1,
-		'wysiwygarea' : 1
-		'syntaxhighlight' : 1
+		'wysiwygarea' : 1,
+		'syntaxhighlight' : 1,
+		'codesnippetgeshi' : 1,
+		'codesnippet' : 1
 	},
 	languages : {
 		'af' : 1,

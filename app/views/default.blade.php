@@ -31,7 +31,15 @@
    	 <!--syntaxhighligt-->
    	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shCore.js')}}
    	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shLegacy.js')}}
+   	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushAppleScript.js')}}
+   	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushAS3.js')}}
+   	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushBash.js')}}
+   	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushColdFusionjs')}}
+   	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushCpp.js')}}
+   	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushCSharp.js')}}
+   	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushCss.js')}} 	
    	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushJava.js')}}
+
    	 {{HTML::style('dist/js/ckeditor/plugins/syntaxhighlight/styles/shCoreDefault.css')}}
    	 
 	 <script type="text/javascript">SyntaxHighlighter.all();</script>
@@ -41,8 +49,8 @@
 	<title>@yield('title')</title>
     
 </head>
-<body class="metro">
-	<div class="navigation-bar dark">
+<body class="metro" style="margin-top: 70px">
+	<div class="navigation-bar dark fixed-top shadow">
    		<div class="navigation-bar-content container">
        		<a href="/" class="element"><span class="icon-console"></span> BengkelKoding <sup> v. 1.0</sup></a>
        		<span class="element-divider"></span>
@@ -55,7 +63,25 @@
         		<ul class="element-menu place-right" style="margin-right: 140px">
 				@if(Auth::check())
 					<li>
-						<a class="dropdown-toggle" href="#">Notifications <span style="color:red;display:inline-block;border-radius:50%">{{Session::get('unseen_notif')}}</span></a>
+					<script type="text/javascript">
+						function getnotif(){
+							$.ajax({
+						    	type: "POST",
+						      	url: {{Session::get('unseen_notif')}},
+						      	dataType:'json',
+						      	success: function(response){
+						       	$("#jumlah").text(""+response+"");
+						       	timer = setTimeout("getnotif()",5000);
+						      	}
+						    });
+						}
+						   	$(document).ready(function(){
+						   		getnotif();
+						   	});
+						     </script> 
+					
+
+						<a class="dropdown-toggle" href="#">Notifications <span style="color:red;display:inline-block;border-radius:50%"><div id="jumlah">{{Session::get('unseen_notif')}}</div></span></a>
 						<ul class="dropdown-menu dark" data-role="dropdown">
 						@foreach(Session::get('notifications') as $notif)
 							<li><a href="{{$notif->link}}">{{$notif->message}}</a></li>

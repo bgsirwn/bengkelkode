@@ -41,6 +41,7 @@ Route::get('tes', function(){
 });
 
 Route::group(array('before'=>'auth'), function(){
+	
 	Route::get('dashboard', array(
 		'as'=>'dashboard',  
 		'uses'=>'ThreadController@dashboard'
@@ -68,6 +69,24 @@ Route::group(array('before'=>'auth'), function(){
 		'as' => 'notif.read',
 		'uses' => 'NotificationController@readNotif'
 	));
+
+	Route::post('{username}/thread/{id}', array(
+		'as'=>'post.answer',
+		'before'=>'csrf',
+		'uses'=>'ThreadController@postAnswer'
+	));
+	
+	Route::post('create', array(
+		'before'=>'csrf',
+		'uses'=>'ThreadController@post'
+	));
+	
+	Route::post('password/reset', array(
+		'before'=>'csrf',
+		'as' => 'postReset',
+		'uses' => 'RemindersController@postReset'
+	));
+
 });
 
 
@@ -75,16 +94,10 @@ Route::get('create', array('as'=>'create', 'before'=>'auth', function(){
 	return View::make('create');
 }));
 
-Route::post('create', array('uses'=>'ThreadController@post'));
 
 Route::get('discover', array(
 	'as'=>'discover',
 	'uses'=>'ThreadController@discover'
-));
-
-Route::post('password/reset', array(
-	'as' => 'postReset',
-	'uses' => 'RemindersController@postReset'
 ));
 
 Route::get('setting', array(
@@ -108,8 +121,3 @@ Route::get('{username}/thread/{id}', array(
 	'as'=>'thread.detail',
 	'uses'=>'ThreadController@threadDetail'))->where('id', '[0-9]+'
 );
-
-Route::post('{username}/thread/{id}', array(
-	'as'=>'post.answer',
-	'uses'=>'ThreadController@postAnswer'
-));

@@ -48,7 +48,7 @@ class ThreadController extends BaseController{
 	}
 
 	function postAnswer($username, $id){
-		$data = Input::all();
+		// return Input::get('answer');
 		$comment = new Answer;
 		$comment->user_id = Auth::id();
 		$comment->thread_id = $id;

@@ -55,10 +55,17 @@
        		<a href="/" class="element"><span class="icon-console"></span> BengkelKoding <sup> v. 1.0</sup></a>
        		<span class="element-divider"></span>
        		<a class="element1 pull-menu" href="#"></a>	
+
+       			   
+
        		<ul class="element-menu">
+
        			<li><a href="{{route('create')}}">Ask Something</a></li>
        			<li><a href="{{route('discover')}}">Discover</a></li>
        		</ul>
+
+
+
        		<div class="no-tablet-portrait no-phone">
         		<ul class="element-menu place-right" style="margin-right: 140px">
 				@if(Auth::check())
@@ -98,34 +105,113 @@
 					</li>
             	@else
             		<li><a href="{{route('signup')}}">sign up</a></li>
-					<li><a href="{{route('login')}}">login</a></li>
+					<!--<li><a href="{{route('login')}}">login</a></li>-->
+					
+					<div id="Login-Container" class="element">
+						
+						<a id="toggle-login" href="#" style="color:white">Login</a>
+
+						<script type="text/javascript">
+							$('#toggle-login').click(function(){
+							  $('#log-form').toggle();
+							});
+						
+						</script>	
+
+
+						<div style="clear:both"></div>
+						
+						<div style="margin-top: 10px; position: absolute; display: none; background-color:#333; padding:30px; width:250px" id="log-form">
+							
+							<h2 style="margin-bottom:20px; color:white">Sign in</h2>
+
+						
+						{{Form::open(array('class'=>'form-horizontal'))}}	
+							<div class="form-group input-control text" data-role="input-control" style="margin:5px">
+							{{Form::label('username')}}
+							{{Form::text('username','',array('class'=>'form-control','placeholder'=>'username','required', 'type'=>'text', 'style'=>'font-size:14px'))}}
+							<button type="button" class="btn-clear" tabindex="-1"></button>
+							
+							</div>
+
+							<div class="form-group input-control password" data-role="input-control" style="margin:5px">
+							{{Form::label('password')}}
+							{{Form::password('password',array('class'=>'form-control','placeholder'=>'Password', 'required','type'=>'password'))}}
+							<button type="button" class="btn-reveal" tabindex="-1"></button>
+							
+							</div>
+							
+							<div class="form-group">
+							{{Form::submit('Login', array('class'=>'btn btn-default'))}}
+							</div>
+						{{Form::close()}}
+
+						@if($errors->any())
+						<div class="alert" style="margin-bottom:5px">
+							<a class="close" dismiss="alert">x</a>
+							<strong>{{$errors->first()}}</strong>
+						</div>
+						@endif
+<!--
+							<form>
+								
+								<div class="input-control text" data-role="input-control" style="margin:5px">
+                                            <input placeholder="Username" type="text" style="font-size:14px">
+                                            <button type="button" class="btn-clear" tabindex="-1"></button>
+                                </div>
+
+								<div class="input-control password" data-role="input-control" style="margin:5px">
+                                	        <input placeholder="Password" autofocus="" type="password">
+                                            <button type="button" class="btn-reveal" tabindex="-1"></button>
+                                </div>
+
+                                {{Form::submit('Login', array('class'=>'btn btn-default', 'style'=>'margin:5px'))}}
+								
+							   
+  
+							</p></form>
+							-->
+						</div>
+					</div>
+					
+					
+
+					</li>
+					
 				</ul>
+				
+					
 				@endif
             </ul>
         </div>
     </div>
     </div>
 
-    <div class="container">
-    	<div class="grid">
-    		<div class="row">
-    			<div class="span6">
-    				<div class="header">
-	    				
-	    					<img src="{{URL::asset('dist/images/logo.png')}}" style="float:left; margin-right:20px" class="span1">
-	    				
-	    				<h2 style="padding-top:10px"><a href="#">BengkelKoding.com</a></h2>
-	    			</div>
-
-    			</div>
-    		</div>
-    	</div>
-    </div>
+    
 	
 	<div id="content">
 		@yield('content')
 	</div>
 	@yield('outer')
 	
+<div class="content">
+	<div class="container">
+		<div class="grid">
+			<div class="span12">
+	            <div class="bottom-menu-wrapper">
+	                <ul class="horizontal-menu compact">
+	                    <li>Copyright © 2015 BengkelKoding.com</li>
+	                    <li><a href="#">Privacy</a></li>
+	                    <li><a href="#">Legal</a></li>
+	                    <li><a href="#">Advertise</a></li>
+	                    <li><a href="#">Help</a></li>
+	                    <li><a href="#">Feedback</a></li>
+	                </ul>
+	            </div>
+			</div>
+		</div>
+	</div>
+	
+</div>
 </body>
 </html>

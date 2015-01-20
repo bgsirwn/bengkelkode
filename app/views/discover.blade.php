@@ -4,10 +4,30 @@
 @stop
 @section('content-inner')
 	{{HTML::script('dist/js/ckeditor/ckeditor.js')}}
-	@foreach($output as $key)
+		
+			@foreach($output as $key)
+	
 	<div class="container">
-		<div class="grid">
-		<div class="row">
+
+		<div class="grid" style="margin-bottom: 5px;">
+
+		<div class="row" style="margin-top: 0px;">
+		<div class="span8">
+
+			<div>
+				<div style="padding:10px; background:none repeat scroll 0% 0% #F5F5F5">
+					<a href="{{route('thread.detail',array(User::find($key->user_id)->username,$key->id))}}" style="color: black; font-size: 16px;">{{$key->title}}</a>
+					<p style="font-size: 12px"><i>posted by   </i><a href="{{route('profile', array(User::find($key->user_id)->username))}}">{{User::find($key->user_id)->name}}</a>
+				</div>
+			</div>
+			
+		</div>
+
+		<div class="span4">
+			
+		</div>
+
+		<!--
 			<table class="table bordered">
 
 				<thead>
@@ -33,6 +53,7 @@
 					
 				</tbody>
 			</table>
+			-->
 		</div>
 
 			

@@ -9,7 +9,13 @@ class UserController extends \BaseController {
 	 */
 	public function index()
 	{
-		return 
+		if(Route::currentRouteName()=="api.v1.user.index"){
+			$users = User::all();
+			return Response::json(array('users'=>$users->toArray()),200);
+		}
+		else{
+			return 'Access denied';
+		}
 	}
 
 

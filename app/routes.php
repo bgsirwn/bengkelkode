@@ -16,6 +16,12 @@ Route::get('/', array(
 	'uses'=>'BengkelKodingController@index'
 ));
 
+//API FOR USERS TABLE
+Route::group(array('prefix'=>'api/v1', 'before'=>'auth'), function(){
+	Route::resource('user', 'UserController');
+});
+
+
 Route::get('signup', array(
 	'as'=>'signup',
 	'uses'=>'BengkelKodingController@signup'

@@ -3,8 +3,6 @@
 	{{"Bengkel Koding::login"}}
 @stop
 @section('content')
-	<h1><small>Login</small></h1>
-
 	<div class="container">
 			<div class="grid">
 				<div class="row">
@@ -12,67 +10,49 @@
 						
 					</div>
 
-					<div class="span6" style="padding-top: 25px">
+					<div class="span6" style="margin-top: 100px; margin-bottom: 100px;">
 
-						@if($errors->any())
+					@if($errors->any())
+						<script>
+							$(function(){
+                                $.Notify({
+                                    shadow: true,
+                                    position: 'bottom-right',
+                                    content: "{{$errors->first()}}"
+                                });
+                            });
+						</script>
+<!--
 						<div class="alert" style="margin-bottom:5px">
 							<a class="close" dismiss="alert">x</a>
 							<strong>{{$errors->first()}}</strong>
 						</div>
-						@endif
-
-						<div class="example">
-							<!--<form>
-							{{Form::open()}}
-								<fieldset>
-									<legend>
-										Login
-									</legend>
-									<label>Username</label>
-									<div class="input-control text" data-role="input-control">		
-							{{Form::text('username','',array('class'=>'input-control', 'placeholder'=>'username','required'))}}
-									</div>
-									<label>Password</label>
-									<div class="input-control password" data-role="input-control">
-										
-							{{Form::password('password',array('placeholder'=>'password','autofocus'=>'', 'class'=>'form-control','required'))}}
-									</div>
-
-									<div>
-									{{Form::submit('Login')}}
-									</div>
-								</fieldset>
-							</form>
-							-->
-
-							{{Form::open(array('class'=>'form-horizontal'))}}
-		
-		
+						-->
+					@endif
 
 
+	<div style="background-color: rgb(92, 92, 231); padding: 30px; width: 80%;">
 
+		<h2><span style="margin-right: 10px; margin-left: 5px;" class="icon-user"></span>Login</h2>
+		{{Form::open(array('class'=>'form-horizontal'))}}	
+			<div class="form-group input-control text" data-role="input-control" style="margin:5px">
+				
+				{{Form::text('username','',array('class'=>'form-control','placeholder'=>'username','required', 'type'=>'text', 'style'=>'font-size:16px'))}}
+				<button type="button" class="btn-clear" tabindex="-1"></button>				
+			</div>
 
-		<fieldset>
-			<legend>Login</legend>
+			<div class="form-group input-control password" data-role="input-control" style="margin:5px">
+				
+				{{Form::password('password',array('class'=>'form-control','placeholder'=>'Password', 'required','type'=>'password'))}}
+				<button type="button" class="btn-reveal" tabindex="-1"></button>				
+			</div>
+							
 			<div class="form-group">
-		{{Form::label('username','Username')}}
-		{{Form::text('username','',array('class'=>'form-control', 'placeholder'=>'username','required'))}}
-		</div>
-		<div class="form-group">
-		{{Form::label('password','Password')}}
-		{{Form::password('password',array('placeholder'=>'password', 'class'=>'form-control','required'))}}
-		</div>
-		<div class="form-group">
-		{{Form::submit('Login', array('class'=>'btn btn-default'))}}
-		</div>
-	{{Form::close()}}
-
-		</fieldset>
-		
-
-
-						</div>
-					</div>
+				{{Form::submit('Login', array('class'=>'primary' , 'style'=>'margin:5px'))}}
+			</div>
+		{{Form::close()}}
+	</div>
+						
 
 					<div class="span4">
 						

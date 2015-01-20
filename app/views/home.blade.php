@@ -2,7 +2,27 @@
 @section('title')
 	{{"Bengkel Koding"}}
 @stop
+
+
+
 @section('content')
+
+
+	<div class="container">
+		<div class="grid">
+			<div class="row">
+				<div class="span4">
+					<p><strong><h2 style="color:blue">BengkelKoding.com</h2></strong>
+					<p>Help Beginner and profesional Progammer
+					<p>
+					<button class="Primary Large" style="">Signup Now</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="content">
 <div class="container">
 	<div class="grid">
 		<div class="row">
@@ -56,12 +76,28 @@
 	</div>
 </div>
 
+
+
+
+<div class="content">
+	<div class="container">
+		<div class="grid">
+		<b>Hot Thread</b>
+			<div class="row">
+				<div class="span6">
+					<button class="info large" style="border-left:5px solid gray; padding-right:150px">Pemrograman menggunakan Java</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
 @stop
 @section('outer')
 <div id="content">
 <div class="grad">
 <div class="container">
-Apa yang bisa dilakukan disini?
 	<div class="grid">
 	<div class="row">
 

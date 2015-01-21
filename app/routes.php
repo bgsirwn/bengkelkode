@@ -49,6 +49,24 @@ Route::get('tes', array(
 		return View::make('tes');
 }));
 
+Route::post('tes', function(){
+	$rules = [
+	    'g-recaptcha-response' => 'required|recaptcha'
+	];
+
+	$validator = Validator::make(Input::all(), $rules);
+	$validated = $validator->passes();
+
+	$response = '';
+	if ( ! $validated) {
+	    $response .= '<pre>' . print_r($validator->errors()->all(), true) . '</pre>';
+	}
+
+	$response .= 'Did I validate? ' . ($validated ? 'Yes.' : 'No.');
+
+	return $response;
+});
+
 Route::group(array('before'=>'auth'), function(){
 	
 	Route::get('dashboard', array(

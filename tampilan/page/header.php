@@ -1,1 +1,0 @@
-<h1><a href="/">Bengkel Koding</a></h1>

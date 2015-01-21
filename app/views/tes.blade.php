@@ -8,24 +8,12 @@
 <div class="container">
 	<div class="grid">
 		<div class="row" style="background-color: rgba(193, 189, 194, 0.28); border: 1px solid">
-			<p style="background-color: rgba(179, 179, 185, 0.53); height:30px; margin-bottom:50px"><b style="margin-left:30px">Post New Thread</b>
-			<div class="span2" style="text-align: right">
-				<strong>Judul :</strong>
-				<br>
-				<br>
-				<p><strong>Body : </strong>
-			</div>
-			<div class="span8">
+			<p style="background-color: rgba(179, 179, 185, 0.53); height:30px; margin-bottom:50px"><b style="margin-left:30px">Post New Thread</b>			<div class="span8">
 
 				{{Form::open()}}
 				{{Form::text('title','',array('placeholder'=>'Title','class'=>'form-control','style'=>'width:200px;display:inline-block;margin-bottom:20px','required'))}}
-				
-				{{Form::textarea('thread','')}}
-				<br>
-				<br>
+
 				<div class="g-recaptcha" data-sitekey="6LfcyAATAAAAANn-2AWc00S8rD4CTmYww-aiwxYa"></div>
-				<br>
-				<br>
 				{{Form::submit('submit', array('class'=>'btn btn-primary'))}}
 				{{Form::close()}}
 			</div>

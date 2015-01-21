@@ -31,6 +31,7 @@
 							{{Form::label('password','Password')}}
 							{{Form::password('password',array('placeholder'=>'password', 'class'=>'form-control','required'))}}
 							</div>
+							<div class="g-recaptcha" data-sitekey="6LegygATAAAAAHztFZUwl5aDTouvy70Rl_yS8bHe"></div>
 							<div class="form-group">
 							{{Form::submit('Sign up', array('class'=>'btn btn-default'))}}
 							</div>

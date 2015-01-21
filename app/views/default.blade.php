@@ -42,7 +42,7 @@
    	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushCSharp.js')}}
    	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushCss.js')}} 	
    	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushJava.js')}}
-
+   	 {{HTML::script('https://www.google.com/recaptcha/api.js')}}
    	 {{HTML::style('dist/js/ckeditor/plugins/syntaxhighlight/styles/shCoreDefault.css')}}
    	 
 	 <script type="text/javascript">SyntaxHighlighter.all();</script>

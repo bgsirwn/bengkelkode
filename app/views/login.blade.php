@@ -34,7 +34,7 @@
 	<div style="background-color: rgb(92, 92, 231); padding: 30px; width: 80%;">
 
 		<h2><span style="margin-right: 10px; margin-left: 5px;" class="icon-user"></span>Login</h2>
-		{{Form::open(array('class'=>'form-horizontal'))}}	
+		{{Form::open(array('class'=>'form-horizontal', 'url'=>route('login.auth', array('redirect'=>Input::get('redirect')))))}}	
 			<div class="form-group input-control text" data-role="input-control" style="margin:5px">
 				
 				{{Form::text('username','',array('class'=>'form-control','placeholder'=>'username','required', 'type'=>'text', 'style'=>'font-size:16px'))}}

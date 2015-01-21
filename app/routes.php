@@ -10,36 +10,37 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::get('/', array(
-	'as'=>'home', 
-	'before'=>'unauth', 
-	'uses'=>'BengkelKodingController@index'
-));
 
 //API FOR USERS TABLE
 Route::group(array('prefix'=>'api/v1', 'before'=>'auth'), function(){
 	Route::resource('user', 'UserController');
 });
 
+Route::group(array('before'=>'unauth'), function(){
+	Route::get('signup', array(
+		'as'=>'signup',
+		'uses'=>'BengkelKodingController@signup'
+	));
 
-Route::get('signup', array(
-	'as'=>'signup',
-	'uses'=>'BengkelKodingController@signup'
-));
-
-Route::get('login', array(
-	'as'=>'login',
-	'uses'=>'BengkelKodingController@login'
-));
+	Route::get('login', array(
+		'as'=>'login',
+		'uses'=>'BengkelKodingController@login'
+	));
+	
+	Route::get('/', array(
+		'as'=>'home',
+		'uses'=>'BengkelKodingController@index'
+	));
+});
 
 Route::post('login', array(
-	'as'=>'login',
+	'as'=>'login.auth',
 	'uses'=>'BengkelKodingController@auth'
 ));
 
 Route::post('signup', array(
 	'as'=>'sigmeup', 
-	'uses'=>'BengkelKodingController@signMeUp'
+	'uses'=>'UserController@store'
 ));
 
 Route::get('tes', array(

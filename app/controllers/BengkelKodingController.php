@@ -15,7 +15,7 @@ class BengkelKodingController extends BaseController{
 
 		if (Auth::attempt(array($first=>$post['username'], 'password'=>$post['password']), true)) {
 			if(Input::has('redirect'))
-				return Redirect::to(convert_uudecode(Input::get('redirect')));
+				return Redirect::to(route(convert_uudecode(Input::get('redirect'))));
 			else
 				return Redirect::route('dashboard');
 		}

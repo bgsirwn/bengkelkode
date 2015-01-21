@@ -61,16 +61,39 @@ class UserController extends \BaseController {
 	{
 		$user = User::where('username',$username)->get();	
 		if($user->count()>0){
-			foreach ($user as $data) {
-				$followed = UserController::isFollowed($username);
-				$followers = json_decode($data->followers);
-				$showButton = true;
-				if(Auth::check()){
-					if (Auth::user()->username==$username) {
-						$showButton = false;
+			if (Route::currentRouteName()!='api.v1.user.show') {
+				foreach ($user as $data) {
+					$followed = UserController::isFollowed($username);
+					$followers = json_decode($data->followers);
+					$following = json_decode($data->following);
+					$showButton = true;
+					if(Auth::check()){
+						if (Auth::user()->username==$username) {
+							$showButton = false;
+						}
 					}
+					return View::make('profile', array('output'=>$data, 'followed'=>$followed, 'followers'=>$followers, 'showButton'=>$showButton));
 				}
-				return View::make('profile', array('output'=>$data, 'followed'=>$followed, 'followers'=>$followers, 'showButton'=>$showButton));
+			}
+			else{
+				foreach ($user as $data) {
+					$followed = UserController::isFollowed($username);
+					$followers = json_decode($data->followers);
+					$following = json_decode($data->following);
+					$showButton = true;
+					if(Auth::check()){
+						if (Auth::user()->username==$username) {
+							$showButton = false;
+						}
+					}
+					return Response::json(array(
+						'output'=>$data, 
+						'followed'=>$followed, 
+						'followers'=>$followers,
+						'following'=>$following, 
+						'showButton'=>$showButton),200
+					);
+				}
 			}
 		}
 		else{

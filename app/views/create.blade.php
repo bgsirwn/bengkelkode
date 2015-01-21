@@ -28,8 +28,7 @@
 					});
 				</script>
 				<br>
-				<br>
-				<div class="g-recaptcha" data-sitekey="6LfcyAATAAAAANn-2AWc00S8rD4CTmYww-aiwxYa"></div>
+				{{View::make('recaptcha::display')}}
 				<br>
 				<br>
 				{{Form::submit('submit', array('class'=>'btn btn-primary'))}}

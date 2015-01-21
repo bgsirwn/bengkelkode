@@ -12,10 +12,10 @@
 
 				{{Form::open()}}
 				{{Form::text('title','',array('placeholder'=>'Title','class'=>'form-control','style'=>'width:200px;display:inline-block;margin-bottom:20px','required'))}}
-
-				<div class="g-recaptcha" data-sitekey="6LfcyAATAAAAANn-2AWc00S8rD4CTmYww-aiwxYa"></div>
 				{{Form::submit('submit', array('class'=>'btn btn-primary'))}}
+				{{View::make('recaptcha::display')}}
 				{{Form::close()}}
+				{{Config::get('recaptcha::siteKey')}}
 			</div>
 		</div>
 	</div>

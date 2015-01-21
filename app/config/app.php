@@ -191,4 +191,10 @@ return array(
 
 	),
 
+	// Enter your site key here. Don't have a key yet? Get one over at https://www.google.com/recaptcha/
+	'siteKey' => '6LfcyAATAAAAANn-2AWc00S8rD4CTmYww-aiwxYa',
+
+	// Enter your secret key here. Don't have a key yet? Get one over at https://www.google.com/recaptcha/
+	'secretKey' => '6LfcyAATAAAAAPPKm44AHXaYauK_py372rL3Fdu6',
+
 );

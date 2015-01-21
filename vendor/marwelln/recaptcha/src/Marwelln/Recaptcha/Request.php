@@ -28,12 +28,12 @@ class Request {
 	 * @return json
 	 */
 	protected function curl() {
-		$ch = curl_init($this->url);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		// $ch = curl_init($this->url);
+		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-		$response = json_decode(curl_exec($ch));
+		$response = json_decode(file_get_contents($this->url));
 
-		curl_close($ch);
+		// curl_close($ch);
 
 		return $response;
 	}

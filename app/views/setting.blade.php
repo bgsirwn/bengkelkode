@@ -1,7 +1,7 @@
 @extends('default')
 @section('title')
-	{{"Bengkel Koding"}}
+	{{"Bengkel Koding::Sign up"}}
 @stop
 @section('content')
- {{route(Route::currentRouteName())}}
+	setting
 @stop

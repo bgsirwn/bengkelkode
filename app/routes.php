@@ -28,12 +28,12 @@ Route::get('signup', array(
 ));
 
 Route::get('login', array(
-	'as'=>'login', 
+	'as'=>'login',
 	'uses'=>'BengkelKodingController@login'
 ));
 
 Route::post('login', array(
-	'as'=>'login', 
+	'as'=>'login',
 	'uses'=>'BengkelKodingController@auth'
 ));
 
@@ -42,9 +42,11 @@ Route::post('signup', array(
 	'uses'=>'BengkelKodingController@signMeUp'
 ));
 
-Route::get('tes', function(){
-	return View::make('tes');
-});
+Route::get('tes', array(
+	'as'=>'test',
+	'uses'=>function(){
+		return View::make('tes');
+}));
 
 Route::group(array('before'=>'auth'), function(){
 	
@@ -109,7 +111,7 @@ Route::get('discover', array(
 Route::get('setting', array(
 	'as'=>'setting',
 	'uses'=>function(){
-		return 'setting';
+		return View::make('setting');
 	}
 ));
 

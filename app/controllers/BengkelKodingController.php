@@ -14,7 +14,10 @@ class BengkelKodingController extends BaseController{
 		}
 
 		if (Auth::attempt(array($first=>$post['username'], 'password'=>$post['password']), true)) {
-			return Redirect::route('dashboard');
+			if(Input::has('redirect'))
+				return Redirect::to(convert_uudecode(Input::get('redirect')));
+			else
+				return Redirect::route('dashboard');
 		}
 		else{
 			return Redirect::route('login')->withErrors(['Login failed']);

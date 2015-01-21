@@ -63,8 +63,8 @@
 				
 			</div>
 		</div>
-		{{Form::close()}}
-
+		{{Form::close(array('url'=>route('login', array('redirect'=>'convert_uuencode()'))))}}
+		
 <!--
 	{{Form::open(array('class'=>'form-horizontal','style'=>'width:200px;margin:auto'))}}
 		
@@ -87,4 +87,5 @@
 		</div>
 	{{Form::close()}}
 	-->
+
 @stop

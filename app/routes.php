@@ -115,7 +115,7 @@ Route::get('setting', array(
 
 Route::get('{username}', array(
 	'as'=>'profile', 
-	'uses'=>'UserController@index'
+	'uses'=>'UserController@show'
 ));
 
 Route::get('{username}/thread', array(

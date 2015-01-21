@@ -13,6 +13,9 @@
 	{{HTML::style('dist/js/prettify/prettify.css')}}
 
 	<!--Load JavaScript Libraries-->
+	 <script>
+	 var alamat = "{{URL::to('/')}}";
+	 </script>
 	{{HTML::script('dist/js/jquery/jquery.min.js')}}
 	{{HTML::script('dist/js/jquery/jquery.widget.min.js')}}
 	{{HTML::script('dist/js/jquery/jquery.mousewheel.js')}}
@@ -43,7 +46,6 @@
    	 {{HTML::style('dist/js/ckeditor/plugins/syntaxhighlight/styles/shCoreDefault.css')}}
    	 
 	 <script type="text/javascript">SyntaxHighlighter.all();</script>
-
 
 
 	<title>@yield('title')</title>

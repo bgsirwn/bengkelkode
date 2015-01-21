@@ -42,5 +42,5 @@ var plugins = [
 ];
 
 $.each(plugins, function(i, plugin){
-    $("<script/>").attr('src', 'dist/js/metro/metro-'+plugin+'.js').appendTo($('head'));
+    $("<script/>").attr('src',alamat+'/dist/js/metro/metro-'+plugin+'.js').appendTo($('head'));
 });

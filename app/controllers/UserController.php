@@ -37,8 +37,6 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		// $post = Input::all();
-		//DB::insert("insert into users (id, name, username, email, password) values (?, ?, ?, ?, ?)", array(null, $post['name'], $post['username'], $post['email'], Hash::make($post['password'])));
 		$data = Input::all();
 		$user = new User;
 		$user->username = $data['username'];
@@ -48,17 +46,7 @@ class UserController extends \BaseController {
 		$user->followers = "[]";
 		$user->following = "[]";
 		$user->save();
-		// return Redirect::route('dashboard');
-		// $id = DB::table('users')->insertGetId(
-		// 	array(
-		// 		'name' => $post['name'],
-		// 		'username' => $post['username'],
-		// 		'email' => $post['email'],
-		// 		'password' => Hash::make($post['password'])
-		// ));
-
 		Auth::loginUsingId($user->id);
-		// return Redirect::to('login')->with("msg","Data sudah masuk, silakan login!");
 		return Redirect::route('dashboard');
 	}
 
@@ -69,9 +57,9 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($username)
 	{
-		$user = User::where('username','=',$username)->get();	
+		$user = User::where('username',$username)->get();	
 		if($user->count()>0){
 			foreach ($user as $data) {
 				$followed = UserController::isFollowed($username);

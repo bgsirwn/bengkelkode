@@ -38,16 +38,32 @@ class UserController extends \BaseController {
 	public function store()
 	{
 		$data = Input::all();
-		$user = new User;
-		$user->username = $data['username'];
-		$user->email = $data['email'];
-		$user->password = Hash::make($data['password']);
-		$user->name = $data['name'];
-		$user->followers = "[]";
-		$user->following = "[]";
-		$user->save();
-		Auth::loginUsingId($user->id);
-		return Redirect::route('dashboard');
+		$validator = Validator::make(
+			$data,
+			array(
+				'name'=>'required',
+				'username'=>'required|unique:users|min:8|max:12',
+				'email'=>'required|unique:users',
+				'password'=>'required|min:8',
+				'g-recaptcha-response'=>'required|recaptcha'
+			)
+		);
+		$validated = $validator->passes();
+		if ($validated) {
+			$user = new User;
+			$user->username = $data['username'];
+			$user->email = $data['email'];
+			$user->password = Hash::make($data['password']);
+			$user->name = $data['name'];
+			$user->followers = "[]";
+			$user->following = "[]";
+			$user->save();
+			Auth::loginUsingId($user->id);
+			return Redirect::route('dashboard');
+		}
+		else{
+			return Redirect::route('signup', array('messages'=>$validator->messages));
+		}
 	}
 
 

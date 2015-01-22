@@ -64,7 +64,17 @@
        			<li><a href="{{route('create')}}">Ask Something</a></li>
        			<li><a href="{{route('discover')}}">Discover</a></li>
        		</ul>
-
+			@if($errors->any())
+			<script>
+				$(function(){
+					$.Notify({
+                    shadow: true,
+                    position: 'bottom-right',
+                    content: "{{$errors->first()}}"
+                    });
+                });
+			</script>
+			@endif
 
 
        		<div class="no-tablet-portrait no-phone">

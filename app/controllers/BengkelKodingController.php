@@ -20,7 +20,10 @@ class BengkelKodingController extends BaseController{
 				return Redirect::route('dashboard');
 		}
 		else{
-			return Redirect::route('login')->withErrors(['Login failed']);
+			if(Input::has('redirect'))
+				return Redirect::to(route(convert_uudecode(Input::get('redirect'))))->withErrors(['Login failed']);
+			else
+				return Redirect::route('login')->withErrors(['Login failed']);
 		}
 	}
 

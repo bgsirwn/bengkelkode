@@ -24,7 +24,7 @@ class ThreadController extends BaseController{
 		// 	$thread = $thread->orWhere('user_id','=',$key->id);
 		// }
 		// $thread = $thread->get();
-		$user = User::where('username','=',$username)->get();
+		$user = User::where('username','=',Auth::user()->username)->get();
 		foreach ($user as $key) {
 			$id = $key->id;
 		}

@@ -137,7 +137,7 @@
 							<h2 style="margin-bottom:20px; color:white">Sign in</h2>
 
 						
-						{{Form::open(array('class'=>'form-horizontal','url'=>route('login', array('redirect'=>convert_uuencode(Route::currentRouteName())))))}}	
+						{{Form::open(array('class'=>'form-horizontal','url'=>route('login', array('redirect'=>convert_uuencode(Request::ulr())))))}}	
 							<div class="form-group input-control text" data-role="input-control" style="margin:5px">
 							{{Form::label('username')}}
 							{{Form::text('username','',array('class'=>'form-control','placeholder'=>'username','required', 'type'=>'text', 'style'=>'font-size:14px'))}}

@@ -136,7 +136,7 @@
 								<div id="respon-login" style="margin-top:50px">
 									<center>
 										<p style="color:white">Want to Disscuss ?</p>
-										<a class="primary" href="{{URL::to('/login')}}"><button class="primary">Log in Here</button></a>
+										<a class="primary" href="{{route('login', array('redirect'=>convert_uuencode(Request::url())))}}"><button class="primary">Log in Here</button></a>
 										
 									</center>
 

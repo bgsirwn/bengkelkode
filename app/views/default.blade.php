@@ -51,8 +51,8 @@
 	<title>@yield('title')</title>
     
 </head>
-<body class="metro" style="margin-top: 70px">
-	<div class="navigation-bar dark fixed-top shadow">
+<body class="metro" style="margin-top: 70px; background-color: rgb(81, 81, 81);">
+	<div class="navigation-bar dark fixed-top shadow" style="background-color: rgb(10, 105, 143);">
    		<div class="navigation-bar-content container">
        		<a href="{{URL::to('/')}}" class="element"><span class="icon-console"></span> BengkelKoding <sup> v. 1.0</sup></a>
        		<span class="element-divider"></span>
@@ -123,28 +123,28 @@
 
 						<div style="clear:both"></div>
 						
-						<div style="margin-top: 10px; position: absolute; display: none; background-color:#333; padding:30px; width:250px" id="log-form">
+						<div style="margin-top: 15px; position: absolute; display: none; background-color:#333; padding:30px; width:250px" id="log-form">
 							
 							<h2 style="margin-bottom:20px; color:white">Sign in</h2>
 
 						
 						{{Form::open(array('class'=>'form-horizontal','url'=>route('login', array('redirect'=>convert_uuencode(Route::currentRouteName())))))}}	
 							<div class="form-group input-control text" data-role="input-control" style="margin:5px">
-							{{Form::label('username')}}
+							<!--{{Form::label('username')}}-->
 							{{Form::text('username','',array('class'=>'form-control','placeholder'=>'username','required', 'type'=>'text', 'style'=>'font-size:14px'))}}
 							<button type="button" class="btn-clear" tabindex="-1"></button>
 							
 							</div>
 
 							<div class="form-group input-control password" data-role="input-control" style="margin:5px">
-							{{Form::label('password')}}
+							<!--{{Form::label('password')}}-->
 							{{Form::password('password',array('class'=>'form-control','placeholder'=>'Password', 'required','type'=>'password'))}}
 							<button type="button" class="btn-reveal" tabindex="-1"></button>
 							
 							</div>
 							
 							<div class="form-group">
-							{{Form::submit('Login', array('class'=>'btn btn-default'))}}
+							{{Form::submit('Login', array('class'=>'primary'))}}
 							</div>
 						{{Form::close()}}
 

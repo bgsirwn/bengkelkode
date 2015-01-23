@@ -6,7 +6,7 @@ use Marwelln\Recaptcha\Request;
 
 class Model extends \Marwelln\Recaptcha\Model {
 	public function __construct($response, $secretKey = null) {
-		parent::__construct($response, $secretKey ?: Config::get('recaptcha::secretKey'));
+		parent::__construct($response, $secretKey ?: Config::get('app.secretKey'));
 
 		$this->errors = new MessageBag;
 	}

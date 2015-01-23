@@ -28,6 +28,8 @@
 					});
 				</script>
 				<br>
+				{{View::make('recaptcha::display')}}
+				<br>
 				<br>
 				{{Form::submit('submit', array('class'=>'btn btn-primary'))}}
 				{{Form::close()}}

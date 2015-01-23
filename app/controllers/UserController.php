@@ -38,16 +38,32 @@ class UserController extends \BaseController {
 	public function store()
 	{
 		$data = Input::all();
-		$user = new User;
-		$user->username = $data['username'];
-		$user->email = $data['email'];
-		$user->password = Hash::make($data['password']);
-		$user->name = $data['name'];
-		$user->followers = "[]";
-		$user->following = "[]";
-		$user->save();
-		Auth::loginUsingId($user->id);
-		return Redirect::route('dashboard');
+		$validator = Validator::make(
+			$data,
+			array(
+				'name'=>'required',
+				'username'=>'required|unique:users|min:8|max:12',
+				'email'=>'required|unique:users',
+				'password'=>'required|min:8',
+				'g-recaptcha-response'=>'required|recaptcha'
+			)
+		);
+		$validated = $validator->passes();
+		if ($validated) {
+			$user = new User;
+			$user->username = $data['username'];
+			$user->email = $data['email'];
+			$user->password = Hash::make($data['password']);
+			$user->name = $data['name'];
+			$user->followers = "[]";
+			$user->following = "[]";
+			$user->save();
+			Auth::loginUsingId($user->id);
+			return Redirect::route('dashboard');
+		}
+		else{
+			return Redirect::route('signup', array('messages'=>$validator->messages));
+		}
 	}
 
 
@@ -61,16 +77,39 @@ class UserController extends \BaseController {
 	{
 		$user = User::where('username',$username)->get();	
 		if($user->count()>0){
-			foreach ($user as $data) {
-				$followed = UserController::isFollowed($username);
-				$followers = json_decode($data->followers);
-				$showButton = true;
-				if(Auth::check()){
-					if (Auth::user()->username==$username) {
-						$showButton = false;
+			if (Route::currentRouteName()!='api.v1.user.show') {
+				foreach ($user as $data) {
+					$followed = UserController::isFollowed($username);
+					$followers = json_decode($data->followers);
+					$following = json_decode($data->following);
+					$showButton = true;
+					if(Auth::check()){
+						if (Auth::user()->username==$username) {
+							$showButton = false;
+						}
 					}
+					return View::make('profile', array('output'=>$data, 'followed'=>$followed, 'followers'=>$followers, 'showButton'=>$showButton));
 				}
-				return View::make('profile', array('output'=>$data, 'followed'=>$followed, 'followers'=>$followers, 'showButton'=>$showButton));
+			}
+			else{
+				foreach ($user as $data) {
+					$followed = UserController::isFollowed($username);
+					$followers = json_decode($data->followers);
+					$following = json_decode($data->following);
+					$showButton = true;
+					if(Auth::check()){
+						if (Auth::user()->username==$username) {
+							$showButton = false;
+						}
+					}
+					return Response::json(array(
+						'output'=>$data, 
+						'followed'=>$followed, 
+						'followers'=>$followers,
+						'following'=>$following, 
+						'showButton'=>$showButton),200
+					);
+				}
 			}
 		}
 		else{

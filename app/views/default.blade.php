@@ -42,7 +42,6 @@
    	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushCSharp.js')}}
    	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushCss.js')}} 	
    	 {{HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushJava.js')}}
-   	 {{HTML::script('https://www.google.com/recaptcha/api.js')}}
    	 {{HTML::style('dist/js/ckeditor/plugins/syntaxhighlight/styles/shCoreDefault.css')}}
    	 
 	 <script type="text/javascript">SyntaxHighlighter.all();</script>
@@ -65,7 +64,17 @@
        			<li><a href="{{route('create')}}">Ask Something</a></li>
        			<li><a href="{{route('discover')}}">Discover</a></li>
        		</ul>
-
+			@if($errors->any())
+			<script>
+				$(function(){
+					$.Notify({
+                    shadow: true,
+                    position: 'bottom-right',
+                    content: "{{$errors->first()}}"
+                    });
+                });
+			</script>
+			@endif
 
 
        		<div class="no-tablet-portrait no-phone">
@@ -128,7 +137,7 @@
 							<h2 style="margin-bottom:20px; color:white">Sign in</h2>
 
 						
-						{{Form::open(array('class'=>'form-horizontal','url'=>route('login', array('redirect'=>convert_uuencode(Route::currentRouteName())))))}}	
+						{{Form::open(array('class'=>'form-horizontal','url'=>route('login', array('redirect'=>convert_uuencode(Request::url())))))}}	
 							<div class="form-group input-control text" data-role="input-control" style="margin:5px">
 							<!--{{Form::label('username')}}-->
 							{{Form::text('username','',array('class'=>'form-control','placeholder'=>'username','required', 'type'=>'text', 'style'=>'font-size:14px'))}}

@@ -12,23 +12,7 @@
 
 					<div class="span6" style="margin-top: 100px; margin-bottom: 100px;">
 
-					@if($errors->any())
-						<script>
-							$(function(){
-                                $.Notify({
-                                    shadow: true,
-                                    position: 'bottom-right',
-                                    content: "{{$errors->first()}}"
-                                });
-                            });
-						</script>
-<!--
-						<div class="alert" style="margin-bottom:5px">
-							<a class="close" dismiss="alert">x</a>
-							<strong>{{$errors->first()}}</strong>
-						</div>
-						-->
-					@endif
+					
 
 
 	<div style="background-color: rgb(92, 92, 231); padding: 30px; width: 80%;">

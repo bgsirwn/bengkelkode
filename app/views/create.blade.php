@@ -1,9 +1,9 @@
-@extends('dashboard')
+@extends('default')
 @section('title')
 	{{"Bengkel Koding::Ask"}}
 @stop
 {{HTML::script('dist/js/ckeditor/ckeditor.js')}}
-@section('content-inner')
+@section('content')
 
 <div class="container">
 	<div class="grid">

@@ -15,14 +15,14 @@
 							@if(Route::currentRouteName()!='thread.detail')
 							<div id="viewnum" style="float: right; background: none repeat scroll 0% 0% #F87D05; padding: 5px; text-align: center; margin: 2px; width:78px">
 								<strong>
-								<p>View
-								<p>0
+								<p>View</p>
+								<p>0</p>
 								</strong>
 							</div>
 							<div id="commentnum" style="float: right; background: none repeat scroll 0% 0% rgb(42, 189, 33); padding: 5px; text-align: center; margin: 2px;">
 								<strong>
-								<p>Comment
-								<p>0
+								<p>Comment</p>
+								<p>0</p>
 								</strong>
 							</div>
 							@endif

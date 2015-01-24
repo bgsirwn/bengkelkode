@@ -16,15 +16,21 @@
 							<div id="viewnum" style="float: right; background: none repeat scroll 0% 0% #F87D05; padding: 5px; text-align: center; margin: 2px; width:78px">
 								<strong>
 								<p>View</p>
-								<p>0</p>
+								<p>{{$key->view}}</p>
 								</strong>
 							</div>
 							<div id="commentnum" style="float: right; background: none repeat scroll 0% 0% rgb(42, 189, 33); padding: 5px; text-align: center; margin: 2px;">
 								<strong>
 								<p>Comment</p>
-								<p>0</p>
+								<p>{{$key->comments}}</p>
 								</strong>
 							</div>
+							@if(Auth::id()==$key->user_id)
+							<a href="{{route('thread.edit',array(User::find($key->user_id)->username, $key->id))}}">Edit</a>
+							{{Form::open(array('style'=>'display:inline-block'))}}
+							{{Form::submit('delete')}}
+							{{Form::close()}}
+							@endif
 							@endif
 							<div id="thread_c" style="width: 100%;">
 								<a href="{{route('thread.detail',array(User::find($key->user_id)->username,$key->id))}}" style="color: black; font-size: 16px;">

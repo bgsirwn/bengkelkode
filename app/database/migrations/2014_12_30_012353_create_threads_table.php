@@ -15,9 +15,11 @@ class CreateThreadsTable extends Migration {
 		Schema::create('threads', function($table){
 			$table->increments('id');
 			$table->integer('user_id');
+			$table->integer('type');
 			$table->string('title', 100);
 			$table->longtext('thread');
 			$table->text('tag');
+			$table->integer('view');
 			$table->timestamps();
 		});
 	}

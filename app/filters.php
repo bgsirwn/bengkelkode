@@ -48,8 +48,11 @@ Route::filter('auth', function()
 			return Response::make('Unauthorized', 401);
 		}
 		else
-		{
-			return Redirect::route('login', array('redirect'=> convert_uuencode(Request::url())));
+		{	$url = Request::url();
+			if (Route::currentRouteName()=="follow") {
+				$url = URL::to('/').'/'.Input::get('username');
+			}
+			return Redirect::route('login', array('redirect'=> convert_uuencode($url)));
 		}
 	}
 });

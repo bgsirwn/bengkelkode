@@ -12,7 +12,7 @@
 */
 
 //API FOR USERS TABLE
-Route::group(array('prefix'=>'api/v1', 'before'=>'auth'), function(){
+Route::group(array('prefix'=>'api/v1'), function(){
 	Route::resource('user', 'UserController');
 });
 
@@ -101,6 +101,17 @@ Route::group(array('before'=>'auth'), function(){
 		'as'=>'post.answer',
 		'before'=>'csrf',
 		'uses'=>'ThreadController@postAnswer'
+	));
+
+	Route::get('{username}/thread/{id}/edit', array(
+		'as'=>'thread.edit',
+		'uses'=>'ThreadController@edit'
+	));
+
+	Route::put('{username}/thread/{id}/edit', array(
+		'as'=>'thread.edit',
+		'before'=>'csrf',
+		'uses'=>'ThreadController@update'
 	));
 	
 	Route::post('create', array(

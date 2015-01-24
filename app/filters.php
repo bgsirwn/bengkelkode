@@ -49,7 +49,7 @@ Route::filter('auth', function()
 		}
 		else
 		{
-			return Redirect::route('login', array('redirect'=> convert_uuencode(Route::currentRouteName())));
+			return Redirect::route('login', array('redirect'=> convert_uuencode(Request::url())));
 		}
 	}
 });

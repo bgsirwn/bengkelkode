@@ -6,8 +6,7 @@
 
 
 @section('content')
-
-
+<div id="content">
 	<div class="container">
 		<div class="grid">
 			<div class="row">

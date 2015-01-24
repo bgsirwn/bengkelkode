@@ -12,23 +12,7 @@
 
 					<div class="span6" style="margin-top: 100px; margin-bottom: 100px;">
 
-					@if($errors->any())
-						<script>
-							$(function(){
-                                $.Notify({
-                                    shadow: true,
-                                    position: 'bottom-right',
-                                    content: "{{$errors->first()}}"
-                                });
-                            });
-						</script>
-<!--
-						<div class="alert" style="margin-bottom:5px">
-							<a class="close" dismiss="alert">x</a>
-							<strong>{{$errors->first()}}</strong>
-						</div>
-						-->
-					@endif
+					
 
 
 	<div style="background-color: rgb(92, 92, 231); padding: 30px; width: 80%;">
@@ -37,7 +21,7 @@
 		{{Form::open(array('class'=>'form-horizontal', 'url'=>route('login.auth', array('redirect'=>Input::get('redirect')))))}}	
 			<div class="form-group input-control text" data-role="input-control" style="margin:5px">
 				
-				{{Form::text('username','',array('class'=>'form-control','placeholder'=>'username','required', 'type'=>'text', 'style'=>'font-size:16px'))}}
+				{{Form::text('username',Input::old('username'),array('class'=>'form-control','placeholder'=>'username','required', 'type'=>'text', 'style'=>'font-size:16px'))}}
 				<button type="button" class="btn-clear" tabindex="-1"></button>				
 			</div>
 

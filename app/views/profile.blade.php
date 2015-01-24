@@ -1,8 +1,8 @@
-@extends('dashboard')
+@extends('default')
 @section('title')
 	{{"Bengkel Koding::discover"}}
 @stop
-@section('outer')
+@section('content')
 <div class="container">
 <div class="grid">
 	<div class="row">

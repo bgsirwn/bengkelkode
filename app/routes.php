@@ -12,7 +12,7 @@
 */
 
 //API FOR USERS TABLE
-Route::group(array('prefix'=>'api/v1', 'before'=>'auth'), function(){
+Route::group(array('prefix'=>'api/v1'), function(){
 	Route::resource('user', 'UserController');
 });
 

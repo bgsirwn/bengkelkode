@@ -46,6 +46,9 @@
 							
 						</div>
 						@endforeach
+						@if(Route::currentRouteName()!='thread.detail')
+						{{$output->links()}}
+						@endif
 					</div>
 				</div>
 

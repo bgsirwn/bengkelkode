@@ -38,16 +38,14 @@ class UserController extends \BaseController {
 	public function store()
 	{
 		$data = Input::all();
-		$validator = Validator::make(
-			$data,
-			array(
-				'name'=>'required',
-				'username'=>'required|unique:users|min:8|max:12',
-				'email'=>'required|unique:users',
-				'password'=>'required|min:8',
-				'g-recaptcha-response'=>'required|recaptcha'
-			)
-		);
+		$rules = array(
+					'name'=>'required',
+					'username'=>'required|unique:users|min:8|max:12',
+					'email'=>'required|unique:users',
+					'password'=>'required|min:6',
+					'g-recaptcha-response'=>'required|recaptcha'
+				);
+		$validator = Validator::make($data,$rules);
 		$validated = $validator->passes();
 		if ($validated) {
 			$user = new User;
@@ -62,7 +60,7 @@ class UserController extends \BaseController {
 			return Redirect::route('dashboard');
 		}
 		else{
-			return Redirect::route('signup', array('messages'=>$validator->messages()));
+			return Redirect::route('signup')->withErrors($validator);
 		}
 	}
 

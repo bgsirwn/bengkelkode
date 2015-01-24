@@ -13,7 +13,8 @@ class ThreadController extends BaseController{
 	}
 
 	function discover(){
-		$data = Thread::orderBy('created_at', 'desc')->get();
+		Config::set('view.pagination','pagination::simple');
+		$data = Thread::orderBy('created_at', 'desc')->simplePaginate(10);
 		return View::make('discover',array('output'=>$data));
 	}
 
@@ -28,7 +29,7 @@ class ThreadController extends BaseController{
 		foreach ($user as $key) {
 			$id = $key->id;
 		}
-		$data = Thread::where('user_id','=',$id)->orderBy('created_at', 'desc')->get();
+		$data = Thread::where('user_id','=',$id)->orderBy('created_at', 'desc')->simplePaginate(10);
 		return View::make('dashboard', array('output'=>$data));
 	}
 

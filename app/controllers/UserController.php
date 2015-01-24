@@ -60,7 +60,7 @@ class UserController extends \BaseController {
 			return Redirect::route('dashboard');
 		}
 		else{
-			return Redirect::route('signup')->withErrors($validator);
+			return Redirect::route('signup')->withInput()->withErrors($validator);
 		}
 	}
 

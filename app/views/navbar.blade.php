@@ -8,15 +8,17 @@
        			<li><a href="{{route('discover')}}">Discover</a></li>
        		</ul>
 			@if($errors->any())
-			<script>
-				$(function(){
-					$.Notify({
-                    shadow: true,
-                    position: 'bottom-right',
-                    content: "{{$errors->first()}}"
-                    });
-                });
-			</script>
+			@foreach($errors->all() as $error)
+				<script>
+					$(function(){
+						$.Notify({
+	                    shadow: true,
+	                    position: 'bottom-right',
+	                    content: "{{$error}}"
+	                    });
+	                });
+				</script>
+			@endforeach
 			@endif
        		<div class="no-tablet-portrait no-phone">
         		<ul class="element-menu place-right" style="margin-right: 140px">

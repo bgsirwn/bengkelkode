@@ -3,13 +3,26 @@ class ThreadController extends BaseController{
 
 	function post(){
 		$data = Input::all();
-		$thread = new Thread;
-		$thread->user_id = Auth::id();
-		$thread->title = $data['title'];
-		$thread->thread = htmlentities($data['thread']);
-		$thread->tag = 'null';
-		$thread->save();
-		return Redirect::route('thread.detail', array(Auth::user()->username, $thread->id));
+		$rules = array(
+			'title'=>'required',
+			'thread'=>'required',
+			'tag'=>'required',
+			'g-recaptcha-response'=>'required|recaptcha'
+		);
+		$validator = Validator::make($data,$rules);
+		$validated = $validator->passes();
+		if($validated){
+			$thread = new Thread;
+			$thread->user_id = Auth::id();
+			$thread->title = $data['title'];
+			$thread->thread = htmlentities($data['thread']);
+			$thread->tag = 'null';
+			$thread->save();
+			return Redirect::route('thread.detail', array(Auth::user()->username, $thread->id));
+		}
+		else{
+			return Redirect::route('create')->withErrors($validator);
+		}
 	}
 
 	function discover(){

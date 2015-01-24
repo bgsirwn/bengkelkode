@@ -19,7 +19,6 @@
 
 				{{Form::open()}}
 				{{Form::text('title','',array('placeholder'=>'Title','class'=>'form-control','style'=>'width:200px;display:inline-block;margin-bottom:20px','required'))}}
-				
 				{{Form::textarea('thread','')}}
 				<script>
 					CKEDITOR.replace( 'thread', {
@@ -27,6 +26,7 @@
 					    uiColor: 'whitesmoke'
 					});
 				</script>
+				{{Form::text('tag', '', array('placeholder'=>'tag'))}}
 				<br>
 				{{View::make('recaptcha::display')}}
 				<br>

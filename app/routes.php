@@ -97,10 +97,14 @@ Route::group(array('before'=>'auth'), function(){
 		'uses' => 'NotificationController@readNotif'
 	));
 
-	Route::post('{username}/thread/{id}', array(
-		'as'=>'post.answer',
-		'before'=>'csrf',
-		'uses'=>'ThreadController@postAnswer'
+	Route::get('setting', array(
+		'as'=>'setting',
+		'uses'=>'UserController@setting'
+	));
+
+	Route::post('setting', array(
+		'as'=>'setting.post',
+		'uses'=>'UserController@update'
 	));
 
 	Route::get('{username}/thread/{id}/edit', array(
@@ -125,6 +129,11 @@ Route::group(array('before'=>'auth'), function(){
 		'uses' => 'RemindersController@postReset'
 	));
 
+	Route::post('{username}/thread/{id}', array(
+		'as'=>'post.answer',
+		'before'=>'csrf',
+		'uses'=>'ThreadController@postAnswer'
+	));
 });
 
 
@@ -138,12 +147,6 @@ Route::get('discover', array(
 	'uses'=>'ThreadController@discover'
 ));
 
-Route::get('setting', array(
-	'as'=>'setting',
-	'uses'=>function(){
-		return View::make('setting');
-	}
-));
 
 Route::get('{username}', array(
 	'as'=>'profile', 

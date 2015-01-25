@@ -39,4 +39,13 @@ class BengkelKodingController extends BaseController{
 		$users = DB::table('users')->where('id','<',200)->get();
 		return "<pre>".var_dump($users);
 	}
+
+	function generateRandomString($length = 10) {
+	    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	    $randomString = '';
+	    for ($i = 0; $i < $length; $i++) {
+	        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+	    }
+	    return $randomString;
+	}
 }

@@ -55,6 +55,7 @@ class UserController extends \BaseController {
 			$user->name = $data['name'];
 			$user->followers = "[]";
 			$user->following = "[]";
+			$user->photo = "pp_blank.jpeg";
 			$user->save();
 			Auth::loginUsingId($user->id);
 			return Redirect::route('dashboard');
@@ -124,7 +125,7 @@ class UserController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		
 	}
 
 
@@ -134,9 +135,46 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id=null)
 	{
-		//
+		$data = Input::all();
+		$data['photo'] = Input::file('photo');
+		$rules = array(
+			'name'=>'required',
+			'username'=>'required|min:8|max:12',
+			'photo'=>'image'
+		);
+		$validator = Validator::make($data,$rules);
+		$validated = $validator->passes();
+		$photo = "";
+		$moved = "";
+		if ($validated) {
+			//upload foto
+			if($data['photo']!=''){
+				$exists = true;
+				while($exists){
+					$photo = new BengkelKodingController;
+					$photo = $photo->generateRandomString(20).'.png';
+					if(User::where('photo',$photo)->count()==0){
+						$exists = false;
+					}
+
+				}
+
+				$moved = $data['photo']->move('dist/images', $photo);
+			}
+			//update profile
+			$user = User::find(Auth::id());
+			$user->name = $data['name'];
+			$user->username = $data['username'];
+			$user->bio = $data['bio'];
+			$user->photo = Input::file('photo')==null ? $user->photo : $photo;
+			$user->save();
+			return Redirect::route('setting')->withErrors($moved ? '':$photo);
+		}
+		else{
+			return Redirect::route('setting')->withInput()->withErrors($validator);
+		}
 	}
 
 
@@ -247,5 +285,10 @@ class UserController extends \BaseController {
 			$is_following = false;
 		}
 		return $is_following;
+	}
+
+	function setting(){
+		$user = User::find(Auth::id());
+		return View::make('setting', array('user'=> $user));
 	}
 }

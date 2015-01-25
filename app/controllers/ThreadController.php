@@ -62,7 +62,7 @@ class ThreadController extends BaseController{
 		$user = User::where('username',$username)->first();
 		$data = Thread::where('id',$id)->where('user_id',$user->id)->orderBy('created_at', 'desc')->get();
 		$answer = Answer::where('thread_id',$id)->get();
-		$addView = Cache::add(Auth::user()->username."AddThreadView".$id, $data[0]->id, 60*60*24*7);
+		$addView = Cache::add(Auth::check() ? Auth::user()->username : "anonymous"."AddThreadView".$id, $data[0]->id, 60*60*24*7);
 		if ($addView) {
 			$th = Thread::find($id);
 			$th->view = $th->view+1;

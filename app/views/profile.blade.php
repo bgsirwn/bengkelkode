@@ -10,7 +10,7 @@
 			
 		</div>
 		<div class="span4">
-			<img src="{{URL::Asset('dist/images/pp_blank.jpeg')}}" class="cycle span2" / style="valign:top">
+			<img src="{{URL::asset('dist/images/'.$output->photo)}}" class="cycle span2" / style="valign:top">
 			
 				
 		</div>

@@ -1,0 +1,50 @@
+<?php $__env->startSection('title'); ?>
+	<?php echo "Bengkel Koding::Ask"; ?>
+
+<?php $__env->stopSection(); ?>
+<?php echo HTML::script('dist/js/ckeditor/ckeditor.js'); ?>
+
+<?php $__env->startSection('content'); ?>
+
+<div class="container">
+	<div class="grid">
+		<div class="row">			
+			<div class="span8">
+				<?php echo $__env->make('post', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+			<!--
+
+				<?php echo Form::open(); ?>
+
+				<?php echo Form::text('title','',array('placeholder'=>'Title','class'=>'form-control','style'=>'width:200px;display:inline-block;margin-bottom:20px','required')); ?>
+
+				<?php echo Form::select('type', array('1'=>'Question', '2'=>'Discussion')); ?>
+
+				<?php echo Form::textarea('thread',''); ?>
+
+				<script>
+					CKEDITOR.replace( 'thread', {
+					    language: 'id',
+					    uiColor: 'whitesmoke'
+					});
+				</script>
+				<?php echo Form::select('tag', array('1'=>'java','2'=>'php','3'=>'javascript')); ?>
+
+				<br>
+				<?php echo View::make('recaptcha::display'); ?>
+
+				<br>
+				<br>
+				<?php echo Form::submit('submit', array('class'=>'btn btn-primary')); ?>
+
+				<?php echo Form::close(); ?>
+
+-->
+			</div>
+		</div>
+	</div>
+</div>
+
+	
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

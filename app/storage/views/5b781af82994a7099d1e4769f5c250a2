@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<?php echo HTML::style('dist/css/metro-bootstrap.css'); ?>
+
+	<?php echo HTML::style('dist/css/metro-bootstrap-responsive.css'); ?>
+
+	<?php echo HTML::style('dist/css/iconFont.css'); ?>
+
+	<?php echo HTML::style('dist/css/docs.css'); ?>
+
+	
+	<?php echo HTML::style('dist/js/prettify/prettify.css'); ?>
+
+
+	<!--css add-->
+	<?php echo HTML::style('dist/css/add/css.css'); ?>
+
+	<?php echo HTML::style('dist/css/add/settings.css'); ?>
+
+	<?php echo HTML::style('dist/css/add/custom.css'); ?>
+
+	<?php echo HTML::style('dist/css/add/style.css'); ?>
+
+	<?php echo HTML::style('dist/css/add/bootstrap.css'); ?>
+
+
+	<!--Load JavaScript Libraries-->
+	 <script>
+	 var alamat = "<?php echo URL::to('/'); ?>";
+	 </script>
+	<?php echo HTML::script('dist/js/jquery/jquery.min.js'); ?>
+
+	<?php echo HTML::script('dist/js/jquery/jquery.widget.min.js'); ?>
+
+	<?php echo HTML::script('dist/js/jquery/jquery.mousewheel.js'); ?>
+
+	<?php echo HTML::script('dist/js/prettify/prettify.js'); ?>
+
+
+	<!--Metro UI CSS JavaScript plugins-->
+	<?php echo HTML::script('dist/js/load-metro.js'); ?>
+
+
+	<!--Local javascript-->
+	<?php echo HTML::script('dist/js/docs.js'); ?>
+
+	 <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+   	 <![endif]-->
+
+   	 <!--syntaxhighligt-->
+   	 <?php echo HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shCore.js'); ?>
+
+   	 <?php echo HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shLegacy.js'); ?>
+
+   	 <?php echo HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushAppleScript.js'); ?>
+
+   	 <?php echo HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushAS3.js'); ?>
+
+   	 <?php echo HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushBash.js'); ?>
+
+   	 <?php echo HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushColdFusionjs'); ?>
+
+   	 <?php echo HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushCpp.js'); ?>
+
+   	 <?php echo HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushCSharp.js'); ?>
+
+   	 <?php echo HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushCss.js'); ?> 	
+   	 <?php echo HTML::script('dist/js/ckeditor/plugins/syntaxhighlight/scripts/shBrushJava.js'); ?>
+
+   	 <?php echo HTML::style('dist/js/ckeditor/plugins/syntaxhighlight/styles/shCoreDefault.css'); ?>
+
+   	 
+	 <script type="text/javascript">SyntaxHighlighter.all();</script>
+
+
+	<title><?php echo $__env->yieldContent('title'); ?></title>
+    
+</head>
+<body class="metro" style="margin-top: 70px; background-color: rgb(236, 240, 241);">
+	
+	<?php echo $__env->make('navbar', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    
+	<?php echo $__env->yieldContent('content'); ?>
+	
+	<?php echo $__env->make('footer', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+</body>
+</html>

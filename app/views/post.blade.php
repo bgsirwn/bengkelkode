@@ -1,16 +1,7 @@
 <div class="post">
 				{{Form::open(array('class'=>'form newtopic'))}}
                     <div class="topwrap">
-                        <div class="userinfo pull-left">
-                    	    <div class="avatar">
-                                <img class="cycle span" src="http://localhost/bengkelkoding/public/dist/images/pp_blank.jpeg" style="width: 50px ! important;">
-                        	    <div class="status red">&nbsp;</div>
-                            </div>
-
-                            <div class="icons">
-                            	<img src="Forum%20%20%20New%20topic_files/icon3.jpg" alt=""><img src="Forum%20%20%20New%20topic_files/icon4.jpg" alt=""><img src="Forum%20%20%20New%20topic_files/icon5.jpg" alt=""><img src="Forum%20%20%20New%20topic_files/icon6.jpg" alt="">
-                            </div>
-                        </div>
+                        @include('avatar')
                     <div class="posttext pull-left">
                         <div>
                         {{Form::text('title','',array('placeholder'=>'Title','class'=>'form-control','required'))}}

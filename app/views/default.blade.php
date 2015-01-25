@@ -9,8 +9,15 @@
 	{{HTML::style('dist/css/metro-bootstrap-responsive.css')}}
 	{{HTML::style('dist/css/iconFont.css')}}
 	{{HTML::style('dist/css/docs.css')}}
-	{{HTML::style('dist/css/custom.css')}}
+	
 	{{HTML::style('dist/js/prettify/prettify.css')}}
+
+	<!--css add-->
+	{{HTML::style('dist/css/add/css.css')}}
+	{{HTML::style('dist/css/add/settings.css')}}
+	{{HTML::style('dist/css/add/custom.css')}}
+	{{HTML::style('dist/css/add/style.css')}}
+	{{HTML::style('dist/css/add/bootstrap.css')}}
 
 	<!--Load JavaScript Libraries-->
 	 <script>
@@ -50,7 +57,7 @@
 	<title>@yield('title')</title>
     
 </head>
-<body class="metro" style="margin-top: 70px; background-color: rgb(81, 81, 81);">
+<body class="metro" style="margin-top: 70px; background-color: rgb(236, 240, 241);">
 	
 	@include('navbar')
     

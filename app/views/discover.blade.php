@@ -8,32 +8,42 @@
 	<div class="container">
 		<div class="grid">
 			<div class="row">
-				<div class="col-lg-8 col-md-8">
 
-<!-- ini percobaan-->
+				<div class="col-lg-4 col-md-4">
+					<div class="sidebarblock">
+                                <h3>Categories</h3>
+                                <div class="divline"></div>
+                                <div class="blocktxt">
+                                    <ul class="cats">
+                                        <li><a href="#">Java <span class="badge pull-right">20</span></a></li>
+                                        <li><a href="#">PHP <span class="badge pull-right">10</span></a></li>
+                                        <li><a href="#">HTML <span class="badge pull-right">50</span></a></li>
+                                        <li><a href="#">Looking for Players <span class="badge pull-right">36</span></a></li>
+                                        <li><a href="#">Stupid Bugs &amp; Solves <span class="badge pull-right">41</span></a></li>
+                                        <li><a href="#">Video &amp; Audio Drivers <span class="badge pull-right">11</span></a></li>
+                                        <li><a href="#">2K Official Forums <span class="badge pull-right">5</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+					</div>
+				<div class="col-lg-8 col-md-8">
 					@foreach($output as $key)
 					@if(Route::currentRouteName()!='thread.detail')
 					<div class="post">
-                                <div class="wrap-ut pull-left">
-                                    <div class="userinfo pull-left">
-                                        <div class="avatar">
-                                            <img class="cycle span" src="http://localhost/bengkelkoding/public/dist/images/pp_blank.jpeg" style="width: 50px ! important;">
-                                            <div class="status green">&nbsp;</div>
-                                        </div>
-
-                                        <div class="icons">
-                                            <img src="Forum%20%20%20Home%20Page_files/icon1.jpg" alt=""><img src="Forum%20%20%20Home%20Page_files/icon4.jpg" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="posttext pull-left">
-                                   <h2><a href="{{route('thread.detail',array(User::find($key->user_id)->username,$key->id))}}" style="color: black; font-size: 22px;">
-									{{$key->title}}
-								</a></h2>
-  
-                                        <p>short description</p>
-                                    </div>
-                                    <div class="clearfix"></div>
+                            <div class="wrap-ut pull-left">
+                                @include('avatar')
+                                <div class="posttext pull-left">
+                                   <h2>
+                                   		<a href="{{route('thread.detail',array(User::find($key->user_id)->username,$key->id))}}" style="color: black; font-size: 22px;">
+											{{$key->title}}
+										</a>
+									</h2>
+                                    <p>short description</p>
                                 </div>
+                                
+                                <div class="clearfix"></div>
+                                </div>
+                                
                                 <div class="postinfo pull-left">
                                     <div class="comments">
                                         <div class="commentbg">
@@ -76,15 +86,15 @@
                                     </div>
 
                                     <div class="prev pull-left">                                        
-                                        <a href="#"><i class="fa fa-reply"></i></a>
+                                        <a href="#"><i class="icon-reply"></i></a>
                                     </div>
 
                                     <div class="posted pull-left"><i class="fa fa-clock-o"></i> Posted on : 20 Nov @ 9:30am</div>
 
                                     <div class="next pull-right">                                        
-                                        <a href="#"><i class="fa fa-share"></i></a>
+                                        <a href="#"><i class="icon-share"></i></a>
 
-                                        <a href="#"><i class="fa fa-flag"></i></a>
+                                        <a href="#"><i class="icon-flag"></i></a>
                                     </div>
 
                                     <div class="clearfix"></div>
@@ -190,34 +200,12 @@
 					@if(Route::currentRouteName()!='thread.detail')
 						{{$output->links()}}
 						@endif
-				</div>
-				<div class="span4">
-					<div class="sidebarblock">
-                                <h3>Categories</h3>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <ul class="cats">
-                                        <li><a href="#">Java <span class="badge pull-right">20</span></a></li>
-                                        <li><a href="#">PHP <span class="badge pull-right">10</span></a></li>
-                                        <li><a href="#">HTML <span class="badge pull-right">50</span></a></li>
-                                        <li><a href="#">Looking for Players <span class="badge pull-right">36</span></a></li>
-                                        <li><a href="#">Stupid Bugs &amp; Solves <span class="badge pull-right">41</span></a></li>
-                                        <li><a href="#">Video &amp; Audio Drivers <span class="badge pull-right">11</span></a></li>
-                                        <li><a href="#">2K Official Forums <span class="badge pull-right">5</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-					</div>
-					
-				</div>
 
-			</div>
-			@if(Route::currentRouteName()=='thread.detail')
-			<hr>
+						@if(Route::currentRouteName()=='thread.detail')
 				<div id="respons">
 					<h3>Answers</h3>
 						<div class="row">
-							<div class="span12">
+							<div class="col-lg-12 col-md-12">
 								<div id="answers">
 								<?php
 										foreach($answer as $as){ ?>
@@ -264,6 +252,10 @@
 						</div>	
 			@endif
 			</div>
+				</div>
+				
+			</div>
+			
 		</div>
 	</div>
 </div>

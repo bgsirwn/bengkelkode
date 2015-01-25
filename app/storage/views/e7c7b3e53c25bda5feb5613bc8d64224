@@ -1,0 +1,168 @@
+<?php $__env->startSection('title'); ?>
+	<?php echo "Bengkel Koding::Sign up"; ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+	<script type="text/javascript" src="dist/js/jquery/jquery.validate.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#signup-form").validate({
+			    rules:{ name:"required",
+			            umur:{required:true,number: true},     
+			            username:"required",
+			            password:{required: true,minlength:6},     
+			            //cpassword:{required: true,equalTo: "#password"},
+			            email:{required:true,email:true},
+			          },
+			    messages:{
+			            name:{required:'Nama harus di isi'},
+			            umur:{
+			                required:'Umur harus di isi',
+			                number  :'Hanya boleh di isi Angka'},
+			            username: {
+			                required:'Username harus di isi'},
+			            password: {
+			                required :'Password harus di isi',
+			                minlength:'Password minimal 5 karakter'},
+			            //cpassword: {
+			             //   required:'Ulangi Password harus di isi',
+			             //   equalTo :'Isinya harus sama dengan Password'},
+			            email: {
+			                required:'Email harus di isi',
+			                email   :'Email harus valid'},
+			            
+			     success: function(label) {
+			        label.text('OK!').addClass('valid');}
+			    });
+			});
+	</script>
+
+	<div class="container">
+		<div class="grid">
+			<div class="row">
+
+				<div class="span4">
+					
+				</div>
+
+				<div class="span6" style="margin-top: 100px; margin-bottom:100px">
+					<div style="background-color:#E03131; padding:30px; width:80%">
+						<h2>
+							<span class="icon-user" style="margin-right:5px; margin-left:10px"></span>
+							Sign Up
+						</h2>
+						<?php echo Form::open(array('class'=>'form-horizontal', 'id'=>'signup-form')); ?>
+
+							<div class="form-group input-control text" data-role="input-control" style="margin:5px">
+								<!--<?php echo Form::label('name','Name'); ?>-->
+								<span class="label">Nama *</span>
+								<?php echo Form::text('name',Input::old('name'),array('class'=>'form-control','placeholder'=>'name','required')); ?>
+
+								<button type="button" class="btn-clear" tabindex="-1"></button>	
+							</div>
+
+							<?php echo $errors->first('username'); ?>
+
+							<div class="form-group input-control text" data-role="input-control" style="margin:5px">
+								<!--<?php echo Form::label('username','Username'); ?>-->
+								<?php echo Form::text('username',Input::old('username'),array('class'=>'form-control', 'placeholder'=>'username','required')); ?>
+
+								<button type="button" class="btn-clear" tabindex="-1"></button>
+							</div>
+							<?php echo $errors->first('email'); ?>		
+							<div class="form-group input-control text" data-role="input-control" style="margin:5px">
+								<!--<?php echo Form::label('email','Email'); ?>-->
+								<?php echo Form::email('email',Input::old('email'),array('placeholder'=>'email', 'class'=>'form-control','required')); ?>
+
+								<button type="button" class="btn-clear" tabindex="-1"></button>
+							</div>
+							<?php echo $errors->first('password'); ?>
+
+							<div class="form-group input-control password" data-role="input-control" style="margin:5px">
+								<!--<?php echo Form::label('password','Password'); ?>-->
+								<?php echo Form::password('password',array('placeholder'=>'password', 'class'=>'form-control','required')); ?>
+
+								<button type="button" class="btn-reveal" tabindex="-1"></button>
+							</div>
+							<?php echo $errors->first('g-recaptcha-response'); ?>
+
+							<div style="margin-top:20px;margin-bottom:20px;margin-left:5px">
+							<?php echo View::make('recaptcha::display'); ?>
+
+							</div>
+							<div class="form-group">
+							<?php echo Form::submit('Sign up', array('class'=>'primary','style'=>'margin:5px')); ?>
+
+							</div>
+						<?php echo Form::close(); ?>
+
+					</div>
+
+					<div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--
+	<div class="container">
+		<div class="grid">
+			<div class="row">
+
+				<div class="span4">
+					
+				</div>
+
+				<div class="span6">
+					<div style="background-color:#E03131">
+						
+						<?php echo Form::open(array('class'=>'form-horizontal','style'=>'width:200px;margin:auto')); ?>
+
+							<div class="form-group">
+							<?php echo Form::label('name','Name'); ?>
+
+							<?php echo Form::text('name','',array('class'=>'form-control','placeholder'=>'name','required')); ?>
+
+							</div>
+							<div class="form-group">
+							<?php echo Form::label('username','Username'); ?>
+
+							<?php echo Form::text('username','',array('class'=>'form-control', 'placeholder'=>'username','required')); ?>
+
+							</div>
+							<div class="form-group">
+							<?php echo Form::label('email','Email'); ?>
+
+							<?php echo Form::email('email','',array('placeholder'=>'email', 'class'=>'form-control','required')); ?>
+
+							</div>
+							<div class="form-group">
+							<?php echo Form::label('password','Password'); ?>
+
+							<?php echo Form::password('password',array('placeholder'=>'password', 'class'=>'form-control','required')); ?>
+
+							</div>
+							<?php echo View::make('recaptcha::display'); ?>
+
+							<div class="form-group">
+							<?php echo Form::submit('Sign up', array('class'=>'btn btn-default')); ?>
+
+							</div>
+						<?php echo Form::close(); ?>
+
+					</div>
+
+					<div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+-->
+	
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

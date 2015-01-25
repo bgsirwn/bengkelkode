@@ -11,9 +11,6 @@
 			<div class="span8">
 				@include('post')
 
-
-
-
 			<!--
 
 				{{Form::open()}}

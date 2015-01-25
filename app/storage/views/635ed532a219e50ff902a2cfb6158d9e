@@ -1,0 +1,71 @@
+<?php $__env->startSection('title'); ?>
+	<?php echo "Bengkel Koding::discover"; ?>
+
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+<div class="container">
+<div class="grid">
+	<div class="row">
+		<div class="span5">
+			
+		</div>
+		<div class="span4">
+			<img src="<?php echo URL::Asset('dist/images/pp_blank.jpeg'); ?>" class="cycle span2" / style="valign:top">
+			
+				
+		</div>
+		<div class="span5"></div>
+			
+		</div>
+	</div>
+
+	<div class="grid">
+		<div class="row">
+			<div class="span12" style="text-align:center">
+			<h2><?php echo $output->name; ?></h2>
+			<button class="success"><strong><?php echo "@".$output->username; ?></strong></button>
+			<button class="info"><strong><?php echo count($followers); ?> followers</strong></button>
+			<button class="primary"><strong>level 18</strong></button>
+			<br><a href="<?php echo route('thread.username', array($output->username)); ?>" role="button" class="button primary large" style="margin-top:40px">Thread</a>
+			<?php if($followed): ?>
+				<a href="<?php echo route('unfollow', array('username'=>$output->username)); ?>" role="button" class="button primary large" style="margin-top:40px">Unfollow</a>
+			<?php else: ?>
+				<?php if($showButton): ?>
+				<a href="<?php echo route('follow', array('username'=>$output->username)); ?>" role="button" class="button primary large" style="margin-top:40px">Follow</a>
+				<?php endif; ?>
+			<?php endif; ?>
+			</div>
+		</div>
+
+		
+	
+		
+	</div>
+
+</div>
+
+	<div class="content" style="background-color: #7E7EFF; height:200px">
+		<div class="container">
+			<div class="grid">
+				<div class="row">
+					<div class="span12">
+						<h2><Strong style="color:white">Skill</Strong></h2>
+						<p class="divider">
+						
+						HTML dan CSS
+						<div class="progress-bar large" data-role="progress-bar" data-value="20"></div>
+						PHP
+						<div class="progress-bar large" data-role="progress-bar" data-value="40"></div>
+
+							
+
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

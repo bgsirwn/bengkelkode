@@ -141,7 +141,7 @@ class UserController extends \BaseController {
 		$data['photo'] = Input::file('photo');
 		$rules = array(
 			'name'=>'required',
-			'username'=>'required|min:8|max:12',
+			'username'=>'required|unique:users,username,'.Auth::id().'|min:8|max:12',
 			'photo'=>'image'
 		);
 		$validator = Validator::make($data,$rules);

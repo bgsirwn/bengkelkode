@@ -62,7 +62,7 @@
                                 <div class="topwrap">
                                     <div class="userinfo pull-left">
                                         <div class="avatar">
-                                           <img class="cycle span" src="http://localhost/bengkelkoding/public/dist/images/pp_blank.jpeg" style="width: 50px ! important;">
+                                           <img class="cycle span" src="{{URL::asset('dist/images/'.User::find($key->user_id)->photo)}}" style="width: 50px ! important;">
                                             <div class="status green">&nbsp;</div>
                                         </div>
 

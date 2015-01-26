@@ -81,8 +81,8 @@
                                 <div class="postinfobot">
 
                                     <div class="likeblock pull-left">
-                                        <a href="#" class="up"><i class="fa fa-thumbs-o-up"></i>25</a>
-                                        <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i>3</a>
+                                        <a href="{{$vote_link}}" class="up"><i class="fa fa-thumbs-o-up"></i>{{$button}}</a>
+                                        <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i>{{count(json_decode($key->votes))}}</a>
                                     </div>
 
                                     <div class="prev pull-left">                                        

@@ -84,6 +84,16 @@ Route::group(array('before'=>'auth'), function(){
 		'uses' => 'UserController@unfollow'
 	));
 
+	Route::get('vote', array(
+		'as' => 'vote',
+		'uses' => 'ThreadController@vote'
+	));
+
+	Route::get('unvote', array(
+		'as' => 'unvote',
+		'uses' => 'ThreadController@unvote'
+	));
+
 	Route::get('logout', array(
 		'as'=>'logout',
 		'uses'=>function(){

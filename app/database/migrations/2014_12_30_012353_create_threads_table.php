@@ -20,7 +20,7 @@ class CreateThreadsTable extends Migration {
 			$table->longtext('thread');
 			$table->text('tag');
 			$table->integer('answered');
-			$table->integer('votes');
+			$table->text('votes');
 			$table->integer('view');
 			$table->timestamps();
 		});

@@ -70,7 +70,9 @@ class ThreadController extends BaseController{
 			$th->view = $th->view+1;
 			$th->save();
 		}
-		return View::make('discover',array('output'=>$data, 'answer'=>$answer));
+		$voted = ThreadController::isVoted($id);
+		$vote_link = route($voted ? 'unvote':'vote',array('id'=>$id));
+		return View::make('discover',array('output'=>$data, 'answer'=>$answer, 'button'=> $voted ? 'unvote' : 'vote', 'vote_link'=>$vote_link));
 	}
 
 	function threadByUsername($username=null){
@@ -107,6 +109,52 @@ class ThreadController extends BaseController{
 		else{
 			return Redirect::route('thread.edit', array($username,$id))->withErrors($validator);
 		}
+	}
+
+	function vote(){
+		$user = User::find(Auth::id());
+		$thread = Thread::find(Input::get('id'));
+		$votes = json_decode($thread->votes);
+		
+		//periksa apakah user sudah mengikuti atau belum
+		$voted = ThreadController::isVoted(Input::get('id'));
+		
+		if (!$voted&&$thread->user_id!=$user->id) {
+			$votes[count($votes)] = array('id'=>$user->id);
+			$thread->votes = json_encode($votes);
+			$thread->save();
+		}
+		return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
+	}
+
+	function unvote(){
+		$user = User::find(Auth::id());
+		$thread = Thread::find(Input::get('id'));
+		$votes = json_decode($thread->votes);
+		
+		$new_votes = array();
+		for ($i=0; $i < count($votes); $i++) { 
+			if ($votes[$i]->id!=$user->id) {
+				$new_votes[count($new_votes)] = array('id'=>$votes[$i]->id);
+			}
+		}
+		$thread->votes = json_encode($new_votes);
+		$thread->save();
+		return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
+	}
+
+	function isVoted($id){
+		$voted = false;
+		$thread = Thread::find($id);
+		$votes = json_decode($thread->votes);
+		if (count($votes)>0) {
+			for ($i=0; $i < count($votes); $i++) { 
+				if (Auth::id()==$votes[$i]->id) {
+					$voted = true;
+				}
+			}
+		}
+		return $voted;
 	}
 
 }

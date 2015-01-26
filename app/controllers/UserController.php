@@ -56,9 +56,14 @@ class UserController extends \BaseController {
 			$user->followers = "[]";
 			$user->following = "[]";
 			$user->photo = "pp_blank.jpeg";
+			$user->confirmation = $data['username'].str_random(30);
+			$user->confirmed = 0;
 			$user->level = 1;
 			$user->save();
 			Auth::loginUsingId($user->id);
+			Mail::send('emails.auth.confirmation', array('name'=>'tes@ckptw.com'), function($message){
+				$message->to(Input::get('email'), Input::get('name'))->subject('BengkelKoding Confirmation');
+			});
 			return Redirect::route('dashboard');
 		}
 		else{

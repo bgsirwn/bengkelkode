@@ -157,6 +157,12 @@ Route::get('discover', array(
 	'uses'=>'ThreadController@discover'
 ));
 
+Route::get('confirmation/{token}', array(
+	'as'=>'confirmation',
+	function($token){
+		return 'Hai';
+	}
+));
 
 Route::get('{username}', array(
 	'as'=>'profile', 

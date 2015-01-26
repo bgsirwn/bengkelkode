@@ -22,6 +22,7 @@ class CreateTableUsers extends Migration {
 			$table->string('photo', 200);
 			$table->text('followers');
 			$table->text('following');
+			$table->integer('level');
 			$table->rememberToken();
 			$table->timestamps();
 		});

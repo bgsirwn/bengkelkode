@@ -125,14 +125,14 @@ Route::group(array('before'=>'auth'), function(){
 	
 	Route::post('password/reset', array(
 		'before'=>'csrf',
-		'as' => 'postReset',
+		'as' => 'post.reset',
 		'uses' => 'RemindersController@postReset'
 	));
 
 	Route::post('{username}/thread/{id}', array(
 		'as'=>'post.answer',
 		'before'=>'csrf',
-		'uses'=>'ThreadController@postAnswer'
+		'uses'=>'AnswerController@store'
 	));
 });
 

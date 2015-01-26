@@ -16,6 +16,7 @@ class CreateAnswersTable extends Migration {
 			$table->increments('id');
 			$table->integer('user_id');
 			$table->integer('thread_id');
+			$table->integer('votes');
 			$table->text('answer');
 			$table->timestamps();
 		});

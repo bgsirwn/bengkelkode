@@ -19,6 +19,8 @@ class CreateThreadsTable extends Migration {
 			$table->string('title', 100);
 			$table->longtext('thread');
 			$table->text('tag');
+			$table->integer('answered');
+			$table->integer('votes');
 			$table->integer('view');
 			$table->timestamps();
 		});

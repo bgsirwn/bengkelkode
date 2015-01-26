@@ -56,6 +56,7 @@ class UserController extends \BaseController {
 			$user->followers = "[]";
 			$user->following = "[]";
 			$user->photo = "pp_blank.jpeg";
+			$user->level = 1;
 			$user->save();
 			Auth::loginUsingId($user->id);
 			return Redirect::route('dashboard');

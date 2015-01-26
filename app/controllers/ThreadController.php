@@ -20,6 +20,8 @@ class ThreadController extends BaseController{
 			$thread->tag = $data['tag'];
 			$thread->type = $data['type'];
 			$thread->view = 0;
+			$thread->votes = '[]';
+			$thread->answered = '0';
 			$thread->save();
 			return Redirect::route('thread.detail', array(Auth::user()->username, $thread->id));
 		}
@@ -62,7 +64,7 @@ class ThreadController extends BaseController{
 		$user = User::where('username',$username)->first();
 		$data = Thread::where('id',$id)->where('user_id',$user->id)->orderBy('created_at', 'desc')->get();
 		$answer = Answer::where('thread_id',$id)->get();
-		$addView = Cache::add(Auth::check() ? Auth::user()->username : "anonymous"."AddThreadView".$id, $data[0]->id, 60*60*24*7);
+		$addView = Cache::add(Auth::check() ? Auth::user()->username."AddThreadView".$id : "anonymous"."AddThreadView".$id, $data[0]->id, 60*60*24*7);
 		if ($addView) {
 			$th = Thread::find($id);
 			$th->view = $th->view+1;
@@ -78,18 +80,6 @@ class ThreadController extends BaseController{
 		}
 		$data = Thread::where('user_id','=',$id)->orderBy('created_at', 'desc')->get();
 		return View::make('discover',array('output'=>$data));
-	}
-
-	function postAnswer($username, $id){
-		// return Input::get('answer');
-		$comment = new Answer;
-		$comment->user_id = Auth::id();
-		$comment->thread_id = $id;
-		$comment->answer= htmlentities(Input::get('answer'));
-		$comment->save();
-		$answer = new Notification;
-		$answer->store($id, 1);
-		return Redirect::route('thread.detail', array($username, $id));
 	}
 
 	function update($username, $id){

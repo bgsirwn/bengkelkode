@@ -43,6 +43,8 @@ class AnswerController extends \BaseController {
 		}
 		if(Route::currentRouteName()!='api.v1.user.show.thread.show.answer')
 			return Redirect::route('thread.detail', array($username, $id))->withErrors($validator);
+		else
+			return Response::json(['message'=>'Done'],200);
 	}
 
 
@@ -54,7 +56,27 @@ class AnswerController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$data = Input::all();
+		$rules = [
+			'answer'=> 'required',
+			'g-recaptcha-response' => 'required|recaptcha'
+		];
+		$validator = Validator::make($data,$rules);
+		$comment = Answer::find($id);
+		if($validator->passes()&&$comment->user_id==Auth::id()){
+			$comment->user_id = Auth::id();
+			$comment->thread_id = $id;
+			$comment->answer= htmlentities(Input::get('answer'));
+			$comment->save();
+			
+			//notif
+			$notif = new Notification;
+			$notif->store($id, 1);
+		}
+		if(Route::currentRouteName()!='api.v1.user.show.thread.show.answer')
+			return Redirect::route('thread.detail', array($username, $id))->withErrors($validator);
+		else
+			return Response::json(['thread'=>$answer->toArray()],200);
 	}
 
 

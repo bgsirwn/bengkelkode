@@ -176,6 +176,11 @@ Route::get('{username}/thread', array(
 	'uses'=>'ThreadController@threadByUsername'
 ));
 
+Route::get('{username}/followers', array(
+	'as'=>'profile.followers',
+	'uses'=>'UserController@followers'
+));
+
 Route::get('{username}/thread/{id}', array(
 	'as'=>'thread.detail',
 	'uses'=>'ThreadController@show'))->where('id', '[0-9]+'

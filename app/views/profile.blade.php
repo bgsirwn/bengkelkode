@@ -23,8 +23,8 @@
 		<div class="row">
 			<div class="span12" style="text-align:center">
 			<h2>{{$output->name}}</h2>
-			<button class="success"><strong>{{"@".$output->username}}</strong></button>
-			<button class="info"><strong>{{count($followers)}} followers</strong></button>
+			<a href="{{route('profile',array($output->username))}}"><strong>{{"@".$output->username}}</strong></a>
+			<a href="{{route('profile.followers',array($output->username))}}" class="info"><strong>{{count($followers)}} followers</strong></a>
 			<button class="primary"><strong>level 18</strong></button>
 			<br><a href="{{route('thread.username', array($output->username))}}" role="button" class="button primary large" style="margin-top:40px">Thread</a>
 			@if($followed)
@@ -45,6 +45,7 @@
 </div>
 
 	<div class="content" style="background-color: #7E7EFF; height:200px">
+	@if(Route::currentRouteName()=="profile")
 		<div class="container">
 			<div class="grid">
 				<div class="row">
@@ -63,6 +64,17 @@
 					
 				</div>
 			</div>
+	@else
+	<div>
+		@foreach($followers as $follower)
+		<div class="avatar" style="width:50px">
+			<img src="{{URL::asset('dist/images/'.$follower->photo)}}">
+		</div>
+		<p>{{'@'.$follower->username}}</p>
+		<p>{{$follower->name}}</p>
+		@endforeach
+	</div>
+	@endif
 		</div>
 	</div>
 

@@ -66,7 +66,8 @@ class ThreadController extends BaseController{
 
 	function edit($username, $id){
 		$user = User::where('username',$username)->first();
-		$data = Thread::where('id',$id)->where('user_id',$user->id)->orderBy('created_at', 'desc')->first();		return View::make('thread-edit', array('output'=>$data));
+		$thread = Thread::where('id',$id)->where('user_id',$user->id)->orderBy('created_at', 'desc')->first();
+		return View::make('thread-edit', array('thread'=>$thread));
 	}
 
 	function show($username=null, $id=null){
@@ -118,7 +119,6 @@ class ThreadController extends BaseController{
 			$thread->thread = htmlentities($data['thread']);
 			$thread->tag = $data['tag'];
 			$thread->type = $data['type'];
-			$thread->view = 0;
 			$thread->save();
 			return Redirect::route('thread.detail', array(Auth::user()->username, $thread->id));
 		}

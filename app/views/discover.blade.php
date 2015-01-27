@@ -27,7 +27,7 @@
                             </div>
 					</div>
 				<div class="col-lg-8 col-md-8">
-					@foreach($output as $key)
+					@foreach($thread as $key)
 					@if(Route::currentRouteName()!='thread.detail')
 					<div class="post">
                             <div class="wrap-ut pull-left">
@@ -105,7 +105,7 @@
 <!-- akhir percobaan-->	
 <!--
 					<div id="threads">
-						@foreach($output as $key)
+						@foreach($thread as $key)
 						<div id="thrad" style="margin:5px; background:none repeat scroll 0% 0% rgb(255, 255, 255); margin-bottom:20px" class="shadow">
 							@if(Route::currentRouteName()!='thread.detail')
 							<div id="thread-right" style="float:right; width:120px; border-left:2px solid #ECF0F1; text-align:center" >
@@ -198,7 +198,7 @@
 					</div>
 					-->
 					@if(Route::currentRouteName()!='thread.detail')
-						{{$output->links()}}
+						{{$thread->links()}}
 						@endif
 
 						@if(Route::currentRouteName()=='thread.detail')

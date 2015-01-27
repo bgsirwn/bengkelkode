@@ -11,9 +11,13 @@
 |
 */
 
-//API FOR USERS TABLE
+// API
 Route::group(array('prefix'=>'api/v1'), function(){
 	Route::resource('user', 'UserController');
+	Route::group(array('before'=>'auth'), function(){
+		Route::resource('user.thread', 'ThreadController');
+		Route::resource('user.thread.answer', 'AnswerController');
+	});
 });
 
 Route::group(array('before'=>'unauth'), function(){
@@ -176,5 +180,5 @@ Route::get('{username}/thread', array(
 
 Route::get('{username}/thread/{id}', array(
 	'as'=>'thread.detail',
-	'uses'=>'ThreadController@threadDetail'))->where('id', '[0-9]+'
+	'uses'=>'ThreadController@show'))->where('id', '[0-9]+'
 );

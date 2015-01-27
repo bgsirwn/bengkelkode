@@ -1,6 +1,16 @@
 <?php
 class ThreadController extends BaseController{
 
+	function index($username){
+		$user = User::where('username',$username)->first();
+		$thread = Thread::where('user_id',$user->id)->orderBy('created_at', 'desc')->get();
+		foreach ($thread as $key) {
+			$countComments = Answer::where('thread_id',$key->id)->count();
+			$key['comments'] = $countComments;
+		}
+		return Response::json(array('thread'=>$thread->toArray()),200);
+	}
+
 	function post(){
 		$data = Input::all();
 		$rules = array(
@@ -31,13 +41,12 @@ class ThreadController extends BaseController{
 	}
 
 	function discover(){
-		Config::set('view.pagination','pagination::simple');
-		$data = Thread::orderBy('created_at', 'desc')->simplePaginate(10);
-		foreach ($data as $key) {
+		$thread = Thread::orderBy('created_at', 'desc')->simplePaginate(10);
+		foreach ($thread as $key) {
 			$countComments = Answer::where('thread_id',$key->id)->count();
 			$key['comments'] = $countComments;
 		}
-		return View::make('discover',array('output'=>$data));
+		return View::make('discover',array('thread'=>$thread));
 	}
 
 	function dashboard(){
@@ -60,19 +69,26 @@ class ThreadController extends BaseController{
 		$data = Thread::where('id',$id)->where('user_id',$user->id)->orderBy('created_at', 'desc')->first();		return View::make('thread-edit', array('output'=>$data));
 	}
 
-	function threadDetail($username=null, $id=null){
+	function show($username=null, $id=null){
 		$user = User::where('username',$username)->first();
-		$data = Thread::where('id',$id)->where('user_id',$user->id)->orderBy('created_at', 'desc')->get();
+		$thread = Thread::where('id',$id)->where('user_id',$user->id)->orderBy('created_at', 'desc')->get();
 		$answer = Answer::where('thread_id',$id)->get();
-		$addView = Cache::add(Auth::check() ? Auth::user()->username."AddThreadView".$id : "anonymous"."AddThreadView".$id, $data[0]->id, 60*60*24*7);
-		if ($addView) {
-			$th = Thread::find($id);
-			$th->view = $th->view+1;
-			$th->save();
-		}
 		$voted = ThreadController::isVoted($id);
 		$vote_link = route($voted ? 'unvote':'vote',array('id'=>$id));
-		return View::make('discover',array('output'=>$data, 'answer'=>$answer, 'button'=> $voted ? 'unvote' : 'vote', 'vote_link'=>$vote_link));
+		if(Route::currentRouteName()!="api.v1.user.thread.show"){
+			$addView = Cache::add(Auth::check() ? Auth::user()->username."AddThreadView".$id : "anonymous"."AddThreadView".$id, $thread[0]->id, 60*60*24*3);
+			if ($addView) {
+				$th = Thread::find($id);
+				$th->view = $th->view+1;
+				$th->save();
+			}
+			return View::make('discover',array('thread'=>$thread, 'answer'=>$answer, 'button'=> $voted ? 'unvote' : 'vote', 'vote_link'=>$vote_link));
+		}
+		else{
+			return Response::json(array(
+				'thread'=>$thread->toArray()),200
+			);
+		}
 	}
 
 	function threadByUsername($username=null){
@@ -80,7 +96,7 @@ class ThreadController extends BaseController{
 		foreach ($user as $key) {
 			$id = $key->id;
 		}
-		$data = Thread::where('user_id','=',$id)->orderBy('created_at', 'desc')->get();
+		$data = Thread::where('user_id','=',$id)->orderBy('created_at', 'desc')->simplePaginate(10);
 		return View::make('discover',array('output'=>$data));
 	}
 

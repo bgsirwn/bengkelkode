@@ -58,7 +58,7 @@ class UserController extends \BaseController {
 			$user->photo = "pp_blank.jpeg";
 			$user->confirmation = $data['username'].str_random(30);
 			$user->confirmed = 0;
-			$user->level = 1;
+			$user->point = 1;
 			$user->save();
 			Auth::loginUsingId($user->id);
 			Mail::send('emails.auth.confirmation', array('name'=>'tes@ckptw.com'), function($message){
@@ -80,7 +80,7 @@ class UserController extends \BaseController {
 	 */
 	public function show($username)
 	{
-		$user = User::where('username',$username)->get();	
+		$user = User::where('username',$username)->orwhere('email',$username)->get();	
 		if($user->count()>0){
 			if (Route::currentRouteName()!='api.v1.user.show') {
 				foreach ($user as $data) {

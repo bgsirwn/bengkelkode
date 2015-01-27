@@ -24,7 +24,7 @@ class CreateTableUsers extends Migration {
 			$table->text('following');
 			$table->string('confirmation',300);
 			$table->integer('confirmed');
-			$table->integer('level');
+			$table->integer('point');
 			$table->rememberToken();
 			$table->timestamps();
 		});

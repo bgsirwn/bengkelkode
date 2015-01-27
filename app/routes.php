@@ -88,14 +88,24 @@ Route::group(array('before'=>'auth'), function(){
 		'uses' => 'UserController@unfollow'
 	));
 
-	Route::get('vote/{username}', array(
-		'as' => 'vote',
+	Route::get('vote/thread/{id}', array(
+		'as' => 'vote.thread',
 		'uses' => 'ThreadController@vote'
 	));
 
-	Route::get('unvote/{username}', array(
-		'as' => 'unvote',
+	Route::get('unvote/thread/{id}', array(
+		'as' => 'unvote.thread',
 		'uses' => 'ThreadController@unvote'
+	));
+
+	Route::get('vote/answer/{id}', array(
+		'as' => 'vote.answer',
+		'uses' => 'AnswerController@vote'
+	));
+
+	Route::get('unvote/answer/{id}', array(
+		'as' => 'unvote.answer',
+		'uses' => 'AnswerController@unvote'
 	));
 
 	Route::get('logout', array(

@@ -67,21 +67,27 @@ class ThreadController extends BaseController{
 	function edit($username, $id){
 		$user = User::where('username',$username)->first();
 		$thread = Thread::where('id',$id)->where('user_id',$user->id)->orderBy('created_at', 'desc')->first();
-		return View::make('thread-edit', array('thread'=>$thread));
+		return View::make('create', array('thread'=>$thread));
 	}
 
 	function show($username=null, $id=null){
 		$user = User::where('username',$username)->first();
 		$thread = Thread::where('id',$id)->where('user_id',$user->id)->orderBy('created_at', 'desc')->get();
-		$answer = Answer::where('thread_id',$id)->get();
+		$answer = Answer::where('thread_id',$id)->orderBy('votes_count','desc')->get();
 		$voted = ThreadController::isVoted($id);
-		$vote_link = route($voted ? 'unvote':'vote',array('id'=>$id));
+		$vote_link = route($voted ? 'unvote.thread':'vote.thread',array('id'=>$id));
 		if(Route::currentRouteName()!="api.v1.user.thread.show"){
 			$addView = Cache::add(Auth::check() ? Auth::user()->username."AddThreadView".$id : "anonymous"."AddThreadView".$id, $thread[0]->id, 60*60*24*3);
 			if ($addView) {
 				$th = Thread::find($id);
 				$th->view = $th->view+1;
 				$th->save();
+			}
+			foreach ($answer as $as) {
+				$answer_voted = new AnswerController;
+				$answer_voted = $answer_voted->isVoted($as->id);
+				$as['button'] = $answer_voted ? 'unvote' : 'vote';
+				$as['voted_link'] = route($answer_voted ? 'unvote.answer':'vote.answer',array('id'=>$as->id));
 			}
 			return View::make('discover',array('thread'=>$thread, 'answer'=>$answer, 'button'=> $voted ? 'unvote' : 'vote', 'vote_link'=>$vote_link));
 		}
@@ -136,7 +142,7 @@ class ThreadController extends BaseController{
 		$votes = json_decode($thread->votes);
 		
 		//periksa apakah user sudah mengikuti atau belum
-		$voted = ThreadController::isVoted(Input::get('id'));
+		$voted = ThreadController::isVoted($id);
 		
 		if (!$voted&&$thread->user_id!=$user->id) {
 			$votes[count($votes)] = array('id'=>$user->id);

@@ -95,10 +95,10 @@ class AnswerController extends \BaseController {
 		$user = User::find(Auth::id());
 		$answer = Answer::find($id);
 		$votes = json_decode($answer->votes);
-		$thread = Thread::find($answer->user_id);
+		$thread = Thread::find($answer->thread_id);
 		
 		//periksa apakah user sudah mengikuti atau belum
-		$voted = AnswerController::isVoted(Input::get('id'));
+		$voted = AnswerController::isVoted($id);
 		
 		if (!$voted&&$answer->user_id!=$user->id) {
 			$votes[count($votes)] = array('id'=>$user->id);
@@ -106,7 +106,7 @@ class AnswerController extends \BaseController {
 			$answer->votes_count = count($votes);
 			$answer->save();
 		}
-		return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->thread_id));
+		return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
 	}
 
 	function unvote($id){

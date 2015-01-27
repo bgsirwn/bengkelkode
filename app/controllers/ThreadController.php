@@ -120,7 +120,10 @@ class ThreadController extends BaseController{
 			$thread->tag = $data['tag'];
 			$thread->type = $data['type'];
 			$thread->save();
-			return Redirect::route('thread.detail', array(Auth::user()->username, $thread->id));
+			if(Route::currentRouteName()!="api.v1.user.thread.update")
+				return Redirect::route('thread.detail', array(Auth::user()->username, $thread->id));
+			else
+				return Response::json(array('thread'=>$thread->toArray()),200);
 		}
 		else{
 			return Redirect::route('thread.edit', array($username,$id))->withErrors($validator);

@@ -38,7 +38,7 @@ class AnswerController extends \BaseController {
 			$comment->save();
 			
 			//notif
-			$notif = new Notification;
+			$notif = new NotificationController;
 			$notif->store($id, 1);
 		}
 		if(Route::currentRouteName()!='api.v1.user.show.thread.show.answer')

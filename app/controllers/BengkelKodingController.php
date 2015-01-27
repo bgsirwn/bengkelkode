@@ -25,7 +25,7 @@ class BengkelKodingController extends BaseController{
 				$message = "User unregistered";	
 			}
 			if(Input::has('redirect'))
-				return Redirect::to(convert_uudecode(Input::get('redirect')))->withErrors([$message]);
+				return Redirect::route('login', array('redirect'=>Input::get('redirect')))->withInput()->withErrors([$message]);
 			else{
 				return Redirect::route('login')->withInput()->withErrors([$message]);
 			}

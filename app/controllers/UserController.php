@@ -56,7 +56,7 @@ class UserController extends \BaseController {
 			$user->followers = "[]";
 			$user->following = "[]";
 			$user->photo = "pp_blank.jpeg";
-			$user->confirmation = $data['username'].str_random(30);
+			$user->confirmation = str_random(200);
 			$user->confirmed = 0;
 			$user->point = 1;
 			$user->save();
@@ -120,18 +120,6 @@ class UserController extends \BaseController {
 		else{
 			return "Data doesn't exist";
 		}
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		
 	}
 
 
@@ -209,9 +197,9 @@ class UserController extends \BaseController {
 		return View::make('following', array('user'=>$user, 'statuses'=>$statuses, 'followed'=>$followed, 'followers'=>json_decode($user->followers),'following'=>json_decode($user->following)));	
 	}
 
-	function follow(){
+	function follow($username){
 		$user_actor = User::find(Auth::id());
-		$user_victim = User::where('username','=',Input::get('username'))->first();
+		$user_victim = User::where('username','=',$username)->first();
 		$following_actor = json_decode($user_actor->following);
 		$followers_victim = json_decode($user_victim->followers);
 		
@@ -229,9 +217,9 @@ class UserController extends \BaseController {
 		return Redirect::route('profile', array(Input::get('username')));
 	}
 
-	function unfollow(){
+	function unfollow($username){
 		$user_actor = User::find(Auth::id());
-		$user_victim = User::where('username','=',Input::get('username'))->first();
+		$user_victim = User::where('username','=',$username)->first();
 		$following_actor = json_decode($user_actor->following);
 		$followers_victim = json_decode($user_victim->followers);
 		
@@ -296,5 +284,12 @@ class UserController extends \BaseController {
 	function setting(){
 		$user = User::find(Auth::id());
 		return View::make('setting', array('user'=> $user));
+	}
+
+	function confirm($confirmation){
+		$user = User::where('confirmation',$confirmation)->first();
+		$user->confirmed = 1;
+		$user->save();
+		return "Congratulation ".$user->name.", you are confirmed!";
 	}
 }

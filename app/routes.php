@@ -78,22 +78,22 @@ Route::group(array('before'=>'auth'), function(){
 		'uses'=>'ThreadController@dashboard'
 	));
 
-	Route::get('follow', array(
+	Route::get('follow/{username}', array(
 		'as' => 'follow',
 		'uses' => 'UserController@follow'
 	));
 
-	Route::get('unfollow', array(
+	Route::get('unfollow/{username}', array(
 		'as' => 'unfollow',
 		'uses' => 'UserController@unfollow'
 	));
 
-	Route::get('vote', array(
+	Route::get('vote/{username}', array(
 		'as' => 'vote',
 		'uses' => 'ThreadController@vote'
 	));
 
-	Route::get('unvote', array(
+	Route::get('unvote/{username}', array(
 		'as' => 'unvote',
 		'uses' => 'ThreadController@unvote'
 	));
@@ -163,9 +163,7 @@ Route::get('discover', array(
 
 Route::get('confirmation/{token}', array(
 	'as'=>'confirmation',
-	function($token){
-		return 'Hai';
-	}
+	'uses'=>'UserController@confirm'
 ));
 
 Route::get('{username}', array(

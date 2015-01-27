@@ -130,9 +130,9 @@ class ThreadController extends BaseController{
 		}
 	}
 
-	function vote(){
+	function vote($id){
 		$user = User::find(Auth::id());
-		$thread = Thread::find(Input::get('id'));
+		$thread = Thread::find($id);
 		$votes = json_decode($thread->votes);
 		
 		//periksa apakah user sudah mengikuti atau belum
@@ -146,9 +146,9 @@ class ThreadController extends BaseController{
 		return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
 	}
 
-	function unvote(){
+	function unvote($id){
 		$user = User::find(Auth::id());
-		$thread = Thread::find(Input::get('id'));
+		$thread = Thread::find($id);
 		$votes = json_decode($thread->votes);
 		
 		$new_votes = array();

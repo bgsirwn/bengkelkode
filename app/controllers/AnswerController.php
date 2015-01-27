@@ -91,9 +91,9 @@ class AnswerController extends \BaseController {
 		//
 	}
 
-	function vote(){
+	function vote($id){
 		$user = User::find(Auth::id());
-		$answer = Answer::find(Input::get('id'));
+		$answer = Answer::find($id);
 		$votes = json_decode($answer->votes);
 		$thread = Thread::find($answer->user_id);
 		
@@ -109,9 +109,9 @@ class AnswerController extends \BaseController {
 		return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->thread_id));
 	}
 
-	function unvote(){
+	function unvote($id){
 		$user = User::find(Auth::id());
-		$answer = Answer::find(Input::get('id'));
+		$answer = Answer::find($id);
 		$votes = json_decode($answer->votes);
 		$thread = Thread::find($answer->thread_id);
 		

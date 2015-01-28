@@ -1,8 +1,21 @@
 <?php $__env->startSection('title'); ?>
-	<?php echo "Bengkel Koding::Sign up"; ?>
+	<?php echo "Bengkel Koding::Setting"; ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-	setting
+	<?php echo Form::open(array('files'=>true)); ?>
+
+	<?php echo Form::text('name',$user->name, array('placeholder'=>'name')); ?>
+
+	<?php echo Form::text('username',$user->username,array('placeholder'=>'username')); ?>
+
+	<?php echo Form::text('bio',$user->bio,array('placeholder'=>'bio')); ?>
+
+	<?php echo Form::file('photo'); ?>
+
+	<?php echo Form::submit('Update'); ?>
+
+	<?php echo Form::close(); ?>
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('default', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

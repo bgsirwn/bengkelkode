@@ -198,6 +198,9 @@ return array(
 	'secretKey' => '6LfcyAATAAAAAPPKm44AHXaYauK_py372rL3Fdu6',
 
 	// on or off recaptcha
-	'recaptcha' => true
+	'recaptcha' => false,
+
+	//email confirmation
+	'emailConfirmation' => false
 
 );

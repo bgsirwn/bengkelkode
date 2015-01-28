@@ -730,7 +730,8 @@ a.down:hover {
 /*-----------------------------------------------------------------*/
 /*--- #03_new_topic.html - NEW TOPIC ---*/
 
-.newtopic input[type=text],
+.newtopic input[type=text], 
+.newtopic input[type=email],
 .newtopic input[type=password]
 {
     border-radius: 2px;

@@ -79,6 +79,11 @@ Route::group(array('before'=>'auth'), function(){
 		'uses'=>'ThreadController@dashboard'
 	));
 
+	Route::post('registration/skip', array(
+		'as'=>'registration.skip',
+		'uses'=>'UserController@skip'
+	));
+
 	Route::get('follow/{username}', array(
 		'as' => 'follow',
 		'uses' => 'UserController@follow'

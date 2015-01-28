@@ -56,12 +56,24 @@ class ThreadController extends BaseController{
 		// 	$thread = $thread->orWhere('user_id','=',$key->id);
 		// }
 		// $thread = $thread->get();
-		$user = User::where('username','=',Auth::user()->username)->get();
-		foreach ($user as $key) {
-			$id = $key->id;
+		$user = User::where('username','=',Auth::user()->username)->first();
+		if ($user->confirmed == 0) {
+			return View::make('signup.step0');
 		}
-		$data = Thread::where('user_id','=',$id)->orderBy('created_at', 'desc')->simplePaginate(10);
-		return View::make('dashboard', array('output'=>$data));
+		elseif($user->confirmed == 1){
+			return View::make('signup.step1');
+		}
+		elseif($user->confirmed == 2){
+			return View::make('signup.step2');
+		}
+		elseif($user->confirmed == 3){
+			return View::make('signup.step3');
+		}
+		else{
+			$id = $user->id;
+			$data = Thread::where('user_id','=',$id)->orderBy('created_at', 'desc')->simplePaginate(10);
+			return View::make('dashboard', array('output'=>$data));
+		}
 	}
 
 	function edit($username, $id){

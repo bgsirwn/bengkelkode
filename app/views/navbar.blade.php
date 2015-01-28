@@ -4,7 +4,7 @@
        		<span class="element-divider"></span>
        		<a class="element1 pull-menu" href="#"></a>	
        		<ul class="element-menu">
-       			<li><a href="{{route('create')}}">Ask Something</a></li>
+       			<li><a href="{{route('create')}}">New Thread</a></li>
        			<li><a href="{{route('discover')}}">Discover</a></li>
        		</ul>
 			@if($errors->any())

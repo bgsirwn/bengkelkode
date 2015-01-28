@@ -10,5 +10,4 @@
 	{{Form::file('photo')}}
 	{{Form::submit('Update')}}
 	{{Form::close()}}
-	{{User::find(Auth::id())->photo}}
 @stop

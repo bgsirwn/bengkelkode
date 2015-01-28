@@ -13,6 +13,7 @@
 
 // API
 Route::group(array('prefix'=>'api/v1'), function(){
+	Route::resource('notification', 'NotificationController');
 	Route::resource('user', 'UserController');
 	Route::group(array('before'=>'auth'), function(){
 		Route::resource('user.thread', 'ThreadController');

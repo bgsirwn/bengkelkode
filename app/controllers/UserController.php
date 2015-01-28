@@ -43,7 +43,7 @@ class UserController extends \BaseController {
 					'username'=>'required|unique:users|min:8|max:12',
 					'email'=>'required|unique:users',
 					'password'=>'required|min:6',
-					'g-recaptcha-response'=>'required|recaptcha'
+					'g-recaptcha-response'=>Config::get('app.recaptcha') ? 'required|recaptcha' : ''
 				);
 		$validator = Validator::make($data,$rules);
 		$validated = $validator->passes();

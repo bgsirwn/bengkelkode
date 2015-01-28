@@ -23,9 +23,10 @@ class AnswerController extends \BaseController {
 	public function store($username=null,$id=null)
 	{
 		$data = Input::all();
+		$recaptcha = Config::get('recaptcha') ? 'required|recaptcha' : '';
 		$rules = [
 			'answer'=> 'required',
-			'g-recaptcha-response' => 'required|recaptcha'
+			'g-recaptcha-response'=>$recaptcha
 		];
 		$validator = Validator::make($data,$rules);
 		if($validator->passes()){
@@ -59,7 +60,7 @@ class AnswerController extends \BaseController {
 		$data = Input::all();
 		$rules = [
 			'answer'=> 'required',
-			'g-recaptcha-response' => 'required|recaptcha'
+			'g-recaptcha-response'=>Config::get('app.recaptcha') ? 'required|recaptcha' : ''
 		];
 		$validator = Validator::make($data,$rules);
 		$comment = Answer::find($id);

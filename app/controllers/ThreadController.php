@@ -18,7 +18,7 @@ class ThreadController extends BaseController{
 			'thread'=>'required',
 			'tag'=>'required',
 			'type'=>'required',
-			'g-recaptcha-response'=>'required|recaptcha'
+			'g-recaptcha-response'=>Config::get('app.recaptcha') ? 'required|recaptcha' : ''
 		);
 		$validator = Validator::make($data,$rules);
 		$validated = $validator->passes();

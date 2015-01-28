@@ -8,7 +8,7 @@
 	<h1>Step 1</h1>
 	<h2>Profile</h2>
 	{{Form::open(array('files'=>true))}}
-	{{Form::text('bio',$user->bio,array('placeholder'=>'bio'))}}
+	{{Form::text('bio','',array('placeholder'=>'bio'))}}
 	{{Form::file('photo')}}
 	{{Form::submit('Update')}}
 	{{Form::close()}}

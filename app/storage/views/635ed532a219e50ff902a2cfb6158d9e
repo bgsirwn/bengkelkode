@@ -10,7 +10,7 @@
 			
 		</div>
 		<div class="span4">
-			<img src="<?php echo URL::Asset('dist/images/pp_blank.jpeg'); ?>" class="cycle span2" / style="valign:top">
+			<img src="<?php echo URL::asset('dist/images/'.$output->photo); ?>" class="cycle span2" / style="valign:top">
 			
 				
 		</div>
@@ -23,15 +23,15 @@
 		<div class="row">
 			<div class="span12" style="text-align:center">
 			<h2><?php echo $output->name; ?></h2>
-			<button class="success"><strong><?php echo "@".$output->username; ?></strong></button>
-			<button class="info"><strong><?php echo count($followers); ?> followers</strong></button>
+			<a href="<?php echo route('profile',array($output->username)); ?>"><strong><?php echo "@".$output->username; ?></strong></a>
+			<a href="<?php echo route('profile.followers',array($output->username)); ?>" class="info"><strong><?php echo count($followers); ?> followers</strong></a>
 			<button class="primary"><strong>level 18</strong></button>
 			<br><a href="<?php echo route('thread.username', array($output->username)); ?>" role="button" class="button primary large" style="margin-top:40px">Thread</a>
 			<?php if($followed): ?>
-				<a href="<?php echo route('unfollow', array('username'=>$output->username)); ?>" role="button" class="button primary large" style="margin-top:40px">Unfollow</a>
+				<a href="<?php echo route('unfollow', array($output->username)); ?>" role="button" class="button primary large" style="margin-top:40px">Unfollow</a>
 			<?php else: ?>
 				<?php if($showButton): ?>
-				<a href="<?php echo route('follow', array('username'=>$output->username)); ?>" role="button" class="button primary large" style="margin-top:40px">Follow</a>
+				<a href="<?php echo route('follow', array($output->username)); ?>" role="button" class="button primary large" style="margin-top:40px">Follow</a>
 				<?php endif; ?>
 			<?php endif; ?>
 			</div>
@@ -45,6 +45,7 @@
 </div>
 
 	<div class="content" style="background-color: #7E7EFF; height:200px">
+	<?php if(Route::currentRouteName()=="profile"): ?>
 		<div class="container">
 			<div class="grid">
 				<div class="row">
@@ -63,6 +64,17 @@
 					
 				</div>
 			</div>
+	<?php else: ?>
+	<div>
+		<?php foreach($followers as $follower): ?>
+		<div class="avatar" style="width:50px">
+			<img src="<?php echo URL::asset('dist/images/'.$follower->photo); ?>">
+		</div>
+		<p><?php echo '@'.$follower->username; ?></p>
+		<p><?php echo $follower->name; ?></p>
+		<?php endforeach; ?>
+	</div>
+	<?php endif; ?>
 		</div>
 	</div>
 

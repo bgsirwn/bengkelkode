@@ -9,26 +9,13 @@
 	<div class="container">
 		<div class="grid">
 			<div class="row">
-
 				<div class="col-lg-4 col-md-4">
-					<div class="sidebarblock">
-                                <h3>Categories</h3>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <ul class="cats">
-                                        <li><a href="#">Java <span class="badge pull-right">20</span></a></li>
-                                        <li><a href="#">PHP <span class="badge pull-right">10</span></a></li>
-                                        <li><a href="#">HTML <span class="badge pull-right">50</span></a></li>
-                                        <li><a href="#">Looking for Players <span class="badge pull-right">36</span></a></li>
-                                        <li><a href="#">Stupid Bugs &amp; Solves <span class="badge pull-right">41</span></a></li>
-                                        <li><a href="#">Video &amp; Audio Drivers <span class="badge pull-right">11</span></a></li>
-                                        <li><a href="#">2K Official Forums <span class="badge pull-right">5</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+					<?php echo $__env->make('categories', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+					<?php echo $__env->make('poll', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 					</div>
 				<div class="col-lg-8 col-md-8">
-					<?php foreach($output as $key): ?>
+					<?php foreach($thread as $key): ?>
 					<?php if(Route::currentRouteName()!='thread.detail'): ?>
 					<div class="post">
                             <div class="wrap-ut pull-left">
@@ -65,7 +52,7 @@
                                 <div class="topwrap">
                                     <div class="userinfo pull-left">
                                         <div class="avatar">
-                                           <img class="cycle span" src="http://localhost/bengkelkoding/public/dist/images/pp_blank.jpeg" style="width: 50px ! important;">
+                                           <img class="cycle span" src="<?php echo URL::asset('dist/images/'.User::find($key->user_id)->photo); ?>" style="width: 50px ! important;">
                                             <div class="status green">&nbsp;</div>
                                         </div>
 
@@ -86,8 +73,8 @@
                                 <div class="postinfobot">
 
                                     <div class="likeblock pull-left">
-                                        <a href="#" class="up"><i class="fa fa-thumbs-o-up"></i>25</a>
-                                        <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i>3</a>
+                                        <a href="<?php echo $vote_link; ?>" class="up"><i class="fa fa-thumbs-o-up"></i><?php echo $button; ?></a>
+                                        <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i><?php echo count(json_decode($key->votes)); ?></a>
                                     </div>
 
                                     <div class="prev pull-left">                                        
@@ -97,9 +84,9 @@
                                     <div class="posted pull-left"><i class="fa fa-clock-o"></i> Posted on : 20 Nov @ 9:30am</div>
 
                                     <div class="next pull-right">                                        
-                                        <a href="#"><i class="fa fa-share"></i></a>
+                                        <a href="#"><i class="icon-share"></i></a>
 
-                                        <a href="#"><i class="fa fa-flag"></i></a>
+                                        <a href="#"><i class="icon-flag"></i></a>
                                     </div>
 
                                     <div class="clearfix"></div>
@@ -110,7 +97,7 @@
 <!-- akhir percobaan-->	
 <!--
 					<div id="threads">
-						<?php foreach($output as $key): ?>
+						<?php foreach($thread as $key): ?>
 						<div id="thrad" style="margin:5px; background:none repeat scroll 0% 0% rgb(255, 255, 255); margin-bottom:20px" class="shadow">
 							<?php if(Route::currentRouteName()!='thread.detail'): ?>
 							<div id="thread-right" style="float:right; width:120px; border-left:2px solid #ECF0F1; text-align:center" >
@@ -211,7 +198,7 @@
 					</div>
 					-->
 					<?php if(Route::currentRouteName()!='thread.detail'): ?>
-						<?php echo $output->links(); ?>
+						<?php echo $thread->links(); ?>
 
 						<?php endif; ?>
 

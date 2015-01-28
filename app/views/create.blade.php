@@ -8,7 +8,7 @@
 <div class="container">
 	<div class="grid">
 		<div class="row">			
-			<div class="span8">
+			<div class="col-lg-8 col-md-8">
 				@include('post')
 
 			<!--

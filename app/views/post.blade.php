@@ -55,7 +55,7 @@
                                                 <textarea name="desc" id="desc" placeholder="Description" class="form-control"></textarea>
                                             	-->
                                             </div>
-                                            <!--
+                                            
                                             <div class="row newtopcheckbox">
                                                 <div class="col-lg-6 col-md-6">
                                                     <div><p>Who can see this?</p></div>
@@ -84,28 +84,28 @@
                                                         <div class="col-lg-3 col-md-4">
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input id="fb" type="checkbox"> <i class="fa fa-facebook-square"></i>
+                                                                    <input id="fb" type="checkbox"> <i class="icon-facebook"></i>
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-3 col-md-4">
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input id="tw" type="checkbox"> <i class="fa fa-twitter"></i>
+                                                                    <input id="tw" type="checkbox"> <i class="icon-twitter"></i>
                                                                 </label>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-3 col-md-4">
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input id="gp" type="checkbox"> <i class="fa fa-google-plus-square"></i>
+                                                                    <input id="gp" type="checkbox"> <i class="icon-google-plus"></i>
                                                                 </label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-			-->
+			
 										<div>
 											{{View::make('recaptcha::display')}}
 										</div>
@@ -114,7 +114,6 @@
                                         <div class="clearfix"></div>
                                     </div>                              
                                     <div class="postinfobot">
-<!--
                                         <div class="notechbox pull-left">
                                             <input name="note" id="note" class="form-control" type="checkbox">
                                         </div>
@@ -122,11 +121,11 @@
                                         <div class="pull-left">
                                             <label for="note"> Email me when some one post a reply</label>
                                         </div>
-                                        -->
+                                        
                                         <div class="pull-right postreply">
-                                        <!--
-                                            <div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>
-                                            -->
+                                        
+                                            <div class="pull-left smile"><a href="#"><i class="icon-smile"></i></a></div>
+                                            
                                             {{Form::submit('submit', array('class'=>'primary large'))}}
                                             <!--
                                             <div class="pull-left"><button type="submit" class="btn btn-primary">Post</button></div>

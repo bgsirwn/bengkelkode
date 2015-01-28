@@ -28,7 +28,7 @@
                             </div>
 					</div>
 				<div class="col-lg-8 col-md-8">
-					<?php foreach($output as $key): ?>
+					<?php foreach($thread as $key): ?>
 					<?php if(Route::currentRouteName()!='thread.detail'): ?>
 					<div class="post">
                             <div class="wrap-ut pull-left">
@@ -65,7 +65,7 @@
                                 <div class="topwrap">
                                     <div class="userinfo pull-left">
                                         <div class="avatar">
-                                           <img class="cycle span" src="http://localhost/bengkelkoding/public/dist/images/pp_blank.jpeg" style="width: 50px ! important;">
+                                           <img class="cycle span" src="<?php echo URL::asset('dist/images/'.User::find($key->user_id)->photo); ?>" style="width: 50px ! important;">
                                             <div class="status green">&nbsp;</div>
                                         </div>
 
@@ -86,8 +86,8 @@
                                 <div class="postinfobot">
 
                                     <div class="likeblock pull-left">
-                                        <a href="#" class="up"><i class="fa fa-thumbs-o-up"></i>25</a>
-                                        <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i>3</a>
+                                        <a href="<?php echo $vote_link; ?>" class="up"><i class="fa fa-thumbs-o-up"></i><?php echo $button; ?></a>
+                                        <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i><?php echo count(json_decode($key->votes)); ?></a>
                                     </div>
 
                                     <div class="prev pull-left">                                        
@@ -97,9 +97,9 @@
                                     <div class="posted pull-left"><i class="fa fa-clock-o"></i> Posted on : 20 Nov @ 9:30am</div>
 
                                     <div class="next pull-right">                                        
-                                        <a href="#"><i class="fa fa-share"></i></a>
+                                        <a href="#"><i class="icon-share"></i></a>
 
-                                        <a href="#"><i class="fa fa-flag"></i></a>
+                                        <a href="#"><i class="icon-flag"></i></a>
                                     </div>
 
                                     <div class="clearfix"></div>
@@ -110,7 +110,7 @@
 <!-- akhir percobaan-->	
 <!--
 					<div id="threads">
-						<?php foreach($output as $key): ?>
+						<?php foreach($thread as $key): ?>
 						<div id="thrad" style="margin:5px; background:none repeat scroll 0% 0% rgb(255, 255, 255); margin-bottom:20px" class="shadow">
 							<?php if(Route::currentRouteName()!='thread.detail'): ?>
 							<div id="thread-right" style="float:right; width:120px; border-left:2px solid #ECF0F1; text-align:center" >
@@ -211,7 +211,7 @@
 					</div>
 					-->
 					<?php if(Route::currentRouteName()!='thread.detail'): ?>
-						<?php echo $output->links(); ?>
+						<?php echo $thread->links(); ?>
 
 						<?php endif; ?>
 

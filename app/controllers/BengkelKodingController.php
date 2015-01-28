@@ -20,10 +20,15 @@ class BengkelKodingController extends BaseController{
 				return Redirect::route('dashboard');
 		}
 		else{
+			$message = "Password invalid";
+			if(User::where('username',$post['username'])->orwhere('email',$post['username'])->count()==0){
+				$message = "User unregistered";	
+			}
 			if(Input::has('redirect'))
-				return Redirect::to(convert_uudecode(Input::get('redirect')))->withErrors(['Login failed']);
-			else
-				return Redirect::route('login')->withInput()->withErrors(['Login failed']);
+				return Redirect::route('login', array('redirect'=>Input::get('redirect')))->withInput()->withErrors([$message]);
+			else{
+				return Redirect::route('login')->withInput()->withErrors([$message]);
+			}
 		}
 	}
 

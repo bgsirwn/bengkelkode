@@ -11,9 +11,13 @@
 |
 */
 
-//API FOR USERS TABLE
+// API
 Route::group(array('prefix'=>'api/v1'), function(){
 	Route::resource('user', 'UserController');
+	Route::group(array('before'=>'auth'), function(){
+		Route::resource('user.thread', 'ThreadController');
+		Route::resource('user.thread.answer', 'AnswerController');
+	});
 });
 
 Route::group(array('before'=>'unauth'), function(){
@@ -74,14 +78,34 @@ Route::group(array('before'=>'auth'), function(){
 		'uses'=>'ThreadController@dashboard'
 	));
 
-	Route::get('follow', array(
+	Route::get('follow/{username}', array(
 		'as' => 'follow',
 		'uses' => 'UserController@follow'
 	));
 
-	Route::get('unfollow', array(
+	Route::get('unfollow/{username}', array(
 		'as' => 'unfollow',
 		'uses' => 'UserController@unfollow'
+	));
+
+	Route::get('vote/thread/{id}', array(
+		'as' => 'vote.thread',
+		'uses' => 'ThreadController@vote'
+	));
+
+	Route::get('unvote/thread/{id}', array(
+		'as' => 'unvote.thread',
+		'uses' => 'ThreadController@unvote'
+	));
+
+	Route::get('vote/answer/{id}', array(
+		'as' => 'vote.answer',
+		'uses' => 'AnswerController@vote'
+	));
+
+	Route::get('unvote/answer/{id}', array(
+		'as' => 'unvote.answer',
+		'uses' => 'AnswerController@unvote'
 	));
 
 	Route::get('logout', array(
@@ -125,14 +149,14 @@ Route::group(array('before'=>'auth'), function(){
 	
 	Route::post('password/reset', array(
 		'before'=>'csrf',
-		'as' => 'postReset',
+		'as' => 'post.reset',
 		'uses' => 'RemindersController@postReset'
 	));
 
 	Route::post('{username}/thread/{id}', array(
 		'as'=>'post.answer',
 		'before'=>'csrf',
-		'uses'=>'ThreadController@postAnswer'
+		'uses'=>'AnswerController@store'
 	));
 });
 
@@ -147,6 +171,10 @@ Route::get('discover', array(
 	'uses'=>'ThreadController@discover'
 ));
 
+Route::get('confirmation/{token}', array(
+	'as'=>'confirmation',
+	'uses'=>'UserController@confirm'
+));
 
 Route::get('{username}', array(
 	'as'=>'profile', 
@@ -158,7 +186,12 @@ Route::get('{username}/thread', array(
 	'uses'=>'ThreadController@threadByUsername'
 ));
 
+Route::get('{username}/followers', array(
+	'as'=>'profile.followers',
+	'uses'=>'UserController@followers'
+));
+
 Route::get('{username}/thread/{id}', array(
 	'as'=>'thread.detail',
-	'uses'=>'ThreadController@threadDetail'))->where('id', '[0-9]+'
+	'uses'=>'ThreadController@show'))->where('id', '[0-9]+'
 );

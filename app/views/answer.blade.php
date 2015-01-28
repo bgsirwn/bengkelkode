@@ -3,7 +3,7 @@
                                     <div class="topwrap">
                                         <div class="userinfo pull-left">
                                             <div class="avatar">
-                                               <img class="cycle span" src="http://localhost/bengkelkoding/public/dist/images/pp_blank.jpeg" style="width: 50px ! important;">
+                                               <img class="cycle span" src="{{URL::asset('dist/images/'.User::find(Auth::id())->photo)}}" style="width: 50px ! important;">
                                                 <div class="status red">&nbsp;</div>
                                             </div>
 
@@ -16,9 +16,11 @@
                                                 <div class="postreply">Post a Reply</div>
                                                {{Form::textarea('answer','')}}
                                                 
+                                                {{View::make('recaptcha::display')}}
                                             </div>
                                         </div>
-                                        <div class="clearfix"></div>
+                                        <div class="clearfix">
+                                        </div>
                                     </div>                              
                                     <div class="postinfobot">
 <!--

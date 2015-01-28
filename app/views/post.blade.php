@@ -1,5 +1,5 @@
 <div class="post">
-				{{Form::open(array('class'=>'form newtopic'))}}
+				{{Form::open(array('class'=>'form newtopic','method'=>isset($thread) ? 'put':'post'))}}
                     <div class="topwrap">
                         <div class="userinfo pull-left">
                                             <div class="status red">&nbsp;</div>
@@ -12,14 +12,15 @@
                                     </div>
                     <div class="posttext pull-left">
                         <div>
-                        {{Form::text('title','',array('placeholder'=>'Title','class'=>'form-control','required'))}}
+                        {{Form::text('title',isset($thread) ? $thread->title : '',array('placeholder'=>'Title','class'=>'form-control','required'))}}
                         <!--
                             <input placeholder="Enter Topic Title" class="form-control" type="text">
                             -->
                         </div>
                              <div class="row">
                                                 <div class="col-lg-6 col-md-6">
-                                                {{Form::select('type', array('1'=>'Question', '2'=>'Discussion'), array('class'=>'form-control', 'id'=>'category'))}}
+                                                {{Form::radio('type', '1', true)}}Question
+                                                {{Form::radio('type', '2')}}Discussion
                                                 <!--
                                                     <select name="category" id="category" class="form-control">                                                  	
                                                         <option value="" disabled="disabled" selected="selected">Select Category</option>
@@ -29,7 +30,7 @@
                                                     -->
                                                 </div>
                                                 <div class="col-lg-6 col-md-6">
-                                                {{Form::select('tag', array('1'=>'java','2'=>'php','3'=>'javascript'), array('class'=>'form-control', 'id'=>'subcategory'))}}
+                                                {{Form::select('tag', array('1'=>'java','2'=>'php','3'=>'javascript'), isset($thread) ? $thread->tag : '1')}}
                                                 <!--
                                                     <select name="subcategory" id="subcategory" class="form-control">
                                                         <option value="" disabled="disabled" selected="selected">Select Subcategory</option>
@@ -42,7 +43,7 @@
 
                                             <div>
 
-                                            	{{Form::textarea('thread','',array('class'=>'form-control'))}}
+                                            	{{Form::textarea('thread',isset($thread) ? $thread->thread:'',array('class'=>'form-control'))}}
 													<script>
 														CKEDITOR.replace( 'thread', {
 														    language: 'id',

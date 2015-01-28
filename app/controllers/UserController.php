@@ -56,8 +56,14 @@ class UserController extends \BaseController {
 			$user->followers = "[]";
 			$user->following = "[]";
 			$user->photo = "pp_blank.jpeg";
+			$user->confirmation = str_random(200);
+			$user->confirmed = 0;
+			$user->point = 1;
 			$user->save();
 			Auth::loginUsingId($user->id);
+			Mail::send('emails.auth.confirmation', array('name'=>'tes@ckptw.com'), function($message){
+				$message->to(Input::get('email'), Input::get('name'))->subject('BengkelKoding Confirmation');
+			});
 			return Redirect::route('dashboard');
 		}
 		else{
@@ -74,7 +80,7 @@ class UserController extends \BaseController {
 	 */
 	public function show($username)
 	{
-		$user = User::where('username',$username)->get();	
+		$user = User::where('username',$username)->orwhere('email',$username)->get();	
 		if($user->count()>0){
 			if (Route::currentRouteName()!='api.v1.user.show') {
 				foreach ($user as $data) {
@@ -114,18 +120,6 @@ class UserController extends \BaseController {
 		else{
 			return "Data doesn't exist";
 		}
-	}
-
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		
 	}
 
 
@@ -190,27 +184,33 @@ class UserController extends \BaseController {
 	}
 
 	function followers($username){
-		$user = User::where('username','=',$username)->first();
-		$statuses = Status::orderby('created_at', 'desc')->where('user_id','=',$user->id)->get();
+		$user = User::where('username',$username)->first();
 		$followed = UserController::isFollowed($username);
-		return View::make('followers', array('user'=>$user, 'statuses'=>$statuses, 'followed'=>$followed, 'followers'=>json_decode($user->followers),'following'=>json_decode($user->following)));	
+		$followers = json_decode($user->followers);
+		$following = json_decode($user->following);
+		$userFollowers = User::where('id',$followers[0]->id);
+		for ($i=1; $i < count($followers); $i++) { 
+			$userFollowers = $userFollowers->orwhere('id',$followers[$i]->id);
+		}
+		$userFollowers = $userFollowers->get();
+		$showButton = true;
+		if(Auth::check()){
+			if (Auth::user()->username==$username) {
+				$showButton = false;
+			}
+		}
+		// return Response::json(array('followers'=>$userFollowers->toArray()),200);
+		return View::make('profile', array('output'=>$user, 'followed'=>$followed, 'followers'=>$userFollowers, 'showButton'=>$showButton));
 	}
 
-	function following($username){
-		$user = User::where('username','=',$username)->first();
-		$statuses = Status::orderby('created_at', 'desc')->where('user_id','=',$user->id)->get();
-		$followed = UserController::isFollowed($username);
-		return View::make('following', array('user'=>$user, 'statuses'=>$statuses, 'followed'=>$followed, 'followers'=>json_decode($user->followers),'following'=>json_decode($user->following)));	
-	}
-
-	function follow(){
+	function follow($username){
 		$user_actor = User::find(Auth::id());
-		$user_victim = User::where('username','=',Input::get('username'))->first();
+		$user_victim = User::where('username','=',$username)->first();
 		$following_actor = json_decode($user_actor->following);
 		$followers_victim = json_decode($user_victim->followers);
 		
 		//periksa apakah user sudah mengikuti atau belum
-		$followed = UserController::isFollowed(Input::get('username'));
+		$followed = UserController::isFollowed($username);
 		
 		if (!$followed&&Auth::user()->username!=Input::get('username')) {
 			$followers_victim[count($followers_victim)] = array('id'=>$user_actor->id);
@@ -220,12 +220,12 @@ class UserController extends \BaseController {
 			$user_actor->following = json_encode($following_actor);
 			$user_actor->save();
 		}
-		return Redirect::route('profile', array(Input::get('username')));
+		return Redirect::route('profile', array($username));
 	}
 
-	function unfollow(){
+	function unfollow($username){
 		$user_actor = User::find(Auth::id());
-		$user_victim = User::where('username','=',Input::get('username'))->first();
+		$user_victim = User::where('username','=',$username)->first();
 		$following_actor = json_decode($user_actor->following);
 		$followers_victim = json_decode($user_victim->followers);
 		
@@ -247,12 +247,12 @@ class UserController extends \BaseController {
 
 		$user_victim->followers = json_encode($new_followers_victim);
 		$user_victim->save();
-		return Redirect::route('profile', array(Input::get('username')));	
+		return Redirect::route('profile', array($username));	
 	}
 
 	function isFollowed($username){
 		$followed = false;
-		$user_victim = User::where('username','=',$username)->first();
+		$user_victim = User::where('username',$username)->first();
 		$followers_victim = json_decode($user_victim->followers);
 		if (count($followers_victim)>0) {
 			for ($i=0; $i < count($followers_victim); $i++) { 
@@ -290,5 +290,12 @@ class UserController extends \BaseController {
 	function setting(){
 		$user = User::find(Auth::id());
 		return View::make('setting', array('user'=> $user));
+	}
+
+	function confirm($confirmation){
+		$user = User::where('confirmation',$confirmation)->first();
+		$user->confirmed = 1;
+		$user->save();
+		return "Congratulation ".$user->name.", you are confirmed!";
 	}
 }

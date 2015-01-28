@@ -2,7 +2,7 @@
                                 <div class="topwrap">
                                     <div class="userinfo pull-left">
                                         <div class="avatar">
-                                           <img class="cycle span" src="http://localhost/bengkelkoding/public/dist/images/pp_blank.jpeg" style="width: 50px ! important;">
+                                           <img class="cycle span" src="{{URL::asset('dist/images/'.User::find($as->user_id)->photo)}}" style="width: 50px ! important;">
                                             <div class="status red">&nbsp;</div>
                                         </div>
 
@@ -18,8 +18,8 @@
                                 <div class="postinfobot">
 
                                     <div class="likeblock pull-left">
-                                        <a href="#" class="up"><i class="fa fa-thumbs-o-up"></i>10</a>
-                                        <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i>1</a>
+                                        <a href="{{$as->voted_link}}" class="up"><i class="fa fa-thumbs-o-up"></i>{{$as->button}}</a>
+                                        <a href="#" class="down"><i class="fa fa-thumbs-o-down"></i>{{$as->votes_count}}</a>
                                     </div>
 
                                     <div class="prev pull-left">                                        

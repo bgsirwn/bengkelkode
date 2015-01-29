@@ -106,6 +106,10 @@ class AnswerController extends \BaseController {
 			$answer->votes = json_encode($votes);
 			$answer->votes_count = count($votes);
 			$answer->save();
+
+			//notif
+			$notif = new NotificationController;
+			$notif->store($id, 3);
 		}
 		return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
 	}

@@ -140,6 +140,33 @@ class NotificationController extends \BaseController {
 				$notification->save();
 			}
 		}
+		//vote answer
+		elseif ($type == 3) {
+			$notifications = Notification::where('type',$type)->where('effected',$id)->get();
+			$answer = Answer::find($id);
+			$thread = Thread::find($answer->thread_id);
+			//jika notif sudah ada
+			if ($notifications->count()>0) {
+				$notification = Notification::where('type',$type)->where('effected',$id)->first();
+				$notification->user_involved = $answer->votes;
+				$notification->seen = 0;
+				$notification->clicked = 0;
+				$notification->save();
+			}
+			//jika belum
+			else{
+
+				$notification = new Notification;
+				$notification->user_id = $answer->user_id;
+				$notification->user_sender = Auth::id();
+				$notification->user_involved = $answer->votes;
+				$notification->type = $type;
+				$notification->effected = $thread->id;
+				$notification->seen = 0;
+				$notification->clicked = 0;
+				$notification->save();
+			}
+		}
 	}
 
 
@@ -200,9 +227,14 @@ class NotificationController extends \BaseController {
 					// $message = User::find($key->user_sender)->name." menjawab thread ";
 					$user_involved = json_decode($key->user_involved);
 					$message = "";
+					$i = 0;
 					foreach ($user_involved as $user_involved_id) {
 						$user = User::find($user_involved_id->id);
 						$message .= $user->name;
+						if ($i < count($user_involved)) {
+							$message.", ";
+						}
+						$i++;
 					}
 					$message .= " menjawab thread ";
 					if (Thread::find($key->effected)->user_id==Auth::id()) {
@@ -216,11 +248,37 @@ class NotificationController extends \BaseController {
 				case 2:
 					$user_involved = json_decode($key->user_involved);
 					$message = "";
+					$i = 0;
 					foreach ($user_involved as $user_involved_id) {
 						$user = User::find($user_involved_id->id);
 						$message .= $user->name;
+						if ($i < count($user_involved)) {
+							$message.", ";
+						}
+						$i++;
 					}
 					$message .= " memberi vote pada thread ";
+					if (Thread::find($key->effected)->user_id==Auth::id()) {
+						$message.="anda ";
+					}
+					else{
+						$message.=User::find(Thread::find($key->effected)->user_id)->name;
+					}
+					$link = route('notif.read',array('id'=>$key->id));
+					break;
+				case 3:
+					$user_involved = json_decode($key->user_involved);
+					$message = "";
+					$i = 0;
+					foreach ($user_involved as $user_involved_id) {
+						$user = User::find($user_involved_id->id);
+						$message .= $user->name;
+						if ($i < count($user_involved)) {
+							$message.", ";
+						}
+						$i++;
+					}
+					$message .= " memberi vote pada jawaban ";
 					if (Thread::find($key->effected)->user_id==Auth::id()) {
 						$message.="anda ";
 					}
@@ -252,6 +310,9 @@ class NotificationController extends \BaseController {
 				$link = route('thread.detail', array(User::find(Thread::find($notif->effected)->user_id)->username, $notif->effected));
 				break;
 			case 2:
+				$link = route('thread.detail', array(User::find(Thread::find($notif->effected)->user_id)->username, $notif->effected));
+				break;
+			case 3:
 				$link = route('thread.detail', array(User::find(Thread::find($notif->effected)->user_id)->username, $notif->effected));
 				break;
 			default:

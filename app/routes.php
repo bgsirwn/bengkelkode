@@ -13,6 +13,7 @@
 
 // API
 Route::group(array('prefix'=>'api/v1'), function(){
+	Route::resource('notification', 'NotificationController');
 	Route::resource('user', 'UserController');
 	Route::group(array('before'=>'auth'), function(){
 		Route::resource('user.thread', 'ThreadController');
@@ -76,6 +77,11 @@ Route::group(array('before'=>'auth'), function(){
 	Route::get('dashboard', array(
 		'as'=>'dashboard',  
 		'uses'=>'ThreadController@dashboard'
+	));
+
+	Route::post('registration/skip', array(
+		'as'=>'registration.skip',
+		'uses'=>'UserController@skip'
 	));
 
 	Route::get('follow/{username}', array(

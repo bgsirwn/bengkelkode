@@ -197,4 +197,10 @@ return array(
 	// Enter your secret key here. Don't have a key yet? Get one over at https://www.google.com/recaptcha/
 	'secretKey' => '6LfcyAATAAAAAPPKm44AHXaYauK_py372rL3Fdu6',
 
+	// on or off recaptcha
+	'recaptcha' => false,
+
+	//email confirmation
+	'emailConfirmation' => false
+
 );

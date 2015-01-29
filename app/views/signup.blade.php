@@ -43,23 +43,21 @@
                                                 </div>
                                             </div>
                                             <div class="posttext pull-left">
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <input placeholder="First Name" class="form-control" type="text">
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <input placeholder="Last Name" class="form-control" type="text">
-                                                    </div>
+                                                <div>
+                                                    <input placeholder="name" value="{{Input::old('name')}}" class="form-control" id="name" name="name" type="text" required>
                                                 </div>
                                                 <div>
-                                                    <input placeholder="User Name" class="form-control" type="text">
+                                                    <input placeholder="username" value="{{Input::old('username')}}" class="form-control" id="username" name="username" type="text" required>
+                                                </div>
+                                                <div>
+                                                    <input placeholder="example@example.com" value="{{Input::old('email')}}" class="form-control" id="email" name="email" type="email" required>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-lg-6 col-md-6">
-                                                        <input placeholder="Password" class="form-control" id="pass" name="pass" type="password">
+                                                        <input placeholder="password" class="form-control" id="password" name="password" type="password">
                                                     </div>
                                                     <div class="col-lg-6 col-md-6">
-                                                        <input placeholder="Retype Password" class="form-control" id="pass2" name="pass2" type="password">
+                                                        <input placeholder="retype password" class="form-control" id="password_confirmation" name="password_confirmation" type="password">
                                                     </div>
                                                 </div>
 
@@ -71,7 +69,7 @@
 
 
                                     <!-- acc section -->
-                                    <div class="accsection privacy">
+<!--                                     <div class="accsection privacy">
                                         <div class="acccap">
                                             <div class="userinfo pull-left">&nbsp;</div>
                                             <div class="posttext pull-left"><h3>Privacy</h3></div>
@@ -133,12 +131,12 @@
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>  
-                                    </div><!-- acc section END -->
+                                    </div> --><!-- acc section END -->
 
 
 
                                     <!-- acc section -->
-                                    <div class="accsection survey">
+                                    <!-- <div class="accsection survey">
                                         <div class="acccap">
                                             <div class="userinfo pull-left">&nbsp;</div>
                                             <div class="posttext pull-left">
@@ -241,7 +239,7 @@
 
 
                                     <!-- acc section -->
-                                    <div class="accsection networks">
+                                    <!-- <div class="accsection networks">
                                         <div class="acccap">
                                             <div class="userinfo pull-left">&nbsp;</div>
                                             <div class="posttext pull-left">
@@ -280,7 +278,7 @@
                                             </div>
                                             <div class="clearfix"></div>
                                         </div>  
-                                    </div><!-- acc section END -->
+                                    </div> --><!-- acc section END -->
 
 
 

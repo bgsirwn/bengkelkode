@@ -15,6 +15,7 @@ class CreateNotificationsTable extends Migration {
 		Schema::create('notifications', function($table){
 			$table->increments('id');
 			$table->integer('user_id');
+			$table->integer('user_sender');
 			$table->text('user_involved');
 			$table->integer('type');//1. thread dijawab 2.vote thread  3. vote answer 4. user difollow 
 			$table->integer('effected');

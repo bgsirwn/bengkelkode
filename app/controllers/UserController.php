@@ -42,8 +42,9 @@ class UserController extends \BaseController {
 					'name'=>'required',
 					'username'=>'required|unique:users|min:8|max:12',
 					'email'=>'required|unique:users',
-					'password'=>'required|min:6',
-					'g-recaptcha-response'=>'required|recaptcha'
+					'password'=>'required|min:6|confirmed',
+					'note'=>'required',
+					'g-recaptcha-response'=>Config::get('app.recaptcha') ? 'required|recaptcha' : ''
 				);
 		$validator = Validator::make($data,$rules);
 		$validated = $validator->passes();
@@ -57,7 +58,7 @@ class UserController extends \BaseController {
 			$user->following = "[]";
 			$user->photo = "pp_blank.jpeg";
 			$user->confirmation = str_random(200);
-			$user->confirmed = 0;
+			$user->confirmed = Config::get('app.emailConfirmation') ? 0 : 1;
 			$user->point = 1;
 			$user->save();
 			Auth::loginUsingId($user->id);
@@ -290,6 +291,15 @@ class UserController extends \BaseController {
 	function setting(){
 		$user = User::find(Auth::id());
 		return View::make('setting', array('user'=> $user));
+	}
+
+	function skip(){
+		$user = User::find(Auth::id());
+		if ($user->confirmed < 4) {
+			$user->confirmed = $user->confirmed+1;
+			$user->save();
+		}
+		return Redirect::route('dashboard');
 	}
 
 	function confirm($confirmation){

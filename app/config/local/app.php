@@ -14,5 +14,6 @@ return array(
 	*/
 
 	'debug' => true,
-
+	'recaptcha' => false,
+	'emailConfirmation' => false
 );

@@ -121,6 +121,7 @@ class NotificationController extends \BaseController {
 			//jika notif sudah ada
 			if ($notifications->count()>0) {
 				$notification = Notification::where('type',$type)->where('effected',$id)->first();
+				$notification->user_sender = Auth::id();
 				$notification->user_involved = $thread->votes;
 				$notification->seen = 0;
 				$notification->clicked = 0;
@@ -148,6 +149,7 @@ class NotificationController extends \BaseController {
 			//jika notif sudah ada
 			if ($notifications->count()>0) {
 				$notification = Notification::where('type',$type)->where('effected',$id)->first();
+				$notification->user_sender = Auth::id();
 				$notification->user_involved = $answer->votes;
 				$notification->seen = 0;
 				$notification->clicked = 0;
@@ -155,11 +157,58 @@ class NotificationController extends \BaseController {
 			}
 			//jika belum
 			else{
-
 				$notification = new Notification;
 				$notification->user_id = $answer->user_id;
 				$notification->user_sender = Auth::id();
 				$notification->user_involved = $answer->votes;
+				$notification->type = $type;
+				$notification->effected = $id;
+				$notification->seen = 0;
+				$notification->clicked = 0;
+				$notification->save();
+			}
+		}
+		//follow
+		elseif($type==4){
+			$notifications = Notification::where('type',$type)->where('effected',$id)->first();
+			//jika notif sudah ada dan belum diklik
+			if (count($notifications) > 0 ) {
+				if ($notifications->clicked==0 && $notifications->seen == 0) {
+					$notification = $notifications;
+					$notification->user_sender = Auth::id();
+					$user_involved = json_decode($notification->user_involved);
+					
+					//tambahkan keterlibatan jika belum ada
+					$involved = false;
+					foreach ($user_involved as $key) {
+						if ($key->id == Auth::id()) {
+							$involved = true;
+						}
+					}
+					if(!$involved){
+						$user_involved[count($user_involved)] = array('id'=>Auth::id());
+					}
+					$notification->user_involved = $user_involved;
+					$notification->save();
+				}
+				else{
+					$notification = new Notification;
+					$notification->user_id = $id;
+					$notification->user_sender = Auth::id();
+					$notification->user_involved = json_encode(array(array('id'=>Auth::id())));
+					$notification->type = $type;
+					$notification->effected = $id;
+					$notification->seen = 0;
+					$notification->clicked = 0;
+					$notification->save();
+				}
+			}
+			//jika tidak
+			else{
+				$notification = new Notification;
+				$notification->user_id = $id;
+				$notification->user_sender = Auth::id();
+				$notification->user_involved = json_encode(array(array('id'=>Auth::id())));
 				$notification->type = $type;
 				$notification->effected = $id;
 				$notification->seen = 0;
@@ -287,6 +336,27 @@ class NotificationController extends \BaseController {
 					}
 					$link = route('notif.read',array('id'=>$key->id));
 					break;
+				case 4:
+					$user_involved = json_decode($key->user_involved);
+					$message = "";
+					$i = 0;
+					foreach ($user_involved as $user_involved_id) {
+						$user = User::find($user_involved_id->id);
+						$message .= $user->name;
+						if ($i < count($user_involved)) {
+							$message.", ";
+						}
+						$i++;
+					}
+					$message .= " mengikuti ";
+					if (Thread::find($key->effected)->user_id==Auth::id()) {
+						$message.="anda ";
+					}
+					else{
+						$message.=User::find(Thread::find($key->effected)->user_id)->name;
+					}
+					$link = route('notif.read',array('id'=>$key->id));
+					break;
 				default:
 					$message = "";
 					$link = "";
@@ -316,6 +386,10 @@ class NotificationController extends \BaseController {
 				$thread = Thread::find($notif->thread_id);
 				$user = User::find($thread->user_id);
 				$link = route('thread.detail', array($user->username, $thread->id));
+				break;
+			case 4:
+				$user = User::find($notif->effected);
+				$link = route('profile', array($user->username));
 				break;
 			default:
 				$link = route('home');

@@ -161,7 +161,7 @@ class NotificationController extends \BaseController {
 				$notification->user_sender = Auth::id();
 				$notification->user_involved = $answer->votes;
 				$notification->type = $type;
-				$notification->effected = $thread->id;
+				$notification->effected = $id;
 				$notification->seen = 0;
 				$notification->clicked = 0;
 				$notification->save();
@@ -313,7 +313,9 @@ class NotificationController extends \BaseController {
 				$link = route('thread.detail', array(User::find(Thread::find($notif->effected)->user_id)->username, $notif->effected));
 				break;
 			case 3:
-				$link = route('thread.detail', array(User::find(Thread::find($notif->effected)->user_id)->username, $notif->effected));
+				$thread = Thread::find($notif->thread_id);
+				$user = User::find($thread->user_id);
+				$link = route('thread.detail', array($user->username, $thread->id));
 				break;
 			default:
 				$link = route('home');

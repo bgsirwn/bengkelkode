@@ -110,8 +110,11 @@ class AnswerController extends \BaseController {
 			//notif
 			$notif = new NotificationController;
 			$notif->store($id, 3);
+			return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
 		}
-		return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
+		else{
+			return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id))->withErrors("You can't vote your own answer!");
+		}
 	}
 
 	function unvote($id){

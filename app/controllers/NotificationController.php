@@ -188,7 +188,7 @@ class NotificationController extends \BaseController {
 					if(!$involved){
 						$user_involved[count($user_involved)] = array('id'=>Auth::id());
 					}
-					$notification->user_involved = $user_involved;
+					$notification->user_involved = json_encode($user_involved);
 					$notification->save();
 				}
 				else{
@@ -348,13 +348,7 @@ class NotificationController extends \BaseController {
 						}
 						$i++;
 					}
-					$message .= " mengikuti ";
-					if (Thread::find($key->effected)->user_id==Auth::id()) {
-						$message.="anda ";
-					}
-					else{
-						$message.=User::find(Thread::find($key->effected)->user_id)->name;
-					}
+					$message .= " mengikuti anda";
 					$link = route('notif.read',array('id'=>$key->id));
 					break;
 				default:

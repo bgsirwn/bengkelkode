@@ -160,8 +160,15 @@ class ThreadController extends BaseController{
 			$votes[count($votes)] = array('id'=>$user->id);
 			$thread->votes = json_encode($votes);
 			$thread->save();
+			
+			//notif
+			$notif = new NotificationController;
+			$notif->store($id,2);
+			return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
 		}
-		return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
+		else{
+			return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id))->withErrors("You can't vote your own thread!");
+		}
 	}
 
 	function unvote($id){

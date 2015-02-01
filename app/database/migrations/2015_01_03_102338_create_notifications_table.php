@@ -17,7 +17,12 @@ class CreateNotificationsTable extends Migration {
 			$table->integer('user_id');
 			$table->integer('user_sender');
 			$table->text('user_involved');
-			$table->integer('type');//1. thread dijawab 2.vote thread  3. vote answer 4. user difollow 
+			/* type notifikasi
+			1. thread dijawab 
+			2. vote thread  
+			3. vote answer 
+			4. user difollow */
+			$table->integer('type');
 			$table->integer('effected');
 			$table->integer('seen');
 			$table->integer('clicked');

@@ -220,6 +220,10 @@ class UserController extends \BaseController {
 			$following_actor[count($following_actor)] = array('id'=>$user_victim->id);
 			$user_actor->following = json_encode($following_actor);
 			$user_actor->save();
+
+			//notif
+			$notif = new NotificationController;
+			$notif->store($user_victim->id, 4);
 		}
 		return Redirect::route('profile', array($username));
 	}

@@ -1,3 +1,4 @@
+/app/config/local
 /public/dist/images
 /app/views/default.blade.php
 /app/storage/cache/56

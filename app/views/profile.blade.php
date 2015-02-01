@@ -25,7 +25,7 @@
 			<h2>{{$output->name}}</h2>
 			<a href="{{route('profile',array($output->username))}}"><strong>{{"@".$output->username}}</strong></a>
 			<a href="{{route('profile.followers',array($output->username))}}" class="info"><strong>{{count($followers)}} followers</strong></a>
-			<button class="primary"><strong>level 18</strong></button>
+			<button class="primary"><strong>{{$output->point}} Point</strong></button>
 			<br><a href="{{route('thread.username', array($output->username))}}" role="button" class="button primary large" style="margin-top:40px">Thread</a>
 			@if($followed)
 				<a href="{{route('unfollow', array($output->username))}}" role="button" class="button primary large" style="margin-top:40px">Unfollow</a>

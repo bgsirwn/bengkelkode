@@ -106,8 +106,20 @@ class AnswerController extends \BaseController {
 			$answer->votes = json_encode($votes);
 			$answer->votes_count = count($votes);
 			$answer->save();
+
+			//point
+			$userPoin = User::find($answer->user_id);
+			$userPoin->point = $userPoin->point+1;
+			$userPoin->save();
+
+			//notif
+			$notif = new NotificationController;
+			$notif->store($id, 3);
+			return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
 		}
-		return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
+		else{
+			return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id))->withErrors("You can't vote your own answer!");
+		}
 	}
 
 	function unvote($id){
@@ -116,6 +128,10 @@ class AnswerController extends \BaseController {
 		$votes = json_decode($answer->votes);
 		$thread = Thread::find($answer->thread_id);
 		
+		//point
+		$userPoin = User::find($answer->user_id);
+		$userPoin->point = $userPoin->point - count($votes);
+	
 		$new_votes = array();
 		for ($i=0; $i < count($votes); $i++) { 
 			if ($votes[$i]->id!=$user->id) {
@@ -125,6 +141,11 @@ class AnswerController extends \BaseController {
 		$answer->votes = json_encode($new_votes);
 		$answer->votes_count = count($new_votes);
 		$answer->save();
+
+		//point
+		$userPoin->point = $userPoin->point + count($new_votes);
+		$userPoin->save();
+		
 		return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
 	}
 

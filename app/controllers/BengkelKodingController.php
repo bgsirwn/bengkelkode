@@ -13,7 +13,7 @@ class BengkelKodingController extends BaseController{
 			$first = 'email';
 		}
 
-		if (Auth::attempt(array($first=>$post['username'], 'password'=>$post['password']), true)) {
+		if (Auth::attempt(array($first=>$post['username'], 'password'=>$post['password']))) {
 			if(Input::has('redirect'))
 				return Redirect::to(convert_uudecode(Input::get('redirect')));
 			else

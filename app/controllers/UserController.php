@@ -40,7 +40,14 @@ class UserController extends \BaseController {
 		$data = Input::all();
 		$rules = array(
 					'name'=>'required',
-					'username'=>'required|unique:users|min:8|max:12',
+					'username'=>[
+						'required',
+						'min:8',
+						'max:12',
+						'unique:users',
+						'regex:/^[a-z0-9_]+$/',
+						'not_in:dashboard,setting,username,signout,register,blog,login',
+					],
 					'email'=>'required|unique:users',
 					'password'=>'required|min:6|confirmed',
 					'note'=>'required',

@@ -1,7 +1,7 @@
 <footer>
-                <div class="container">
+                <div class="container" style="margin-top: 30px">
                     <div class="row">
-                        <div class="col-lg-1 col-xs-3 col-sm-2 logo "><a href="#"><img src="http://localhost/bengkelkoding/public/dist/images/logo.jpg" alt=""></a></div>
+                        <div class="col-lg-1 col-xs-3 col-sm-2 logo "><a href="#">{{HTML::image('dist/images/logo1.png')}}</a></div>
                         <div class="col-lg-8 col-xs-9 col-sm-5 ">Copyrights 2015, BengkelKoding.com </div>
                         <div class="col-lg-3 col-xs-12 col-sm-5 sociconcent">
                             <ul class="socialicons">

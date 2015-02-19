@@ -1,6 +1,6 @@
 	<div class="navigation-bar dark fixed-top shadow" style="background-color: rgb(10, 105, 143);">
    		<div class="navigation-bar-content container">
-       		<a href="{{URL::to('/')}}" class="element"><span class="icon-console"></span> BengkelKoding <sup> v. 1.0</sup></a>
+       		<a href="{{URL::to('/')}}" class="element"><span>{{HTML::image('/dist/images/logo1.png')}}</span> BengkelKoding <sup> v. 1.0</sup></a>
        		<span class="element-divider"></span>
        		<a class="element1 pull-menu" href="#"></a>	
        		<ul class="element-menu">

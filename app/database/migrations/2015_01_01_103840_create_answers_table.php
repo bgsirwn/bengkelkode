@@ -14,12 +14,15 @@ class CreateAnswersTable extends Migration {
 	{
 		Schema::create('answers', function($table){
 			$table->increments('id');
-			$table->integer('user_id');
-			$table->integer('thread_id');
+			$table->integer('user_id')->unsigned();
+			$table->integer('thread_id')->unsigned();
 			$table->text('votes');
 			$table->integer('votes_count');
 			$table->text('answer');
 			$table->timestamps();
+
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('thread_id')->references('id')->on('threads');
 		});
 	}
 

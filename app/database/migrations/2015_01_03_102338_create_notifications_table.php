@@ -14,7 +14,7 @@ class CreateNotificationsTable extends Migration {
 	{
 		Schema::create('notifications', function($table){
 			$table->increments('id');
-			$table->integer('user_id');
+			$table->integer('user_id')->unsigned();
 			$table->integer('user_sender');
 			$table->text('user_involved');
 			/* type notifikasi

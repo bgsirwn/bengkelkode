@@ -7,12 +7,14 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Answer' => $baseDir . '/app/models/Answer.php',
+    'AnswerController' => $baseDir . '/app/controllers/AnswerController.php',
     'BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'BengkelKodingController' => $baseDir . '/app/controllers/BengkelKodingController.php',
     'CreateAnswersTable' => $baseDir . '/app/database/migrations/2015_01_01_103840_create_answers_table.php',
+    'CreateCategoriesTable' => $baseDir . '/app/database/migrations/2014_11_30_084941_create_categories_table.php',
     'CreateNotificationsTable' => $baseDir . '/app/database/migrations/2015_01_03_102338_create_notifications_table.php',
     'CreatePasswordRemindersTable' => $baseDir . '/app/database/migrations/2014_12_30_235054_create_password_reminders_table.php',
-    'CreateTableUsers' => $baseDir . '/app/database/migrations/2014_12_29_043152_create_table_users.php',
+    'CreateTableUsers' => $baseDir . '/app/database/migrations/2014_10_29_043152_create_table_users.php',
     'CreateThreadsTable' => $baseDir . '/app/database/migrations/2014_12_30_012353_create_threads_table.php',
     'DatabaseSeeder' => $baseDir . '/app/database/seeds/DatabaseSeeder.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',

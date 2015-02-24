@@ -12,88 +12,85 @@
 */
 
 // API
-Route::group(array('prefix'=>'api/v1'), function(){
-	Route::resource('notification', 'NotificationController');
-	Route::resource('user', 'UserController');
-	Route::group(array('before'=>'auth'), function(){
-		Route::resource('user.thread', 'ThreadController');
-		Route::resource('user.thread.answer', 'AnswerController');
-	});
-});
+// Route::group(array('prefix'=>'api/v1'), function(){
+// 	Route::resource('notification', 'NotificationController');
+// 	Route::resource('user', 'UserController');
+// 	Route::group(array('before'=>'auth'), function(){
+// 		Route::resource('user.thread', 'ThreadController');
+// 		Route::resource('user.thread.answer', 'AnswerController');
+// 	});
+// });
 
-Route::group(array('before'=>'unauth'), function(){
-	Route::get('signup', array(
-		'as'=>'signup',
-		'uses'=>'BengkelKodingController@signup'
-	));
-
-	Route::get('login', array(
-		'as'=>'login',
-		'uses'=>'BengkelKodingController@login'
-	));
+Route::group(['before'=>'unauth'], function(){
 	
-	Route::get('/', array(
-		'as'=>'home',
-		'uses'=>'BengkelKodingController@index'
-	));
+	Route::get('signup', [
+		'as'	=>	'signup',
+		'uses'	=>	'BengkelKodingController@signup'
+	]);
+
+	Route::get('signin', [
+		'as'	=>	'login',
+		'uses'	=>	'BengkelKodingController@login'
+	]);
+
+	Route::get('/', [
+		'as'	=>	'home',
+		'uses'	=>	'BengkelKodingController@index'
+	]);
+
+	Route::post('signin', [
+		'as'	=>	'login.auth',
+		'uses'	=>	'BengkelKodingController@auth'
+	]);
+
+	Route::post('signup', [
+		'as'	=>	'signmeup',
+		'uses'	=>	'UserController@store'
+	]);
 });
 
-Route::post('login', array(
-	'as'=>'login.auth',
-	'uses'=>'BengkelKodingController@auth'
-));
+Route::group(['before'=>'auth'], function(){
+	Route::get('dashboard',[
+		'as'	=>	'dashboard',
+		'uses'	=>	'ThreadController@dashboard'
+	]);
 
-Route::post('signup', array(
-	'as'=>'sigmeup', 
-	'uses'=>'UserController@store'
-));
+	Route::get('logout', [
+		'as'	=>	'logout',
+		'uses'	=>	'UserController@logout'
+	]);
 
-Route::get('tes', array(
-	'as'=>'test',
-	'uses'=>function(){
-		return View::make('tes');
-}));
 
-Route::post('tes', function(){
-	$rules = [
-	    'g-recaptcha-response' => 'required|recaptcha'
-	];
+	Route::post('registration/skip', [
+		'as'	=>	'registration.skip',
+		'uses'	=>	'UserController@skip'
+	]);
 
-	$validator = Validator::make(Input::all(), $rules);
-	$validated = $validator->passes();
+	Route::get('{username}/follow', [
+		'as'	=>	'follow',
+		'uses'	=>	'UserController@follow'
+	]);
 
-	$response = '';
-	if ( ! $validated) {
-	    $response .= '<pre>' . print_r($validator->errors()->all(), true) . '</pre>';
-	}
+	Route::get('{username}/unfollow', [
+		'as'	=>	'unfollow',
+		'uses'	=>	'UserController@unfollow'
+	]);
 
-	$response .= 'Did I validate? ' . ($validated ? 'Yes.' : 'No.');
+	Route::get('create', [
+		'as'	=>	'create',
+		'uses'	=>	function(){
+			return View::make('create');
+		}
+	]);
 
-	return $response;
+	Route::get('setting', [
+		'as'	=>	'setting',
+		'uses'	=>	'UserController@setting'
+	]);
 });
+
 
 Route::group(array('before'=>'auth'), function(){
-	
-	Route::get('dashboard', array(
-		'as'=>'dashboard',  
-		'uses'=>'ThreadController@dashboard'
-	));
-
-	Route::post('registration/skip', array(
-		'as'=>'registration.skip',
-		'uses'=>'UserController@skip'
-	));
-
-	Route::get('follow/{username}', array(
-		'as' => 'follow',
-		'uses' => 'UserController@follow'
-	));
-
-	Route::get('unfollow/{username}', array(
-		'as' => 'unfollow',
-		'uses' => 'UserController@unfollow'
-	));
-
 	Route::get('vote/thread/{id}', array(
 		'as' => 'vote.thread',
 		'uses' => 'ThreadController@vote'
@@ -114,22 +111,9 @@ Route::group(array('before'=>'auth'), function(){
 		'uses' => 'AnswerController@unvote'
 	));
 
-	Route::get('logout', array(
-		'as'=>'logout',
-		'uses'=>function(){
-			Auth::logout();
-			return Redirect::route('home');
-		}
-	));
-
 	Route::get('get/notification', array(
 		'as' => 'notif.read',
 		'uses' => 'NotificationController@readNotif'
-	));
-
-	Route::get('setting', array(
-		'as'=>'setting',
-		'uses'=>'UserController@setting'
 	));
 
 	Route::post('setting', array(
@@ -167,24 +151,19 @@ Route::group(array('before'=>'auth'), function(){
 });
 
 
-Route::get('create', array('as'=>'create', 'before'=>'auth', function(){
-	return View::make('create');
-}));
-
-
 Route::get('discover', array(
 	'as'=>'discover',
 	'uses'=>'ThreadController@discover'
 ));
 
-Route::get('confirmation/{token}', array(
-	'as'=>'confirmation',
-	'uses'=>'UserController@confirm'
-));
-
 Route::get('{username}', array(
 	'as'=>'profile', 
 	'uses'=>'UserController@show'
+));
+
+Route::get('confirmation/{token}', array(
+	'as'=>'confirmation',
+	'uses'=>'UserController@confirm'
 ));
 
 Route::get('{username}/thread', array(

@@ -15,18 +15,21 @@ class CreateNotificationsTable extends Migration {
 		Schema::create('notifications', function($table){
 			$table->increments('id');
 			$table->integer('user_id')->unsigned();
-			$table->integer('user_sender');
+			$table->integer('user_sender')->unsigned();
 			$table->text('user_involved');
 			/* type notifikasi
-			1. thread dijawab 
-			2. vote thread  
-			3. vote answer 
-			4. user difollow */
+			1. comments a status 
+			2. waw status
+			3. waw comments 
+			4. user difollow*/
 			$table->integer('type');
 			$table->integer('effected');
 			$table->integer('seen');
 			$table->integer('clicked');
 			$table->timestamps();
+
+			$table->foreign('user_id')->references('id')->on('users');
+			$table->foreign('user_sender')->references('id')->on('users');
 		});
 	}
 

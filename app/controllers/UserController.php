@@ -299,6 +299,11 @@ class UserController extends \BaseController {
 		return $is_following;
 	}
 
+	function logout(){
+		Auth::logout();
+		return Redirect::route('home');
+	}
+
 	function setting(){
 		$user = User::find(Auth::id());
 		return View::make('setting', array('user'=> $user));

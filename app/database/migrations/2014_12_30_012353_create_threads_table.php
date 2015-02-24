@@ -19,7 +19,7 @@ class CreateThreadsTable extends Migration {
 			$table->string('title', 100);
 			$table->longtext('thread');
 			$table->integer('category')->unsigned();
-			$table->text('tag')->unsigned();
+			$table->text('tag');
 			$table->integer('answered');
 			$table->text('votes');
 			$table->integer('view');
@@ -37,7 +37,7 @@ class CreateThreadsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('threads');
+		Schema::dropIfExists('threads');
 	}
 
 }

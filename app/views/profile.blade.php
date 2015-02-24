@@ -28,10 +28,10 @@
 			<button class="primary"><strong>{{$output->point}} Point</strong></button>
 			<br><a href="{{route('thread.username', array($output->username))}}" role="button" class="button primary large" style="margin-top:40px">Thread</a>
 			@if($followed)
-				<a href="{{route('unfollow', array($output->username))}}" role="button" class="button primary large" style="margin-top:40px">Unfollow</a>
+				<a href="{{route('unfollow',[$user->username,'redirect'=>convert_uuencode(Request::url())])}}" role="button" class="button primary large" style="margin-top:40px">Unfollow</a>
 			@else
 				@if($showButton)
-				<a href="{{route('follow', array($output->username))}}" role="button" class="button primary large" style="margin-top:40px">Follow</a>
+				<a href="{{route('follow',[$user->username,'redirect'=>convert_uuencode(Request::url())])}}" role="button" class="button primary large" style="margin-top:40px">Follow</a>
 				@endif
 			@endif
 			</div>

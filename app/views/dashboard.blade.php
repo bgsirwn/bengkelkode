@@ -17,11 +17,11 @@
                         		</ul>
                         		<div class="frames">
                             		<div style="display: block; padding:0px" class="frame" id="___1">
-                                		@foreach($output as $key)
+                                		@foreach(Session::get('notifications') as $key)
 							<div id="disscus_c" style="background: none repeat scroll 0% 0% rgb(245, 245, 245); padding:20px">
 								<div id="disscuss_c_t">
 								<span class="icon-comments"></span>
-									{{$key->title}}
+									{{$key->message}}
 								</div>
 								<div "disscuss_c_d">
 									<span class="icon-comments-2"></span>

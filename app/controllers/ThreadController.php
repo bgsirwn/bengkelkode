@@ -11,7 +11,7 @@ class ThreadController extends BaseController{
 		return Response::json(array('thread'=>$thread->toArray()),200);
 	}
 
-	function post(){
+	function store($username){
 		$data = Input::all();
 		$rules = array(
 			'title'=>'required',
@@ -82,7 +82,7 @@ class ThreadController extends BaseController{
 		return View::make('create', array('thread'=>$thread));
 	}
 
-	function show($username=null, $id=null){
+	function show($username, $id){
 		$user = User::where('username',$username)->first();
 		$thread = Thread::where('id',$id)->where('user_id',$user->id)->orderBy('created_at', 'desc')->get();
 		$answer = Answer::where('thread_id',$id)->orderBy('votes_count','desc')->get();
@@ -110,7 +110,7 @@ class ThreadController extends BaseController{
 		}
 	}
 
-	function threadByUsername($username=null){
+	function threadByUsername($username){
 		$user = User::where('username','=',$username)->get();
 		foreach ($user as $key) {
 			$id = $key->id;
@@ -148,7 +148,7 @@ class ThreadController extends BaseController{
 		}
 	}
 
-	function vote($id){
+	function vote($username, $id){
 		$user = User::find(Auth::id());
 		$thread = Thread::find($id);
 		$votes = json_decode($thread->votes);
@@ -171,7 +171,7 @@ class ThreadController extends BaseController{
 		}
 	}
 
-	function unvote($id){
+	function unvote($username, $id){
 		$user = User::find(Auth::id());
 		$thread = Thread::find($id);
 		$votes = json_decode($thread->votes);
@@ -187,7 +187,7 @@ class ThreadController extends BaseController{
 		return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
 	}
 
-	function isVoted($id){
+	function isVoted($username, $id){
 		$voted = false;
 		$thread = Thread::find($id);
 		$votes = json_decode($thread->votes);

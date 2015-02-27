@@ -2,7 +2,7 @@
 
 class AnswerController extends \BaseController {
 
-	public function index($username,$thread_id){
+	public function index($username, $thread_id){
 		$user = User::where('username',$username)->first();
 		$answer = Answer::where('user_id',$user->id)->where('thread_id',$thread_id)->get();
 		
@@ -20,7 +20,7 @@ class AnswerController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store($username=null,$id=null)
+	public function store($username, $thread_id)
 	{
 		$data = Input::all();
 		$recaptcha = Config::get('recaptcha') ? 'required|recaptcha' : '';
@@ -32,7 +32,7 @@ class AnswerController extends \BaseController {
 		if($validator->passes()){
 			$comment = new Answer;
 			$comment->user_id = Auth::id();
-			$comment->thread_id = $id;
+			$comment->thread_id = $thread_id;
 			$comment->answer= htmlentities(Input::get('answer'));
 			$comment->votes = "[]";
 			$comment->votes_count = count(json_decode($comment->votes));
@@ -55,7 +55,7 @@ class AnswerController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($username, $thread_id, $answer_id)
 	{
 		$data = Input::all();
 		$rules = [
@@ -63,14 +63,14 @@ class AnswerController extends \BaseController {
 			'g-recaptcha-response'=>Config::get('app.recaptcha') ? 'required|recaptcha' : ''
 		];
 		$validator = Validator::make($data,$rules);
-		$comment = Answer::find($id);
+		$comment = Answer::find($answer_id);
 		if($validator->passes()&&$comment->user_id==Auth::id()){
 			$comment->user_id = Auth::id();
-			$comment->thread_id = $id;
+			$comment->thread_id = $thread_id;
 			$comment->answer= htmlentities(Input::get('answer'));
 			$comment->save();
 			
-			//notif
+			//notifanswer_id
 			$notif = new Notification;
 			$notif->store($id, 1);
 		}
@@ -87,16 +87,19 @@ class AnswerController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($username, $thread_id, $answer_id)
 	{
-		//
+		$answer = User::where('username',$username)->answers()->where('id',$answer_id)->first();
+		$answer->delete();
+
+		return Redirect::to('{username}.thread.show',[$username,$thread_id]);
 	}
 
-	function vote($id){
+	function vote($username, $thread_id, $answer_id){
 		$user = User::find(Auth::id());
-		$answer = Answer::find($id);
+		$answer = Answer::find($answer_id);
 		$votes = json_decode($answer->votes);
-		$thread = Thread::find($answer->thread_id);
+		$thread = Thread::find($thread_id);
 		
 		//periksa apakah user sudah mengikuti atau belum
 		$voted = AnswerController::isVoted($id);
@@ -122,9 +125,9 @@ class AnswerController extends \BaseController {
 		}
 	}
 
-	function unvote($id){
+	function unvote($username, $thread_id, $answer_id){
 		$user = User::find(Auth::id());
-		$answer = Answer::find($id);
+		$answer = Answer::find($answer_id);
 		$votes = json_decode($answer->votes);
 		$thread = Thread::find($answer->thread_id);
 		

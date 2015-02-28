@@ -3,519 +3,69 @@
 	{{"Bengkel Koding::Sign up"}}
 @stop
 @section('content')
-	
-<section class="content">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 breadcrumbf">
-                            <a href="#">Create New account</a> 
+{{HTML::style('asset/css/custom.css')}}
+{{HTML::style('asset/css/css.css')}}
+{{HTML::style('asset/css/style.css')}}
+{{HTML::style('asset/css/bootstrap.css')}}
+{{HTML::style('asset/css/settings.css')}}	
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Sign Up Form</h3>
+                </div>
+                {{Form::open()}}
+                <div class="panel-body">
+                    <div class="col-md-2">
+                        <button class="btn btn-primary">Add</button>
+                    </div>
+                    <div class= "col-md-10">
+                        <div class="col-md-6">
+                            {{Form::label('First Name')}}
+                            {{Form::text('', '', array('class'=>'form-control'))}}
                         </div>
+                         <div class="col-md-6">
+                            {{Form::label('Last Name')}}
+                            {{Form::text('', '', array('class'=>'form-control'))}}
+                        </div>                  
+                        <div class="col-md-12">
+                            {{Form::label('Username')}}
+                            {{Form::text('', '', array('class'=>'form-control'))}}
+                        </div>
+                        <div class="col-md-6">
+                            {{Form::label('Password')}}
+                            {{Form::password('', array('class'=>'form-control'))}}
+                        </div>
+                        <div class="col-md-6">
+                            {{Form::label('Confirm Password')}}
+                            {{Form::password('', array('class'=>'form-control'))}}
+                        </div>
+
                     </div>
                 </div>
-
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8">
-                            <!-- POST -->
-                            <div class="post">
-                                <form action="#" class="form newtopic" method="post">
-                                    <div class="postinfotop">
-                                        <h2>Create New Account</h2>
-                                    </div>
-
-                                    <!-- acc section -->
-                                    <div class="accsection">
-                                        <div class="acccap">
-                                            <div class="userinfo pull-left">&nbsp;</div>
-                                            <div class="posttext pull-left"><h3>Required Fields</h3></div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="topwrap">
-                                            <div class="userinfo pull-left">
-                                                <div class="avatar">
-                                                    <img src="http://localhost/bengkelkoding/public/dist/images/avatar-blank.jpg" alt="">
-                                                    <div class="status green">&nbsp;</div>
-                                                </div>
-                                                <div class="imgsize">60 x 60</div>
-                                                <div>
-                                                    <button class="btn">Add</button>
-                                                </div>
-                                            </div>
-                                            <div class="posttext pull-left">
-                                                <div>
-                                                    <input placeholder="name" value="{{Input::old('name')}}" class="form-control" id="name" name="name" type="text" required>
-                                                </div>
-                                                <div>
-                                                    <input placeholder="username" value="{{Input::old('username')}}" class="form-control" id="username" name="username" type="text" required>
-                                                </div>
-                                                <div>
-                                                    <input placeholder="example@example.com" value="{{Input::old('email')}}" class="form-control" id="email" name="email" type="email" required>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <input placeholder="password" class="form-control" id="password" name="password" type="password">
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <input placeholder="retype password" class="form-control" id="password_confirmation" name="password_confirmation" type="password">
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>  
-                                    </div><!-- acc section END -->
-
-
-
-                                    <!-- acc section -->
-<!--                                     <div class="accsection privacy">
-                                        <div class="acccap">
-                                            <div class="userinfo pull-left">&nbsp;</div>
-                                            <div class="posttext pull-left"><h3>Privacy</h3></div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="topwrap">
-                                            <div class="userinfo pull-left">&nbsp;</div>
-                                            <div class="posttext pull-left">
-
-                                                <div class="row newtopcheckbox">
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <div><p>Who can see my Profile?</p></div>
-                                                        <div class="row">
-                                                            <div class="col-lg-6 col-md-6">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input id="everyone" type="checkbox"> Everyone
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6 col-md-6">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input id="friends" type="checkbox"> Only Friends
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <div>
-                                                            <p>Share posts on Social Networks</p>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-3 col-md-4">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input id="fb" type="checkbox"> <i class="icon-facebook"></i>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-3 col-md-4">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input id="tw" type="checkbox"> <i class="icon-twitter"></i>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-3 col-md-4">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input id="gp" type="checkbox"> <i class="icon-google-plus"></i>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>  
-                                    </div> --><!-- acc section END -->
-
-
-
-                                    <!-- acc section -->
-                                    <!-- <div class="accsection survey">
-                                        <div class="acccap">
-                                            <div class="userinfo pull-left">&nbsp;</div>
-                                            <div class="posttext pull-left">
-                                                <div class="htext">
-                                                    <h3>Small Survey ( Optional )</h3>
-                                                </div>
-                                                <div class="hnotice">
-                                                    Answer this survey and Earn this Badge : <img src="http://localhost/bengkelkoding/public/dist/images/icon5.jpg" alt="">
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="topwrap">
-                                            <div class="userinfo pull-left">&nbsp;</div>
-                                            <div class="posttext pull-left">
-
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <select name="old" id="old" class="form-control">
-                                                            <option value="" disabled="disabled" selected="selected">How Old are you?</option>
-                                                            <option value="op1">Option1</option>
-                                                            <option value="op2">Option2</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <select name="who" id="who" class="form-control">
-                                                            <option value="" disabled="disabled" selected="selected">Who are you?</option>
-                                                            <option value="op1">Option1</option>
-                                                            <option value="op2">Option2</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <select name="help" id="help" class="form-control">
-                                                            <option value="" disabled="disabled" selected="selected">Will you help others here?</option>
-                                                            <option value="op1">Option1</option>
-                                                            <option value="op2">Option2</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <select name="hear" id="hear" class="form-control">
-                                                            <option value="" disabled="disabled" selected="selected">Where do you hear about us?</option>
-                                                            <option value="op1">Option1</option>
-                                                            <option value="op2">Option2</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row newtopcheckbox">
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <div><p>Some other question 1</p></div>
-                                                        <div class="row">
-                                                            <div class="col-lg-6 col-md-6">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input id="everyone2" type="checkbox"> option 1 
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6 col-md-6">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input id="friends2" type="checkbox"> option 2 
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <div>
-                                                            <p>Some other question 2</p>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-6 col-md-6">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input id="fb2" type="checkbox"> option 1 
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-6 col-md-6">
-                                                                <div class="checkbox">
-                                                                    <label>
-                                                                        <input id="tw2" type="checkbox"> option 2 
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>  
-                                    </div><!-- acc section END -->
-
-
-
-
-
-                                    <!-- acc section -->
-                                    <!-- <div class="accsection networks">
-                                        <div class="acccap">
-                                            <div class="userinfo pull-left">&nbsp;</div>
-                                            <div class="posttext pull-left">
-                                                <div class="htext">
-                                                    <h3>Social Networks ( Optional )</h3>
-                                                </div>
-                                                <div class="hnotice">
-                                                    Link Social Networks and Earn this Badge : <img src="http://localhost/bengkelkoding/public/dist/images/icon6.jpg" alt="">
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <div class="topwrap">
-                                            <div class="userinfo pull-left">&nbsp;</div>
-                                            <div class="posttext pull-left">
-
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <button class="btn btn-fb">Link Facebook Account</button>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <button class="btn btn-tw">Link Twitter Account</button>                                                       
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <button class="btn btn-gp">Link Google + Account</button>
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6">
-                                                        <button class="btn btn-pin">Link Pinterest Account</button>                                                       
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </div>  
-                                    </div> --><!-- acc section END -->
-
-
-
-
-
-                                    <div class="postinfobot">
-
-                                        <div class="notechbox pull-left">
-                                            <input name="note" id="note" class="form-control" type="checkbox">
-                                        </div>
-
-                                        <div class="pull-left lblfch">
-                                            <label for="note"> I agree with the Terms and Conditions of this site</label>
-                                        </div>
-
-                                        <div class="pull-right postreply">
-                                            <div class="pull-left smile"><a href="#"><i class="fa fa-smile-o"></i></a></div>
-                                            <div class="pull-left"><button type="submit" class="btn btn-primary">Sign Up</button></div>
-                                            <div class="clearfix"></div>
-                                        </div>
-
-
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </form>
-                            </div><!-- POST -->
-
-
-
-
-
-
-                        </div>
-                        <div class="col-lg-4 col-md-4">
-
-                            <!-- -->
-                            @include('categories')
-
-                            <!-- -->
-                            @include('poll')
-
-                            <!-- -->
-                            <div class="sidebarblock">
-                                <h3>My Active Threads</h3>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <a href="#">This Dock Turns Your iPhone Into a Bedside Lamp</a>
-                                </div>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <a href="#">Who Wins in the Battle for Power on the Internet?</a>
-                                </div>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <a href="#">Sony QX10: A Funky, Overpriced Lens Camera for Your Smartphone</a>
-                                </div>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <a href="#">FedEx Simplifies Shipping for Small Businesses</a>
-                                </div>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <a href="#">Loud and Brave: Saudi Women Set to Protest Driving Ban</a>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
+                <hr>
+                <div class="col-md-2">
+                    
                 </div>
-
-
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8 col-xs-12">
-                            <div class="pull-left"><a href="#" class="prevnext"><i class="fa fa-angle-left"></i></a></div>
-                            <div class="pull-left">
-                                <ul class="paginationforum">
-                                    <li class="hidden-xs"><a href="#">1</a></li>
-                                    <li class="hidden-xs"><a href="#">2</a></li>
-                                    <li class="hidden-xs"><a href="#">3</a></li>
-                                    <li class="hidden-xs"><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#">6</a></li>
-                                    <li><a href="#" class="active">7</a></li>
-                                    <li><a href="#">8</a></li>
-                                    <li class="hidden-xs"><a href="#">9</a></li>
-                                    <li class="hidden-xs"><a href="#">10</a></li>
-                                    <li class="hidden-xs hidden-md"><a href="#">11</a></li>
-                                    <li class="hidden-xs hidden-md"><a href="#">12</a></li>
-                                    <li class="hidden-xs hidden-sm hidden-md"><a href="#">13</a></li>
-                                    <li><a href="#">1586</a></li>
-                                </ul>
-                            </div>
-                            <div class="pull-left"><a href="#" class="prevnext last"><i class="fa fa-angle-right"></i></a></div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
+                <div class="col-md 10">
+                    
+                    {{Form::checkbox('agreement')}}
+                    <span>
+                        I agree with term condotion
+                    </span>
+                    {{Form::submit('Sign Up', array('class'=>'btn btn-primary','style'=>'margin-left: 300px'))}}
                 </div>
+                <br>
+                {{Form::close()}}
+            </div>
 
-            </section>
+        </div>
+        <div class="col-md-4">
+            @include('poll')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-	<script type="text/javascript" src="dist/js/jquery/jquery.validate.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$("#signup-form").validate({
-			    rules:{ name:"required",
-			            umur:{required:true,number: true},     
-			            username:"required",
-			            password:{required: true,minlength:6},     
-			            //cpassword:{required: true,equalTo: "#password"},
-			            email:{required:true,email:true},
-			          },
-			    messages:{
-			            name:{required:'Nama harus di isi'},
-			            umur:{
-			                required:'Umur harus di isi',
-			                number  :'Hanya boleh di isi Angka'},
-			            username: {
-			                required:'Username harus di isi'},
-			            password: {
-			                required :'Password harus di isi',
-			                minlength:'Password minimal 5 karakter'},
-			            //cpassword: {
-			             //   required:'Ulangi Password harus di isi',
-			             //   equalTo :'Isinya harus sama dengan Password'},
-			            email: {
-			                required:'Email harus di isi',
-			                email   :'Email harus valid'},
-			            
-			     success: function(label) {
-			        label.text('OK!').addClass('valid');}
-			    });
-			});
-	</script>
-
-	<div class="container">
-		<div class="grid">
-			<div class="row">
-
-				<div class="span4">
-					
-				</div>
-
-				<div class="span6" style="margin-top: 100px; margin-bottom:100px">
-					<div style="background-color:#E03131; padding:30px; width:80%">
-						<h2>
-							<span class="icon-user" style="margin-right:5px; margin-left:10px"></span>
-							Sign Up
-						</h2>
-						{{Form::open(array('class'=>'form-horizontal', 'id'=>'signup-form'))}}
-							<div class="form-group input-control text" data-role="input-control" style="margin:5px">
-								
-								{{Form::text('name',Input::old('name'),array('class'=>'form-control','placeholder'=>'name','required'))}}
-								<button type="button" class="btn-clear" tabindex="-1"></button>	
-							</div>
-
-							{{$errors->first('username')}}
-							<div class="form-group input-control text" data-role="input-control" style="margin:5px">
-								
-								{{Form::text('username',Input::old('username'),array('class'=>'form-control', 'placeholder'=>'username','required'))}}
-								<button type="button" class="btn-clear" tabindex="-1"></button>
-							</div>
-							{{$errors->first('email')}}		
-							<div class="form-group input-control text" data-role="input-control" style="margin:5px">
-								
-								{{Form::email('email',Input::old('email'),array('placeholder'=>'email', 'class'=>'form-control','required'))}}
-								<button type="button" class="btn-clear" tabindex="-1"></button>
-							</div>
-							{{$errors->first('password')}}
-							<div class="form-group input-control password" data-role="input-control" style="margin:5px">
-								
-								{{Form::password('password',array('placeholder'=>'password', 'class'=>'form-control','required'))}}
-								<button type="button" class="btn-reveal" tabindex="-1"></button>
-							</div>
-							{{$errors->first('g-recaptcha-response')}}
-							<div style="margin-top:20px;margin-bottom:20px;margin-left:5px">
-							{{View::make('recaptcha::display')}}
-							</div>
-							<div class="form-group">
-							{{Form::submit('Sign up', array('class'=>'primary','style'=>'margin:5px'))}}
-							</div>
-						{{Form::close()}}
-					</div>
-
-					<div>
-						
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	-->	
+        </div>
+    </div>
+</div>
 @stop

@@ -5,15 +5,19 @@
 
 @section('content')
 	{{HTML::script('dist/js/ckeditor/ckeditor.js')}}
+	{{HTML::style('asset/css/custom.css')}}
+
+
+	
 	<div class="container">
-		<div class="grid">
+		
 			<div class="row">
 				<div class="col-lg-4 col-md-4">
 					@include('categories')
 
 					@include('poll')
 					</div>
-				<div class="col-lg-8 col-md-8">
+				<div class="col-md-8">
 					@foreach($thread as $key)
 					@if(Route::currentRouteName()!='thread.detail')
 					<div class="post">
@@ -34,10 +38,10 @@
                                 <div class="postinfo pull-left">
                                     <div class="comments">
                                         <div class="commentbg">
+                                        <!-- {{var_dump($key->comments)}} -->
                                         	{{$key->comments}}
                                             <div class="mark"></div>
                                         </div>
-
                                     </div>
                                     <div class="views"><i class="icon-eye"></i>  {{$key->view}}</div>
                                     <div class="time"><i class="icon-clock"></i> 24 min</div>                                    
@@ -49,7 +53,7 @@
                                 <div class="topwrap">
                                     <div class="userinfo pull-left">
                                         <div class="avatar">
-                                           <img class="cycle span" src="{{URL::asset('dist/images/'.User::find($key->user_id)->photo)}}" style="width: 50px ! important;">
+                                           <img class="cycle span" src="<!-- {{URL::asset('dist/images/'.User::find($key->user_id)->photo)}} -->" style="width: 50px ! important;">
                                             <div class="status green">&nbsp;</div>
                                         </div>
 
@@ -76,7 +80,7 @@
                                         <a href="#"><i class="icon-reply"></i></a>
                                     </div>
 
-                                    <div class="posted pull-left"><i class="fa fa-clock-o"></i> Posted on : 20 Nov @ 9:30am</div>
+                                    <div class="posted pull-left"><i class="fa fa-clock-o"></i> Posted on : {{$key->created_at}}</div>
 
                                     <div class="next pull-right">                                        
                                         <a href="#"><i class="icon-share"></i></a>
@@ -244,7 +248,7 @@
 			</div>
 			
 		</div>
-	</div>
+	
 </div>
 	
 @stop

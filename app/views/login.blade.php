@@ -4,13 +4,13 @@
 @stop
 @section('content')
 	<div class="container">
-			<div class="grid">
+			
 				<div class="row">
-					<div class="span4">
+					<div class="col-md-4">
 						
 					</div>
 
-					<div class="span6" style="margin-top: 100px; margin-bottom: 100px;">
+					<div class="col-md-6" style="margin-top: 100px; margin-bottom: 100px;">
 
 					
 
@@ -22,17 +22,17 @@
 			<div class="form-group input-control text" data-role="input-control" style="margin:5px">
 				
 				{{Form::text('username',Input::old('username'),array('class'=>'form-control','placeholder'=>'username','required', 'type'=>'text', 'style'=>'font-size:16px'))}}
-				<button type="button" class="btn-clear" tabindex="-1"></button>				
+								
 			</div>
 
 			<div class="form-group input-control password" data-role="input-control" style="margin:5px">
 				
 				{{Form::password('password',array('class'=>'form-control','placeholder'=>'Password', 'required','type'=>'password'))}}
-				<button type="button" class="btn-reveal" tabindex="-1"></button>				
+								
 			</div>
 							
 			<div class="form-group">
-				{{Form::submit('Login', array('class'=>'primary' , 'style'=>'margin:5px'))}}
+				{{Form::submit('Login', array('class'=>'btn btn-success' , 'style'=>'margin-left:20px'))}}
 			</div>
 		{{Form::close()}}
 	</div>

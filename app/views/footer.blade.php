@@ -1,18 +1,43 @@
-<footer>
-                <div class="container" style="margin-top: 30px">
-                    <div class="row">
-                        <div class="col-lg-1 col-xs-3 col-sm-2 logo "><a href="#">{{HTML::image('dist/images/logo1.png')}}</a></div>
-                        <div class="col-lg-8 col-xs-9 col-sm-5 ">Copyrights 2015, BengkelKoding.com </div>
-                        <div class="col-lg-3 col-xs-12 col-sm-5 sociconcent">
-                            <ul class="socialicons">
-                                <li><a href="#"><i class="icon-facebook"></i></a></li>
-                                <li><a href="#"><i class="icon-twitter"></i></a></li>
-                                <li><a href="#"><i class="icon-google-plus"></i></a></li>
-                                <li><a href="#"><i class="icon-dribbble"></i></a></li>
-                                <li><a href="#"><i class="icon-cloud"></i></a></li>
-                                <li><a href="#"><i class="icon-rss"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </footer>
+<div class="footer">
+    <div class="container">
+        <div class="clearfix">
+            <div class="footer-logo">
+                <a href="#">
+                    <img src="img/footer-logo.png">Bootflat
+                </a>
+            </div>
+            <dl class="footer-nav">
+                <dt class="nav-title">PORTFOLIO</dt>
+                <dd class="nav-item">
+                    <a href="#">Web Design</a>
+                </dd>
+                <dd class="nav-item">
+                    <a href="#">Branding &amp; Identity</a>
+                </dd>
+                <dd class="nav-item"><a href="#">Mobile Design</a></dd>
+                <dd class="nav-item"><a href="#">Print</a></dd>
+                <dd class="nav-item"><a href="#">User Interface</a></dd>
+            </dl>
+            <dl class="footer-nav">
+                <dt class="nav-title">ABOUT</dt>
+                <dd class="nav-item"><a href="#">The Company</a></dd>
+                <dd class="nav-item"><a href="#">History</a></dd>
+                <dd class="nav-item"><a href="#">Vision</a></dd>
+            </dl>
+            <dl class="footer-nav">
+                <dt class="nav-title">GALLERY</dt>
+                <dd class="nav-item"><a href="#">Flickr</a></dd>
+                <dd class="nav-item"><a href="#">Picasa</a></dd>
+                <dd class="nav-item"><a href="#">iStockPhoto</a></dd>
+                <dd class="nav-item"><a href="#">PhotoDune</a></dd>
+            </dl>
+            <dl class="footer-nav">
+                <dt class="nav-title">CONTACT</dt>
+                <dd class="nav-item"><a href="#">Basic Info</a></dd>
+                <dd class="nav-item"><a href="#">Map</a></dd>
+                <dd class="nav-item"><a href="#">Conctact Form</a></dd>
+            </dl>
+        </div>
+        <div class="footer-copyright text-center">Copyright © 2014 Flathemes.All rights reserved.</div>
+    </div>
+</div>

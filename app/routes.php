@@ -126,3 +126,17 @@ Route::group(['prefix'=>'{username}'], function(){
 	Route::resource('thread', 'ThreadController');
 	Route::resource('thread.answer', 'AnswerController');
 });
+
+/*
+/{username}/thread (get) route('{username}.thread.index')
+/{username}/thread (post) storing route('{username}.thread.store',[username])
+/{username}/thread/{id} get route('{username}.thread.show', [username, thread_id])
+/{username}/thread/{id} (put) update route('{username}.thread.update')
+/{username}/thread/{id} (delete) destroy route('{username}.thread.destroy',[$username,$thread_id])
+/{username}/thread/{id}/edit nampilkan form
+/{username}/thread/{id}/answer (get)
+/{username}/thread/{id}/answer (post) storing
+/{username}/thread/{id}/answer/{answer_id} 
+
+
+*/

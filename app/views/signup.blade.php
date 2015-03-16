@@ -16,31 +16,40 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Sign Up Form</h3>
                 </div>
-                {{Form::open()}}
+                {{Form::open(['method'=>'post','url'=>route('signmeup')])}}
                 <div class="panel-body">
                     <!-- <div class="col-md-2">
                         <button class="btn btn-primary">Add</button>
                     </div> -->
+
                     <div class= "col-md-10">
-                        <div class="col-md-6">
-                            {{Form::label('First Name')}}
-                            {{Form::text('', '', array('class'=>'form-control'))}}
+                        <div class="col-md-12">
+                            {{Form::label('Name')}}
+                            {{$errors->first('name')}}
+                            {{Form::text('name', '', array('class'=>'form-control'))}}
                         </div>
-                         <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             {{Form::label('Last Name')}}
                             {{Form::text('', '', array('class'=>'form-control'))}}
-                        </div>                  
+                        </div> --> 
+                        <div class="col-md-12">
+                            {{Form::label('Email')}}
+                            {{$errors->first('email')}}
+                            {{Form::email('email', '', array('class'=>'form-control'))}}
+                        </div>                 
                         <div class="col-md-12">
                             {{Form::label('Username')}}
-                            {{Form::text('', '', array('class'=>'form-control'))}}
+                            {{$errors->first('username')}}
+                            {{Form::text('username', '', array('class'=>'form-control'))}}
                         </div>
                         <div class="col-md-6">
                             {{Form::label('Password')}}
-                            {{Form::password('', array('class'=>'form-control'))}}
+                            {{$errors->first('password')}}
+                            {{Form::password('password', array('class'=>'form-control'))}}
                         </div>
                         <div class="col-md-6">
                             {{Form::label('Confirm Password')}}
-                            {{Form::password('', array('class'=>'form-control'))}}
+                            {{Form::password('password_confirmation', array('class'=>'form-control'))}}
                         </div>
 
                     </div>
@@ -50,8 +59,8 @@
                     
                 </div>
                 <div class="col-md 10">
-                    
-                    {{Form::checkbox('agreement')}}
+                    {{$errors->first('note')}}
+                    {{Form::checkbox('note')}}
                     <span>
                         I agree with term condotion
                     </span>

@@ -15,21 +15,21 @@
 				<ul class="nav navbar-nav">
 				
 					<li>
-						<a href="#">Home</a>
+						<a href="{{route('home')}}">Home</a>
 					</li>
 
 					<li>
-						<a href="#">Discover</a>
+						<a href="{{route('discover')}}">Discover</a>
+					</li>
+					@if(!Auth::check())
+					<li>
+						<a href="{{route('signup')}}">Sign Up</a>
 					</li>
 
 					<li>
-						<a href="#">Sign Up</a>
+						<a href="{{route('login')}}">Login</a>
 					</li>
-
-					<li>
-						<a href="#">Login</a>
-					</li>
-
+					@endif
 					
 				</ul>
 				<form class="navbar-form navbar-right" role="search" style="margin-right: 150px">

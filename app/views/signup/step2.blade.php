@@ -1,19 +1,33 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
+@extends('default')
+@section('content')
 <body>
-	<p>Email anda sudah dikonfirmasi</p>
-	<h1>Step 2</h1>
-	<h2>Privacy</h2>
-	<form>
-		
-	</form>
-	<!-- Tombol ini memerlukan request POST jadi harus
-	pake form -->
-	<form id="skip" method="post" action="{{route('registration.skip')}}">
-		<input type="submit" name="action" value="skip">
-	</form>
+	<div class="container">
+		<div class="grid">
+			<div class="col-md-6">
+				<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button> <strong>Well done!</strong> Email anda sudah dikonfirmasi</div>
+					
+				<div class="panel panel-warning">
+					<div class="panel-heading">
+						<h3 class="panel-title">Step 2</h3>
+					</div>
+				<div class="panel-body">
+					<h4>Privacy</h4>
+
+					<!-- Tombol ini memerlukan request POST jadi harus
+					pake form -->
+					<form id="skip" method="post" action="{{route('registration.skip')}}">
+						<input type="submit" name="action" value="skip">
+					</form>
+				</div>
+			</div>
+
+
+					
+			</div>
+							
+		</div>
+						
+	</div>
+	
 </body>
-</html>
+@stop

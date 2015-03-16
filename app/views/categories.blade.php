@@ -1,15 +1,33 @@
-<div class="sidebarblock">
-                                <h3>Categories</h3>
-                                <div class="divline"></div>
-                                <div class="blocktxt">
-                                    <ul class="cats">
-                                        <li><a href="#">Java <span class="badge pull-right">20</span></a></li>
-                                        <li><a href="#">PHP <span class="badge pull-right">10</span></a></li>
-                                        <li><a href="#">HTML <span class="badge pull-right">50</span></a></li>
-                                        <li><a href="#">Looking for Players <span class="badge pull-right">36</span></a></li>
-                                        <li><a href="#">Stupid Bugs &amp; Solves <span class="badge pull-right">41</span></a></li>
-                                        <li><a href="#">Video &amp; Audio Drivers <span class="badge pull-right">11</span></a></li>
-                                        <li><a href="#">2K Official Forums <span class="badge pull-right">5</span></a></li>
-                                    </ul>
-                                </div>
-                            </div>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Categories</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="badge">14</span>
+                PHP
+            </li>
+            <li class="list-group-item">
+                <span class="badge badge-default">91</span>
+                    My Sql
+            </li>
+            <li class="list-group-item">
+                <span class="badge badge-primary">38</span>
+                    Laravel
+            </li>
+            <li class="list-group-item">
+                <span class="badge badge-success">56</span>
+                    Java
+            </li>
+            <li class="list-group-item">
+                <span class="badge badge-warning">20</span>
+                    C#
+            </li>
+            <li class="list-group-item">
+                <span class="badge badge-danger">99+</span>
+                   C++
+            </li>
+        </ul>
+    </div>
+</div>

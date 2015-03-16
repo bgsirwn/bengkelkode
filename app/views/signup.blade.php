@@ -18,9 +18,9 @@
                 </div>
                 {{Form::open()}}
                 <div class="panel-body">
-                    <div class="col-md-2">
+                    <!-- <div class="col-md-2">
                         <button class="btn btn-primary">Add</button>
-                    </div>
+                    </div> -->
                     <div class= "col-md-10">
                         <div class="col-md-6">
                             {{Form::label('First Name')}}

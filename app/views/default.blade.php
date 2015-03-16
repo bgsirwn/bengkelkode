@@ -11,6 +11,9 @@
 	<!--Load UI-->
 	{{HTML::style('asset/css/site.min.css')}}
 
+	<!--Load Js-->
+	
+	
 	 <script>
 	 var alamat = "{{URL::to('/')}}";
 	 </script>
@@ -19,10 +22,10 @@
 	<title>@yield('title')</title>
     
 </head>
-<body>
+<body style = "background-color: #ABB7B7">
 	
 	@include('navbar')
-    
+    <div style="padding-top: 70px"></div>
 	@yield('content')
 	
 	@include('footer')

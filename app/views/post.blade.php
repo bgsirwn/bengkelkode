@@ -1,5 +1,5 @@
 <div class="post">
-				{{Form::open(array('class'=>'form newtopic','method'=>isset($thread) ? 'put':'post'))}}
+                {{Form::open(array('class'=>'form newtopic','method'=>isset($thread) ? 'put':'post'))}}
                     <div class="topwrap">
                         <div class="userinfo pull-left">
                                             <div class="status red">&nbsp;</div>
@@ -22,7 +22,7 @@
                                                 {{Form::radio('type', '1', true)}}Question
                                                 {{Form::radio('type', '2')}}Discussion
                                                 <!--
-                                                    <select name="category" id="category" class="form-control">                                                  	
+                                                    <select name="category" id="category" class="form-control">                                                     
                                                         <option value="" disabled="disabled" selected="selected">Select Category</option>
                                                         <option value="op1">Option1</option>
                                                         <option value="op2">Option2</option>
@@ -43,17 +43,17 @@
 
                                             <div>
 
-                                            	{{Form::textarea('thread',isset($thread) ? $thread->thread:'',array('class'=>'form-control'))}}
-													<script>
-														CKEDITOR.replace( 'thread', {
-														    language: 'id',
-														    uiColor: 'whitesmoke'
-														});
-													</script>
+                                                {{Form::textarea('thread',isset($thread) ? $thread->thread:'',array('class'=>'form-control'))}}
+                                                    <script>
+                                                        CKEDITOR.replace( 'thread', {
+                                                            language: 'id',
+                                                            uiColor: 'whitesmoke'
+                                                        });
+                                                    </script>
 
-												<!--
+                                                <!--
                                                 <textarea name="desc" id="desc" placeholder="Description" class="form-control"></textarea>
-                                            	-->
+                                                -->
                                             </div>
                                             
                                             <div class="row newtopcheckbox">
@@ -105,11 +105,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-			
-										<div>
-											{{View::make('recaptcha::display')}}
-										</div>
-										
+            
+                                        <div>
+                                            {{View::make('recaptcha::display')}}
+                                        </div>
+                                        
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>                              

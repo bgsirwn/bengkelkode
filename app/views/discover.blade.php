@@ -19,13 +19,13 @@
 					</div>
 				<div class="col-md-8">
 					@foreach($thread as $key)
-					@if(Route::currentRouteName()!='thread.detail')
+					@if(Route::currentRouteName()!='{username}.thread.show')
 					<div class="post">
                             <div class="wrap-ut pull-left">
                                 @include('avatar')
                                 <div class="posttext pull-left">
                                    <h2>
-                                   		<a href="{{route('thread.detail',array(User::find($key->user_id)->username,$key->id))}}" style="color: black; font-size: 22px;">
+                                   		<a href="{{route('{username}.thread.show',array(User::find($key->user_id)->username,$key->id))}}" style="color: black; font-size: 22px;">
 											{{$key->title}}
 										</a>
 									</h2>
@@ -62,7 +62,7 @@
                                         </div>
                                     </div>
                                     <div class="posttext pull-left">
-                                        <h2><a href="{{route('thread.detail',array(User::find($key->user_id)->username,$key->id))}}" style="color: black; font-size: 22px;">
+                                        <h2><a href="{{route('{username}.thread.show',array(User::find($key->user_id)->username,$key->id))}}" style="color: black; font-size: 22px;">
 									{{$key->title}}
 								</a></h2>
                                         {{htmlspecialchars_decode($key->thread)}}
@@ -93,106 +93,12 @@
                             </div>
                             @endif
                             @endforeach
-<!-- akhir percobaan-->	
-<!--
-					<div id="threads">
-						@foreach($thread as $key)
-						<div id="thrad" style="margin:5px; background:none repeat scroll 0% 0% rgb(255, 255, 255); margin-bottom:20px" class="shadow">
-							@if(Route::currentRouteName()!='thread.detail')
-							<div id="thread-right" style="float:right; width:120px; border-left:2px solid #ECF0F1; text-align:center" >
-								<div id="comment" style="margin-bottom:10px; padding-top:10px">
-									<span class="icon-comments-3"></span>
-									{{$key->comments}}
-									
-								</div>
-								<div id="view" style="padding-top:10px; margin-bottom:10px;border-top:2px solid #ECF0F1">
-									<span class="icon-eye"></span>
-										{{$key->view}}
-									
-								</div>
-							
-								<div id="viewnum" style="float: right; background: none repeat scroll 0% 0% #F87D05; padding: 5px; text-align: center; margin: 2px; width:78px">
-									<strong>
-										<p>View</p>
-										<p>{{$key->view}}</p>
-									</strong>
-								</div>
-								<div id="commentnum" style="float: right; background: none repeat scroll 0% 0% rgb(42, 189, 33); padding: 5px; text-align: center; margin: 2px;">
-									<strong>
-										<p>Comment</p>
-										<p>{{$key->comments}}</p>
-									</strong>
-								</div>
-								
-								
-							</div>
 
-							<div id="thread-left" style="float: left; border-right: 2px solid #ECF0F1; padding: 20px;">
-									<img class="cycle span" src="http://localhost/bengkelkoding/public/dist/images/pp_blank.jpeg" style="width: 50px ! important;">
-							</div>
-
-							<div id="thread-middle" style="padding-top: 20px; padding-left: 120px; height: 85px;">
-								<a href="{{route('thread.detail',array(User::find($key->user_id)->username,$key->id))}}" style="color: black; font-size: 22px;">
-									{{$key->title}}
-								</a>
-								<p style="font-size: 8pt;">
-								<span class="icon-clock"></span>
-								posted on : &nbsp 20 Januari 2015 @ 6.09pm
-							</div>
-
-							@else
-
-							<div id="thread-left" style="float: left; border-right: 2px solid #ECF0F1; padding: 20px;">
-									<img class="cycle span" src="http://localhost/bengkelkoding/public/dist/images/pp_blank.jpeg" style="width: 50px ! important;">
-							</div>
-
-							<div id="thread-middle" style="padding-top: 20px; padding-left: 120px; height: auto !important;">
-								<a href="{{route('thread.detail',array(User::find($key->user_id)->username,$key->id))}}" style="color: black; font-size: 22px;">
-									{{$key->title}}
-								</a>
-
-								<p>{{htmlspecialchars_decode($key->thread)}}</p>
-
-
-							</div>
-
-							
-							@endif
-							
-							<div id="thread_c" style="width: 100%;">
-								<a href="{{route('thread.detail',array(User::find($key->user_id)->username,$key->id))}}" style="color: black; font-size: 24px;">
-									{{$key->title}}
-									@if(Route::currentRouteName()=='thread.detail')
-									<hr style="height:4px; background-color:black">
-									@endif
-								</a>
-								@if(Route::currentRouteName()=='thread.detail')
-								<p>{{htmlspecialchars_decode($key->thread)}}</p>
-								@endif
-
-								<p style="font-size: 12px; margin-top:10px">
-								<span class="icon-user"></span>
-								<i>posted by </i>
-								<a href="{{route('profile', array(User::find($key->user_id)->username))}}">{{User::find($key->user_id)->name}}</a>
-								@if(Auth::id()==$key->user_id)
-							<a href="{{route('thread.edit',array(User::find($key->user_id)->username, $key->id))}}">Edit</a>
-							{{Form::open(array('style'=>'display:inline-block'))}}
-							{{Form::submit('delete')}}
-							{{Form::close()}}
-							@endif
-							</div>
-							
-							
-						</div>
-						@endforeach
-						
-					</div>
-					-->
-					@if(Route::currentRouteName()!='thread.detail')
+					@if(Route::currentRouteName()!='{username}.thread.show')
 						{{$thread->links()}}
 						@endif
 
-						@if(Route::currentRouteName()=='thread.detail')
+						@if(Route::currentRouteName()=='{username}.thread.show')
 				<div id="respons">
 					<h3>Answers</h3>
 						<div class="row">

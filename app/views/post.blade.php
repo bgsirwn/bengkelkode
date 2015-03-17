@@ -1,5 +1,5 @@
 <div class="post">
-                {{Form::open(array('class'=>'form newtopic','method'=>isset($thread) ? 'put':'post'))}}
+                {{Form::open(array('url'=>route('{username}.thread.store',[Auth::user()->username]),'class'=>'form newtopic','method'=>isset($thread) ? 'put':'post'))}}
                     <div class="topwrap">
                         <div class="userinfo pull-left">
                                             <div class="status red">&nbsp;</div>
@@ -29,15 +29,11 @@
                                                     </select>
                                                     -->
                                                 </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                {{Form::select('tag', array('1'=>'java','2'=>'php','3'=>'javascript'), isset($thread) ? $thread->tag : '1')}}
-                                                <!--
-                                                    <select name="subcategory" id="subcategory" class="form-control">
-                                                        <option value="" disabled="disabled" selected="selected">Select Subcategory</option>
-                                                        <option value="op1">Option1</option>
-                                                        <option value="op2">Option2</option>
-                                                    </select>
-                                                    -->
+                                                <div class="col-lg-6 col-md-12">
+                                                <span>Categories</span>
+                                                @foreach($categories as $category)
+                                                {{Form::radio('category',$category->id)}}{{$category->name}}
+                                                @endforeach
                                                 </div>
                                             </div>
 

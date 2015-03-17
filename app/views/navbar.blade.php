@@ -19,6 +19,10 @@
 					</li>
 
 					<li>
+						<a href="{{route('create')}}">Create</a>
+					</li>
+
+					<li>
 						<a href="{{route('discover')}}">Discover</a>
 					</li>
 					@if(!Auth::check())

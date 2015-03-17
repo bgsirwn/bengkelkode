@@ -70,9 +70,7 @@ Route::group(['before'=>'auth'], function(){
 
 	Route::get('create', [
 		'as'	=>	'create',
-		'uses'	=>	function(){
-			return View::make('create');
-		}
+		'uses'	=>	'ThreadController@create'
 	]);
 
 	Route::get('setting', [

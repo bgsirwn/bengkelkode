@@ -18,7 +18,7 @@ class CreateThreadsTable extends Migration {
 			$table->integer('type');
 			$table->string('title', 100);
 			$table->longtext('thread');
-			$table->integer('category')->unsigned();
+			$table->integer('category_id')->unsigned();
 			$table->text('tag');
 			$table->integer('answered');
 			$table->text('votes');
@@ -26,7 +26,7 @@ class CreateThreadsTable extends Migration {
 			$table->timestamps();
 		
 			$table->foreign('user_id')->references('id')->on('users');
-			$table->foreign('category')->references('id')->on('categories');
+			$table->foreign('category_id')->references('id')->on('categories');
 		});
 	}
 

@@ -16,7 +16,7 @@ class ThreadController extends BaseController{
 		$rules = array(
 			'title'=>'required',
 			'thread'=>'required',
-			'tag'=>'required',
+			// 'tag'=>'required',
 			'type'=>'required',
 			'g-recaptcha-response'=>Config::get('app.recaptcha') ? 'required|recaptcha' : ''
 		);
@@ -31,13 +31,20 @@ class ThreadController extends BaseController{
 			$thread->type = $data['type'];
 			$thread->view = 0;
 			$thread->votes = '[]';
+			$thread->category_id = $data['category'];
 			$thread->answered = '0';
 			$thread->save();
-			return Redirect::route('thread.detail', array(Auth::user()->username, $thread->id));
+			return Redirect::route('{username}.thread.show', array(Auth::user()->username, $thread->id));
 		}
 		else{
-			return Redirect::route('create')->withErrors($validator);
+			// return Redirect::route('create')->withErrors($validator);
+			return $validator->messages();
 		}
+	}
+
+	function create(){
+		$categories = Category::all();
+		return View::make('create', ['categories'=>$categories]);
 	}
 
 	function discover(){

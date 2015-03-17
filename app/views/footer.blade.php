@@ -3,7 +3,7 @@
         <div class="clearfix">
             <div class="footer-logo">
                 <a href="#">
-                    <img src="img/footer-logo.png">Bootflat
+                    BengkelKoding.com
                 </a>
             </div>
             <dl class="footer-nav">
@@ -38,6 +38,6 @@
                 <dd class="nav-item"><a href="#">Conctact Form</a></dd>
             </dl>
         </div>
-        <div class="footer-copyright text-center">Copyright © 2014 Flathemes.All rights reserved.</div>
+        <div class="footer-copyright text-center">Copyright © 2014 BengkelKoding.All rights reserved.</div>
     </div>
 </div>

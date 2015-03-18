@@ -12,11 +12,11 @@
 	{{HTML::style('asset/css/site.min.css')}}
 
 	<!--Load Js-->
-	{{HTML::script('js/jquery-1.10.1.min.js')}}
-	{{HTML::script('js/bootstrap.min.js')}}
-	{{HTML::script('js/html5shiv.js')}}
-	{{HTML::script('js/respond.min.js')}}
-	{{HTML::script('js/site.min.js')}}
+	{{HTML::script('asset/js/jquery-1.10.1.min.js')}}
+	<!-- {{HTML::script('asset/js/bootstrap.min.js')}}
+	{{HTML::script('asset/js/html5shiv.js')}}
+	{{HTML::script('asset/js/respond.min.js')}} -->
+	{{HTML::script('asset/js/site.min.js')}}
 	
 	 <script>
 	 var alamat = "{{URL::to('/')}}";

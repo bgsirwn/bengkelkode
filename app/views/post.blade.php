@@ -34,7 +34,7 @@
                 </div>
                 
                 <div class="icons">
-                    <img src="http://localhost/bengkelkoding/public/dist/images/icon3.jpg" alt=""><img src="http://localhost/bengkelkoding/public/dist/images/icon4.jpg" alt=""><img src="http://localhost/bengkelkoding/public/dist/images/icon5.jpg" alt=""><img src="http://localhost/bengkelkoding/public/dist/images/icon6.jpg" alt="">
+                    <img src="http://localhost/bengkelkoding/public/dist/images/icon3.jpg" alt=""><img src="http://localhost/bengkelkoding/public/asset/img/photo-2.jpg" alt=""><img src="http://localhost/bengkelkoding/public/dist/images/icon5.jpg" alt=""><img src="http://localhost/bengkelkoding/public/dist/images/icon6.jpg" alt="">
                 </div>
             </div>
             

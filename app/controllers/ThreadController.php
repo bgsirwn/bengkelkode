@@ -119,9 +119,18 @@ class ThreadController extends BaseController{
 				$as['button'] = $answer_voted ? 'unvote' : 'vote';
 				$as['voted_link'] = route($answer_voted ? 'unvote.answer':'vote.answer',array('id'=>$as->id));
 			}
-			return View::make('discover',array('thread'=>$thread, 
-				'answer'=>$answer, 'button'=> $voted ? 'unvote' : 'vote', 
-				'vote_link'=>$vote_link));
+
+			$categories = Category::all();
+
+			foreach ($categories as $category) {
+				$jumlah = Thread::where('category_id',$category->id)->count();
+				$category['jumlah'] = $jumlah;
+			}
+
+			return View::make('discover',[
+				'thread'=>$thread, 'answer'=>$answer,
+				'button'=> $voted ? 'unvote' : 'vote', 
+				'vote_link'=>$vote_link, 'categories'=>$categories]);
 		}
 		else{
 			return Response::json(array(

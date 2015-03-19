@@ -48,7 +48,10 @@
 						<a href="{{route('login')}}">Login</a>
 					</li>
 
-					
+					@else
+					<li>
+						<a href="{{route('logout')}}">Log out</a>
+					</li>
 					@endif
 					
 				</ul>

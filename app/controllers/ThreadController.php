@@ -27,7 +27,7 @@ class ThreadController extends BaseController{
 			$thread->user_id = Auth::id();
 			$thread->title = $data['title'];
 			$thread->thread = htmlentities($data['thread']);
-			$thread->tag = $data['tag'];
+			$thread->tag = json_encode(explode(",", $data['tag']));
 			$thread->type = $data['type'];
 			$thread->view = 0;
 			$thread->votes = '[]';
@@ -93,8 +93,8 @@ class ThreadController extends BaseController{
 		$user = User::where('username',$username)->first();
 		$thread = Thread::where('id',$id)->where('user_id',$user->id)->orderBy('created_at', 'desc')->get();
 		$answer = Answer::where('thread_id',$id)->orderBy('votes_count','desc')->get();
-		$voted = ThreadController::isVoted($id);
-		$vote_link = route($voted ? 'unvote.thread':'vote.thread',array('id'=>$id));
+		$voted = ThreadController::isVoted($username, $id);
+		$vote_link = route($voted ? 'unvote.thread':'vote.thread',array('username'=>$username,'id'=>$id));
 		if(Route::currentRouteName()!="api.v1.user.thread.show"){
 			$addView = Cache::add(Auth::check() ? Auth::user()->username."AddThreadView".$id : "anonymous"."AddThreadView".$id, $thread[0]->id, 60*60*24*3);
 			if ($addView) {
@@ -108,7 +108,9 @@ class ThreadController extends BaseController{
 				$as['button'] = $answer_voted ? 'unvote' : 'vote';
 				$as['voted_link'] = route($answer_voted ? 'unvote.answer':'vote.answer',array('id'=>$as->id));
 			}
-			return View::make('discover',array('thread'=>$thread, 'answer'=>$answer, 'button'=> $voted ? 'unvote' : 'vote', 'vote_link'=>$vote_link));
+			return View::make('discover',array('thread'=>$thread, 
+				'answer'=>$answer, 'button'=> $voted ? 'unvote' : 'vote', 
+				'vote_link'=>$vote_link));
 		}
 		else{
 			return Response::json(array(
@@ -161,7 +163,7 @@ class ThreadController extends BaseController{
 		$votes = json_decode($thread->votes);
 		
 		//periksa apakah user sudah mengikuti atau belum
-		$voted = ThreadController::isVoted($id);
+		$voted = ThreadController::isVoted($username, $id);
 		
 		if (!$voted&&$thread->user_id!=$user->id) {
 			$votes[count($votes)] = array('id'=>$user->id);
@@ -171,10 +173,10 @@ class ThreadController extends BaseController{
 			//notif
 			$notif = new NotificationController;
 			$notif->store($id,2);
-			return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id));
+			return Redirect::route('{username}.thread.show', array(User::find($thread->user_id)->username,$thread->id));
 		}
 		else{
-			return Redirect::route('thread.detail', array(User::find($thread->user_id)->username,$thread->id))->withErrors("You can't vote your own thread!");
+			return Redirect::route('{username}.thread.show', array(User::find($thread->user_id)->username,$thread->id))->withErrors("You can't vote your own thread!");
 		}
 	}
 

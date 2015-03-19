@@ -83,10 +83,10 @@ Route::group(['before'=>'auth'], function(){
 		'uses'	=>	'NotificationController@readNotif'
 	]);
 
-	Route::get('vote/thread/{id}', [
-		'as'	=>	'vote.thread',
-		'uses'	=>	'ThreadController@vote'
-	]);
+	// Route::get('vote/thread/{id}', [
+	// 	'as'	=>	'vote.thread',
+	// 	'uses'	=>	'ThreadController@vote'
+	// ]);
 
 	Route::get('unvote/thread/{id}', [
 		'as'	=>	'unvote.thread',
@@ -119,6 +119,11 @@ Route::get('confirmation/{token}', array(
 	'as'=>'confirmation',
 	'uses'=>'UserController@confirm'
 ));
+
+Route::get('{username}/thread/{id}/vote', [
+	'as'=>'vote.thread',
+	'uses'=>'ThreadController@vote'
+]);
 
 Route::group(['prefix'=>'{username}'], function(){
 	Route::resource('thread', 'ThreadController');

@@ -68,7 +68,7 @@
 
                 <div class="col-md-12" style="margin-bottom: 20px">
                     <p><label>Tags:</label></p>
-                    <input id="tag" type="text" class="tags" value=""  />
+                    <input name="tag" id="tag" type="text" class="tags" value=""  />
                 </div>
             </div>
 

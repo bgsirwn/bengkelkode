@@ -52,8 +52,19 @@ class ThreadController extends BaseController{
 		foreach ($thread as $key) {
 			$countComments = Answer::where('thread_id',$key->id)->count();
 			$key['comments'] = $countComments;
+			$key['category'] = Category::find($key->category_id);
+			$key['tags'] = json_decode($key->tag);
 		}
-		return View::make('discover',array('thread'=>$thread));
+
+		$categories = Category::all();
+
+		foreach ($categories as $category) {
+			$jumlah = Thread::where('category_id',$category->id)->count();
+			$category['jumlah'] = $jumlah;
+		}
+
+
+		return View::make('discover',array('thread'=>$thread, 'categories'=>$categories));
 	}
 
 	function dashboard(){

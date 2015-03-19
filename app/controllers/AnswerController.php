@@ -40,10 +40,10 @@ class AnswerController extends \BaseController {
 			
 			//notif
 			$notif = new NotificationController;
-			$notif->store($id, 1);
+			$notif->store($thread_id, 1);
 		}
 		if(Route::currentRouteName()!='api.v1.user.show.thread.show.answer')
-			return Redirect::route('thread.detail', array($username, $id))->withErrors($validator);
+			return Redirect::route('{username}.thread.show', array($username, $thread_id))->withErrors($validator);
 		else
 			return Response::json(['message'=>'Done'],200);
 	}

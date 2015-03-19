@@ -130,6 +130,8 @@ class ThreadController extends BaseController{
 			return View::make('discover',[
 				'thread'=>$thread, 'answer'=>$answer,
 				'button'=> $voted ? 'unvote' : 'vote', 
+				'username'=>$username,
+				'thread_id'=>$id,
 				'vote_link'=>$vote_link, 'categories'=>$categories]);
 		}
 		else{

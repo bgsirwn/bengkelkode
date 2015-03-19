@@ -1,5 +1,5 @@
 <div class="post">
-    {{Form::open(array('class'=>'form'))}}
+    {{Form::open(array('class'=>'form', 'url'=>route('{username}.thread.answer.store',[$username, $thread_id])))}}
                                     <div class="topwrap">
                                         <div class="userinfo pull-left">
                                             <div class="avatar">

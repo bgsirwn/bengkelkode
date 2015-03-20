@@ -52,8 +52,66 @@ class ThreadController extends BaseController{
 		foreach ($thread as $key) {
 			$countComments = Answer::where('thread_id',$key->id)->count();
 			$key['comments'] = $countComments;
+			$key['category'] = Category::find($key->category_id);
+			$key['tags'] = json_decode($key->tag);
 		}
-		return View::make('discover',array('thread'=>$thread));
+
+		$categories = Category::all();
+
+		foreach ($categories as $category) {
+			$jumlah = Thread::where('category_id',$category->id)->count();
+			$category['jumlah'] = $jumlah;
+		}
+
+
+		return View::make('discover',array('thread'=>$thread, 'categories'=>$categories));
+	}
+
+	function discoverSearch(){
+		$data = Input::all();
+		if (!Input::has('keyword')) {
+			$data['keyword'] = 'allispossible';
+		}
+		if (!Input::has('category')) {
+			$data['category'] = 'allispossible';
+		}
+		if (!Input::has('tag')) {
+			$data['tag'] = 'allispossible';
+		}
+		return Redirect::route('discover.advanced', $data);
+	}
+
+	function discoverInAdvance($keyword, $category, $tag){
+		$thread = Thread::where('id','>',0);
+		if ($keyword != 'allispossible') {
+			$thread = $thread->where('title','like','%'.$keyword.'%');
+		}
+		if ($category != 'allispossible') {
+			$thread = $thread->where('category_id', Category::where('name',$category)->first()->id);
+		}
+		if ($tag != 'allispossible') {
+			$thread = $thread->where('tag', 'like', '%'.$tag.'%');
+		}
+		$thread = $thread->orderBy('created_at', 'desc')->simplePaginate(10);
+
+		foreach ($thread as $key) {
+			$countComments = Answer::where('thread_id',$key->id)->count();
+			$key['comments'] = $countComments;
+			$key['category'] = Category::find($key->category_id);
+			$key['tags'] = json_decode($key->tag);
+		}
+
+		$categories = Category::all();
+
+		foreach ($categories as $category) {
+			$jumlah = Thread::where('category_id',$category->id)->count();
+			$category['jumlah'] = $jumlah;
+		}
+
+		return View::make('discover', [
+			'categories'	=>	$categories,
+			'thread'		=>	$thread
+		]);
 	}
 
 	function dashboard(){
@@ -108,9 +166,20 @@ class ThreadController extends BaseController{
 				$as['button'] = $answer_voted ? 'unvote' : 'vote';
 				$as['voted_link'] = route($answer_voted ? 'unvote.answer':'vote.answer',array('id'=>$as->id));
 			}
-			return View::make('discover',array('thread'=>$thread, 
-				'answer'=>$answer, 'button'=> $voted ? 'unvote' : 'vote', 
-				'vote_link'=>$vote_link));
+
+			$categories = Category::all();
+
+			foreach ($categories as $category) {
+				$jumlah = Thread::where('category_id',$category->id)->count();
+				$category['jumlah'] = $jumlah;
+			}
+
+			return View::make('discover',[
+				'thread'=>$thread, 'answer'=>$answer,
+				'button'=> $voted ? 'unvote' : 'vote', 
+				'username'=>$username,
+				'thread_id'=>$id,
+				'vote_link'=>$vote_link, 'categories'=>$categories]);
 		}
 		else{
 			return Response::json(array(

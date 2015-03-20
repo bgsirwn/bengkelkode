@@ -4,30 +4,12 @@
     </div>
     <div class="panel-body">
         <ul class="list-group">
+            @foreach($categories as $category)
             <li class="list-group-item">
-                <span class="badge">14</span>
-                PHP
+                <span class="badge badge-primary">{{$category->jumlah}}</span>
+                    <a href="{{route('discover.advanced', ['allispossible',$category->name, 'allispossible'])}}">{{$category->name}}</a>
             </li>
-            <li class="list-group-item">
-                <span class="badge badge-default">91</span>
-                    My Sql
-            </li>
-            <li class="list-group-item">
-                <span class="badge badge-primary">38</span>
-                    Laravel
-            </li>
-            <li class="list-group-item">
-                <span class="badge badge-success">56</span>
-                    Java
-            </li>
-            <li class="list-group-item">
-                <span class="badge badge-warning">20</span>
-                    C#
-            </li>
-            <li class="list-group-item">
-                <span class="badge badge-danger">99+</span>
-                   C++
-            </li>
+            @endforeach
         </ul>
     </div>
 </div>

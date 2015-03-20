@@ -46,7 +46,17 @@
                                     <div class="views"><i class="icon-eye"></i>  {{$key->view}}</div>
                                     <div class="time"><i class="icon-clock"></i> 24 min</div>                                    
                                 </div>
-                                <div class="clearfix"></div>
+                                <div class="clearfix">
+                                	<div>
+                                	Category: {{$key->category->name}}
+                                	</div>
+                                	<div>
+                                	Tags: 
+                                	@for($i=0;$i < count($key->tags); $i++)
+                                		{{$key->tags[$i]}}
+                                	@endfor
+                                	</div>
+                                </div>
                             </div>
                             @else
                             <div class="post beforepagination">

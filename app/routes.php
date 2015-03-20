@@ -83,11 +83,6 @@ Route::group(['before'=>'auth'], function(){
 		'uses'	=>	'NotificationController@readNotif'
 	]);
 
-	// Route::get('vote/thread/{id}', [
-	// 	'as'	=>	'vote.thread',
-	// 	'uses'	=>	'ThreadController@vote'
-	// ]);
-
 	Route::get('unvote/thread/{id}', [
 		'as'	=>	'unvote.thread',
 		'uses'	=>	'ThreadController@unvote'
@@ -110,6 +105,16 @@ Route::get('discover', [
 	'uses'	=>	'ThreadController@discover'
 ]);
 
+Route::get('discover/search', [
+	'as'	=>	'discover.search.form',
+	'uses'	=>	'ThreadController@discoverSearch'
+]);
+
+Route::get('discover/{keyword}/category/{category}/tag/{tag}', [
+	'as'	=>	'discover.advanced',
+	'uses'	=>	'ThreadController@discoverInAdvance'
+]);
+
 Route::get('{username}', [
 	'as'	=>	'profile', 
 	'uses'	=>	'UserController@show'
@@ -129,6 +134,7 @@ Route::group(['prefix'=>'{username}'], function(){
 	Route::resource('thread', 'ThreadController');
 	Route::resource('thread.answer', 'AnswerController');
 });
+
 
 /*
 /{username}/thread (get) route('{username}.thread.index')

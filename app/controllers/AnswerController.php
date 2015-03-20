@@ -40,10 +40,10 @@ class AnswerController extends \BaseController {
 			
 			//notif
 			$notif = new NotificationController;
-			$notif->store($id, 1);
+			$notif->store($thread_id, 1);
 		}
 		if(Route::currentRouteName()!='api.v1.user.show.thread.show.answer')
-			return Redirect::route('thread.detail', array($username, $id))->withErrors($validator);
+			return Redirect::route('{username}.thread.show', array($username, $thread_id))->withErrors($validator);
 		else
 			return Response::json(['message'=>'Done'],200);
 	}
@@ -95,7 +95,7 @@ class AnswerController extends \BaseController {
 		return Redirect::to('{username}.thread.show',[$username,$thread_id]);
 	}
 
-	function vote($username, $thread_id, $answer_id){
+	function vote($answer_id){
 		$user = User::find(Auth::id());
 		$answer = Answer::find($answer_id);
 		$votes = json_decode($answer->votes);
@@ -125,7 +125,7 @@ class AnswerController extends \BaseController {
 		}
 	}
 
-	function unvote($username, $thread_id, $answer_id){
+	function unvote($answer_id){
 		$user = User::find(Auth::id());
 		$answer = Answer::find($answer_id);
 		$votes = json_decode($answer->votes);

@@ -49,7 +49,7 @@ class BengkelKodingController extends BaseController{
 	}
 
 	function login($msg = ""){
-		return View::make('login', array('msg'=>$msg));
+		return View::make('tampilan/login', array('msg'=>$msg));
 	}
 
 	function tes(){

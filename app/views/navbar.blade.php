@@ -29,7 +29,7 @@
 
 					<li>
 						<a href="">Notifications
-							<span class="badge badge-danger">42</span>
+							<span class="badge badge-danger">{{count(Session::get('notifications'))}}</span>
 						</a>
 					</li>
 

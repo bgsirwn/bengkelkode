@@ -83,11 +83,6 @@ Route::group(['before'=>'auth'], function(){
 		'uses'	=>	'NotificationController@readNotif'
 	]);
 
-	// Route::get('vote/thread/{id}', [
-	// 	'as'	=>	'vote.thread',
-	// 	'uses'	=>	'ThreadController@vote'
-	// ]);
-
 	Route::get('unvote/thread/{id}', [
 		'as'	=>	'unvote.thread',
 		'uses'	=>	'ThreadController@unvote'

@@ -30,6 +30,11 @@
 				{{Form::password('password',array('class'=>'form-control','placeholder'=>'Password', 'required','type'=>'password'))}}
 								
 			</div>
+
+			<div class="form-group">
+				{{Form::label('forever', 'Remember me')}}
+				{{Form::checkbox('forever')}}
+			</div>
 							
 			<div class="form-group">
 				{{Form::submit('Login', array('class'=>'btn btn-success' , 'style'=>'margin-left:20px'))}}

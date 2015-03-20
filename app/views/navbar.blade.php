@@ -55,10 +55,10 @@
 					@endif
 					
 				</ul>
-				<form class="navbar-form navbar-right" role="search" style="margin-right: 150px">
+				<form method="get" action="{{route('discover.search.form')}}" class="navbar-form navbar-right" role="search" style="margin-right: 150px">
 					<div class="form-search search-only">
 						<i class="search-icon glyphicon glyphicon-search"></i> 
-						<input class="form-control search-query">
+						<input name="keyword" class="form-control search-query">
 					</div>
 				</form>
 			</div>

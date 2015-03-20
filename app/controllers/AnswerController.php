@@ -95,7 +95,7 @@ class AnswerController extends \BaseController {
 		return Redirect::to('{username}.thread.show',[$username,$thread_id]);
 	}
 
-	function vote($username, $thread_id, $answer_id){
+	function vote($answer_id){
 		$user = User::find(Auth::id());
 		$answer = Answer::find($answer_id);
 		$votes = json_decode($answer->votes);
@@ -125,7 +125,7 @@ class AnswerController extends \BaseController {
 		}
 	}
 
-	function unvote($username, $thread_id, $answer_id){
+	function unvote($answer_id){
 		$user = User::find(Auth::id());
 		$answer = Answer::find($answer_id);
 		$votes = json_decode($answer->votes);

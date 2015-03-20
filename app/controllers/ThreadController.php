@@ -67,6 +67,53 @@ class ThreadController extends BaseController{
 		return View::make('discover',array('thread'=>$thread, 'categories'=>$categories));
 	}
 
+	function discoverSearch(){
+		$data = Input::all();
+		if (!Input::has('keyword')) {
+			$data['keyword'] = 'allispossible';
+		}
+		if (!Input::has('category')) {
+			$data['category'] = 'allispossible';
+		}
+		if (!Input::has('tag')) {
+			$data['tag'] = 'allispossible';
+		}
+		return Redirect::route('discover.advanced', $data);
+	}
+
+	function discoverInAdvance($keyword, $category, $tag){
+		$thread = Thread::where('id','>',0);
+		if ($keyword != 'allispossible') {
+			$thread = $thread->where('title','like','%'.$keyword.'%');
+		}
+		if ($category != 'allispossible') {
+			$thread = $thread->where('category_id', Category::where('name',$category)->first()->id);
+		}
+		if ($tag != 'allispossible') {
+			$thread = $thread->where('tag', 'like', '%'.$tag.'%');
+		}
+		$thread = $thread->orderBy('created_at', 'desc')->simplePaginate(10);
+
+		foreach ($thread as $key) {
+			$countComments = Answer::where('thread_id',$key->id)->count();
+			$key['comments'] = $countComments;
+			$key['category'] = Category::find($key->category_id);
+			$key['tags'] = json_decode($key->tag);
+		}
+
+		$categories = Category::all();
+
+		foreach ($categories as $category) {
+			$jumlah = Thread::where('category_id',$category->id)->count();
+			$category['jumlah'] = $jumlah;
+		}
+
+		return View::make('discover', [
+			'categories'	=>	$categories,
+			'thread'		=>	$thread
+		]);
+	}
+
 	function dashboard(){
 		// $following = json_decode(User::find(Auth::id())->following);
 		// $thread = Thread::orderBy('created_at', 'desc')->where('user_id','=',Auth::id());

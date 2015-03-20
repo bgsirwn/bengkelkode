@@ -7,7 +7,7 @@
             @foreach($categories as $category)
             <li class="list-group-item">
                 <span class="badge badge-primary">{{$category->jumlah}}</span>
-                    {{$category->name}}
+                    <a href="{{route('discover.advanced', ['allispossible',$category->name, 'allispossible'])}}">{{$category->name}}</a>
             </li>
             @endforeach
         </ul>

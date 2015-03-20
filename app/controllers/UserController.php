@@ -101,7 +101,7 @@ class UserController extends \BaseController {
 							$showButton = false;
 						}
 					}
-					return View::make('profile', array('output'=>$data, 'followed'=>$followed, 'followers'=>$followers, 'showButton'=>$showButton));
+					return View::make('tampilan/profil', array('output'=>$data, 'followed'=>$followed, 'followers'=>$followers, 'showButton'=>$showButton));
 				}
 			}
 			else{

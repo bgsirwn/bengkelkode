@@ -1,7 +1,7 @@
 <?php
 class BengkelKodingController extends BaseController{
 	function index(){
-		return View::make('home');
+		return View::make('tampilan/home');
 	}
 
 	function auth(){

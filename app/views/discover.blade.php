@@ -63,7 +63,7 @@
                                 <div class="topwrap">
                                     <div class="userinfo pull-left">
                                         <div class="avatar">
-                                           <img class="cycle span" src="<!-- {{URL::asset('dist/images/'.User::find($key->user_id)->photo)}} -->" style="width: 50px ! important;">
+                                           <img class="cycle span" src="{{URL::asset('asset/img/'.User::find($key->user_id)->photo)}}" style="width: 50px ! important;">
                                             <div class="status green">&nbsp;</div>
                                         </div>
 

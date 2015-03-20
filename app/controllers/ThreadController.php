@@ -79,7 +79,7 @@ class ThreadController extends BaseController{
 		else{
 			$id = $user->id;
 			$data = Thread::where('user_id','=',$id)->orderBy('created_at', 'desc')->simplePaginate(10);
-			return View::make('dashboard', array('output'=>$data));
+			return View::make('tampilan/dashboard', array('output'=>$data));
 		}
 	}
 

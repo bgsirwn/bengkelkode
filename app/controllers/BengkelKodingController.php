@@ -1,7 +1,19 @@
 <?php
 class BengkelKodingController extends BaseController{
 	function index(){
-		return View::make('tampilan/home');
+		$categories = Category::all();
+
+		foreach ($categories as $category) {
+			$jumlah = Thread::where('category_id',$category->id)->count();
+			$category['jumlah'] = $jumlah;
+		}
+
+		$hotThreads = Thread::where('type',1)->orderBy('view', 'desc')->take(10)->get();
+
+		return View::make('tampilan/home', [
+			'categories'	=>	$categories,
+			'hotThreads'	=>	$hotThreads
+		]);
 	}
 
 	function auth(){

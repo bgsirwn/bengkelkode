@@ -32,21 +32,14 @@
 
 						</ul>
 					</li>
-
+					@if(Auth::check())
 					<li>
 						<a href="">Notifications
-<<<<<<< HEAD
-						<span class="badge badge-danger">42</span>
-=======
 							<span class="badge badge-danger">{{count(Session::get('notifications'))}}</span>
->>>>>>> b0bd60bd1ba019d399571ffbcc3f880f4b1a7355
 						</a>
 					</li>
+					@endif
 
-					
-					
-
-					
 
 					<!-- <li>
 
@@ -55,20 +48,13 @@
 
 					
 					@if(!Auth::check())
-
-
-
 					<li>
 						<a href="{{route('signup')}}">Sign Up</a>
 					</li>
-
-
 					<li>
 						<a href="{{route('login')}}">Login</a>
 					</li>
-
 					@else
-
 					<a button type="button" class="btn btn-warning navbar-btn" href="{{route('logout')}}">Logout</a>
 					<!-- <li>
 						<a href="{{route('logout')}}">Log out</a>
@@ -76,22 +62,17 @@
 					@endif
 					
 				</ul>
-<<<<<<< HEAD
-
+				@if(Auth::check())
 				<p class="navbar-text navbar-right">
-					<a class="navbar-link" href={{route('profile')}}>Signed in as Mark Otto</a>
+					<a class="navbar-link" href={{route('profile')}}>Signed in as {{Auth::user()->name}}</a>
 				</p>
-				
-
-				
-=======
+				@endif
 				<form method="get" action="{{route('discover.search.form')}}" class="navbar-form navbar-right" role="search" style="margin-right: 150px">
 					<div class="form-search search-only">
 						<i class="search-icon glyphicon glyphicon-search"></i> 
 						<input name="keyword" class="form-control search-query">
 					</div>
 				</form>
->>>>>>> b0bd60bd1ba019d399571ffbcc3f880f4b1a7355
 			</div>
 		</div>
 	</nav>

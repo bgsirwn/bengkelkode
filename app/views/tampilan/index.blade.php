@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		@include('tampilan/load-asset')
 
-		<title></title>
+		<title>@yield('title')</title>
 
 	</head>
 

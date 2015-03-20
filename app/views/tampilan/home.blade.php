@@ -1,4 +1,7 @@
 @extends('tampilan/index')
+@section('title')
+BengkelKoding
+@stop
 @section('content')
 	<div class="container">
     	<div class="grid">
@@ -40,33 +43,15 @@
     				
     			</div>
     			<div class="col-md-11">
+                    @foreach($categories as $category)
     				<div class="col-md-10">
-    					<p>Java</p>
+    					<p><a href="{{route('discover.advanced', ['allispossible',$category->name, 'allispossible'])}}">
+                        {{$category->name}}</a></p>
     				</div>
     				<div class="col-md-2">
-    					<p><span class="badge">6</span></p>
+    					<p><span class="badge">{{$category->jumlah}}</span></p>
     				</div>
-
-    				<div class="col-md-10">
-    					<p>Android</p>
-    				</div>
-    				<div class="col-md-2">
-    					<p><span class="badge">6</span></p>
-    				</div>
-
-    				<div class="col-md-10">
-    					<p>Pascal</p>
-    				</div>
-    				<div class="col-md-2">
-    					<p><span class="badge">6</span></p>
-    				</div>
-
-    				<div class="col-md-10">
-    					<p>Netbeans</p>
-    				</div>
-    				<div class="col-md-2">
-    					<p><span class="badge">6</span></p>
-    				</div>
+                    @endforeach
     			</div>
     		</div>
     		<!--############################## Categories - Close ######################################################-->

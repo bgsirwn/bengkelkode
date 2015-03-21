@@ -25,7 +25,7 @@
     </script>
 
 <div class="post">
-    {{Form::open(array('url'=>route('{username}.thread.store',[Auth::user()->username]),'class'=>'form newtopic','method'=>isset($thread) ? 'put':'post'))}}
+    {{Form::open(array('url'=>isset($thread) ? route('{username}.thread.update', [Auth::user()->username,$thread->id]):route('{username}.thread.store',[Auth::user()->username]),'class'=>'form newtopic','method'=>isset($thread) ? 'put':'post'))}}
         <div class="topwrap">
             <div class="userinfo pull-left">
                 <div class="status red">&nbsp;</div>

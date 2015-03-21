@@ -56,6 +56,12 @@
                                 		{{$key->tags[$i]}}
                                 	@endfor
                                 	</div>
+                                	@if(Auth::check()&&Auth::id()==$key->user_id)
+                                	<div>
+                                		<a href="{{route('{username}.thread.edit', [Auth::user()->username,$key->id])}}">edit</a>
+                                		<a>delete</a>
+                                	</div>
+                                	@endif
                                 </div>
                             </div>
                             @else

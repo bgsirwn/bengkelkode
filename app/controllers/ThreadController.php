@@ -144,7 +144,11 @@ class ThreadController extends BaseController{
 	function edit($username, $id){
 		$user = User::where('username',$username)->first();
 		$thread = Thread::where('id',$id)->where('user_id',$user->id)->orderBy('created_at', 'desc')->first();
-		return View::make('create', array('thread'=>$thread));
+		$categories = Category::all();
+		return View::make('create', [
+			'thread'		=>	$thread,
+			'categories'	=>	$categories
+		]);
 	}
 
 	function show($username, $id){
@@ -204,7 +208,7 @@ class ThreadController extends BaseController{
 			'thread'=>'required',
 			'tag'=>'required',
 			'type'=>'required',
-			'g-recaptcha-response'=>'required|recaptcha'
+			'g-recaptcha-response'=>Config::get('app.recaptcha') ? 'required|recaptcha' : ''
 		);
 		$validator = Validator::make($data,$rules);
 		$validated = $validator->passes();
@@ -217,12 +221,12 @@ class ThreadController extends BaseController{
 			$thread->type = $data['type'];
 			$thread->save();
 			if(Route::currentRouteName()!="api.v1.user.thread.update")
-				return Redirect::route('thread.detail', array(Auth::user()->username, $thread->id));
+				return Redirect::route('{username}.thread.show', array(Auth::user()->username, $thread->id));
 			else
 				return Response::json(array('thread'=>$thread->toArray()),200);
 		}
 		else{
-			return Redirect::route('thread.edit', array($username,$id))->withErrors($validator);
+			return Redirect::route('{username}.thread.edit', [$username,$id])->withErrors($validator);
 		}
 	}
 
@@ -231,7 +235,7 @@ class ThreadController extends BaseController{
 		$thread = Thread::find($id);
 		$votes = json_decode($thread->votes);
 		
-		//periksa apakah user sudah mengikuti atau belum
+		//periksa apakah user sudah memberi vote atau belum
 		$voted = ThreadController::isVoted($username, $id);
 		
 		if (!$voted&&$thread->user_id!=$user->id) {

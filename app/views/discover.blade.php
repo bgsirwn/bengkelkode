@@ -58,8 +58,8 @@
                                 	</div>
                                 	@if(Auth::check()&&Auth::id()==$key->user_id)
                                 	<div>
-                                		<a href="{{route('{username}.thread.edit', [Auth::user()->username,$key->id])}}">edit</a>
-                                		<a>delete</a>
+                                		<a href="{{route('{username}.thread.edit', [Auth::user()->username, $key->id])}}">edit</a>
+                                		<a href="{{route('{username}.thread.delete', [Auth::user()->username, $key->id])}}">Delete</a>
                                 	</div>
                                 	@endif
                                 </div>

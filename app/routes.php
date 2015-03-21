@@ -121,13 +121,18 @@ Route::get('{username}', [
 ]);
 
 Route::get('confirmation/{token}', array(
-	'as'=>'confirmation',
-	'uses'=>'UserController@confirm'
+	'as'	=>	'confirmation',
+	'uses'	=>	'UserController@confirm'
 ));
 
 Route::get('{username}/thread/{id}/vote', [
-	'as'=>'vote.thread',
-	'uses'=>'ThreadController@vote'
+	'as'	=>	'vote.thread',
+	'uses'	=>	'ThreadController@vote'
+]);
+
+Route::get('{username}/thread/{id}/delete', [
+	'as'	=>	'{username}.thread.delete',
+	'uses'	=>	'ThreadController@delete'
 ]);
 
 Route::group(['prefix'=>'{username}'], function(){

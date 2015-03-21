@@ -47,6 +47,21 @@ class ThreadController extends BaseController{
 		return View::make('create', ['categories'=>$categories]);
 	}
 
+	function delete($username, $thread_id){
+		$thread = Thread::where('user_id', User::where('username', $username)->first()->id);
+		$thread = $thread->where('id', $thread_id)->first();
+		return View::make('delete', [
+			'thread'	=>	$thread
+		]);
+	}
+
+	function destroy($username, $thread_id){
+		$thread = Thread::where('user_id', User::where('username', $username)->first()->id);
+		$thread = $thread->where('id', $thread_id)->first();
+		$thread->delete();
+		return Redirect::route('discover');
+	}
+
 	function discover(){
 		$thread = Thread::orderBy('created_at', 'desc')->simplePaginate(10);
 		foreach ($thread as $key) {

@@ -8,6 +8,22 @@
 <div class="container sections-wrapper">
         <div class="row">
             <div class="primary col-md-8 col-sm-12 col-xs-12">
+            <div>
+                <h3>Threads</h3>
+                <div>
+                    <h5>Questions</h5>
+                    @foreach($questions as $question)
+                    {{$question->title}}
+                    @endforeach
+                </div>
+                <div>
+                    <h5>Tutorial</h5>
+                    @foreach($tutorials as $tutorial)
+                    {{$tutorial->title}}
+                    @endforeach
+                </div>
+            </div>
+
                 @include('tampilan/profil-aboutme')
     
                <section class="latest section">

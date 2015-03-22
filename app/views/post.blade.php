@@ -49,7 +49,7 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-6">
                         {{Form::radio('type', '1', true)}}Question
-                        {{Form::radio('type', '2')}}Discussion
+                        {{Form::radio('type', '2')}}Tutorial
                                                 <!--
                                                     <select name="category" id="category" class="form-control">                                                     
                                                         <option value="" disabled="disabled" selected="selected">Select Category</option>

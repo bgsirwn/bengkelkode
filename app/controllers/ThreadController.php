@@ -63,7 +63,7 @@ class ThreadController extends BaseController{
 	}
 
 	function discover(){
-		$thread = Thread::orderBy('created_at', 'desc')->simplePaginate(10);
+		$thread = Thread::where('type',1)->orderBy('created_at', 'desc')->simplePaginate(10);
 		foreach ($thread as $key) {
 			$countComments = Answer::where('thread_id',$key->id)->count();
 			$key['comments'] = $countComments;

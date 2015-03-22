@@ -90,40 +90,41 @@ class UserController extends \BaseController {
 	{
 		$user = User::where('username',$username)->orwhere('email',$username)->get();	
 		if($user->count()>0){
-			if (Route::currentRouteName()!='api.v1.user.show') {
-				foreach ($user as $data) {
-					$followed = UserController::isFollowed($username);
-					$followers = json_decode($data->followers);
-					$following = json_decode($data->following);
-					$showButton = true;
-					if(Auth::check()){
-						if (Auth::user()->username==$username) {
-							$showButton = false;
-						}
-					}
-					return View::make('tampilan/profil', array('output'=>$data, 'followed'=>$followed, 'followers'=>$followers, 'showButton'=>$showButton));
+			$data = $user->first();
+			$followed = UserController::isFollowed($username);
+			$followers = json_decode($data->followers);
+			$following = json_decode($data->following);
+			$showButton = true;
+
+			$questions = Thread::where('user_id', Auth::id())->where('type', 1)->orderBy('id','desc')->get();
+			foreach ($questions as $key) {
+				$countComments = Answer::where('thread_id',$key->id)->count();
+				$key['comments'] = $countComments;
+				$key['category'] = Category::find($key->category_id);
+				$key['tags'] = json_decode($key->tag);
+			}
+
+			$tutorials = Thread::where('user_id', Auth::id())->where('type', 2)->orderBy('id','desc')->get();
+			foreach ($tutorials as $key) {
+				$countComments = Answer::where('thread_id',$key->id)->count();
+				$key['comments'] = $countComments;
+				$key['category'] = Category::find($key->category_id);
+				$key['tags'] = json_decode($key->tag);
+			}
+
+			if(Auth::check()){
+				if (Auth::user()->username==$username) {
+					$showButton = false;
 				}
 			}
-			else{
-				foreach ($user as $data) {
-					$followed = UserController::isFollowed($username);
-					$followers = json_decode($data->followers);
-					$following = json_decode($data->following);
-					$showButton = true;
-					if(Auth::check()){
-						if (Auth::user()->username==$username) {
-							$showButton = false;
-						}
-					}
-					return Response::json(array(
-						'output'=>$data, 
-						'followed'=>$followed, 
-						'followers'=>$followers,
-						'following'=>$following, 
-						'showButton'=>$showButton),200
-					);
-				}
-			}
+			return View::make('tampilan/profil', [
+				'output'	=>	$data, 
+				'followed'	=>	$followed, 
+				'followers'	=>	$followers, 
+				'showButton'=>	$showButton,
+				'questions'	=>	$questions,
+				'tutorials'	=> 	$tutorials
+			]);
 		}
 		else{
 			return "Data doesn't exist";

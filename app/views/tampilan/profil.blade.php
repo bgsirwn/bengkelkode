@@ -309,5 +309,5 @@
             </div><!--//secondary-->    
         </div><!--//row-->
     </div>
-
+<script src="{{URL::asset('asset/js/profile.js')}}"></script>
 @stop

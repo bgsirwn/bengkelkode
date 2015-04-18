@@ -1,0 +1,52 @@
+.right{
+    float: right;
+    margin-right: 30;
+    margin-top: 10px;
+}
+
+.sidebar-nav li a {
+    color: #999;
+    display: block;
+    float: left;
+    text-decoration: none;
+    width: 250px;
+    background: none repeat scroll 0% 0% #252525;
+    border-top: 1px solid #373737;
+    border-bottom: 1px solid #1A1A1A;
+    transition: #000 0.5s ease 0s;
+}
+
+.dashboard-thread{
+	border: 2px solid black;
+	color: black;
+	padding: 10px;
+}
+
+.thread-title{
+	font-size: 16px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.table-dashboard p{
+	margin-bottom: 0px;
+}
+
+.thread-detail{
+	font-size: 12px;
+}
+
+.thread-views{
+	vertical-align: middle;
+}
+
+
+
+.table > tbody > tr > td{
+	vertical-align: middle;
+}
+
+.table > thead{
+	background: #DD4814;
+	color: white;
+}

@@ -10,7 +10,7 @@ class BengkelKodingController extends BaseController{
 
 		$hotThreads = Thread::where('type',1)->orderBy('view', 'desc')->take(10)->get();
 
-		return View::make('tampilan/home', [
+		return View::make('tampilan/home2', [
 			'categories'	=>	$categories,
 			'hotThreads'	=>	$hotThreads
 		]);
@@ -45,7 +45,7 @@ class BengkelKodingController extends BaseController{
 	}
 
 	function signup(){
-		return View::make('signup');
+		return View::make('tampilan/signup');
 	}
 
 	function login($msg = ""){

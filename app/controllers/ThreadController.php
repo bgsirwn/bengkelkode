@@ -79,7 +79,7 @@ class ThreadController extends BaseController{
 		}
 
 
-		return View::make('discover',array('thread'=>$thread, 'categories'=>$categories));
+		return View::make('tampilan/discover',array('thread'=>$thread, 'categories'=>$categories));
 	}
 
 	function discoverSearch(){
@@ -152,7 +152,7 @@ class ThreadController extends BaseController{
 		else{
 			$id = $user->id;
 			$data = Thread::where('user_id','=',$id)->orderBy('created_at', 'desc')->simplePaginate(10);
-			return View::make('tampilan/dashboard', array('output'=>$data));
+			return View::make('tampilan/dashboard2', array('output'=>$data));
 		}
 	}
 
